@@ -1,3 +1,5 @@
+warning_threshold: 15
+
 disabled_rules:
 - unused_optional_binding
 - trailing_whitespace
