@@ -1,10 +1,14 @@
 disabled_rules:
 - unused_optional_binding
-- line_length
 - trailing_whitespace
 
 excluded:
 - Pods
+- ShoppingCart/Products
+- ShoppingCart/Pods
+- ShoppingCart/Frameworks
+- ShoppingCart/App/AppDelegate.swift
+- ShoppingCart/App/SceneDelegate.swift
 
 opt_in_rules:
 - operator_usage_whitespace
