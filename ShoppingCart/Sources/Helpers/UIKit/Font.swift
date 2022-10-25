@@ -29,6 +29,7 @@ enum Font {
         switch weight {
         case .regular:
             return UIFont(name: "SBSansInterface-Regular", size: size)!
+            
         case .bold:
             return UIFont(name: "SBSansDisplay-Semibold", size: size)!
         }
