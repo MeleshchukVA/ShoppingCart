@@ -5,6 +5,5 @@ target 'ShoppingCart' do
 
   # Pods for ShoppingCart
   pod 'SwiftLint'
-  pod 'Kingfisher', '~> 7.0'
 
 end
