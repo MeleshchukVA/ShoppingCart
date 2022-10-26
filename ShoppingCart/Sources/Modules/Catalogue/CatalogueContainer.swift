@@ -43,5 +43,6 @@ final class CatalogueContainer {
 // MARK: - ModuleOutput
 
 struct CatalogueContext {
+    let moduleDependencies: ModuleDependencies
 	weak var moduleOutput: CatalogueModuleOutput?
 }
