@@ -14,9 +14,27 @@ final class CatalogueInteractor {
     
     // MARK: Properties
 	weak var output: CatalogueInteractorOutput?
+    private let networkService: NetworkServiceProtocol
+    
+    // MARK: Init
+    init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
+    }
 }
 
 // MARK: - InteractorInput
 
 extension CatalogueInteractor: CatalogueInteractorInput {
+    
+    func reload() {
+        networkService.fetchCategories { result in
+            switch result {
+            case .success(let results):
+                print(results)
+                
+            case .failure:
+                break
+            }
+        }
+    }
 }

@@ -19,6 +19,9 @@ final class CataloguePresenter {
 	private let router: CatalogueRouterInput
 	private let interactor: CatalogueInteractorInput
     
+    private var isReloading = false
+    private var categories: [Categories] = []
+    
     // MARK: Init
     
     init(router: CatalogueRouterInput, interactor: CatalogueInteractorInput) {
@@ -35,6 +38,11 @@ extension CataloguePresenter: CatalogueModuleInput {
 // MARK: - ViewControllerOutput
 
 extension CataloguePresenter: CatalogueViewControllerOutput {
+    
+    func viewDidLoad() {
+        isReloading = true
+        interactor.reload()
+    }
 }
 
 // MARK: - InteractorOutput

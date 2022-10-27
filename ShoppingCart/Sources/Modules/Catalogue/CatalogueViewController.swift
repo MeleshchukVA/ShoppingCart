@@ -29,6 +29,8 @@ final class CatalogueViewController: UIViewController {
     // MARK: Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        
+        output.viewDidLoad()
 	}
 }
 

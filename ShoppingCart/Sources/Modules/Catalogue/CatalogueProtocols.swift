@@ -27,11 +27,13 @@ protocol CatalogueViewControllerInput: AnyObject {
 // MARK: - ViewControllerOutput
 
 protocol CatalogueViewControllerOutput: AnyObject {
+    func viewDidLoad()
 }
 
 // MARK: - InteractorInput
 
 protocol CatalogueInteractorInput: AnyObject {
+    func reload()
 }
 
 // MARK: - InteractorOutput

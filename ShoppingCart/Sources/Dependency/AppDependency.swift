@@ -12,31 +12,31 @@ import Foundation
 final class AppDependency {
     
     // MARK: Properties
-    let networkService: NetworkService
+    let network: NetworkService
     
     // MARK: Init
-    init(networkService: NetworkService) {
-        self.networkService = networkService
+    init(network: NetworkService) {
+        self.network = network
     }
     
     // MARK: Methods
     static func makeDefault() -> AppDependency {
         let networkService = NetworkService()
-        return AppDependency(networkService: networkService)
+        return AppDependency(network: networkService)
     }
 }
 
 // MARK: - Protocol
 
 protocol HasDependencies {
-    var network: NetworkServiceProtocol { get }
+    var networkService: NetworkServiceProtocol { get }
 }
 
 // MARK: - Properties
 
 extension AppDependency: HasDependencies {
     
-    var network: NetworkServiceProtocol {
-        self.networkService
+    var networkService: NetworkServiceProtocol {
+        self.network
     }
 }

@@ -15,7 +15,7 @@ final class CatalogueContainer {
     // MARK: Properties
     let input: CatalogueModuleInput
 	let viewController: UIViewController
-	private(set) weak var router: CatalogueRouterInput?
+	weak var router: CatalogueRouterInput?
     
     // MARK: Init
     private init(viewController: UIViewController, input: CatalogueModuleInput, router: CatalogueRouterInput) {
@@ -27,14 +27,14 @@ final class CatalogueContainer {
     // MARK: Methods
 	static func assemble(with context: CatalogueContext) -> CatalogueContainer {
         let router = CatalogueRouter()
-        let interactor = CatalogueInteractor()
+        let interactor = CatalogueInteractor(networkService: context.moduleDependencies.networkService)
         let presenter = CataloguePresenter(router: router, interactor: interactor)
 		let viewController = CatalogueViewController(output: presenter)
+        
+        interactor.output = presenter
 
 		presenter.viewController = viewController
 		presenter.moduleOutput = context.moduleOutput
-
-		interactor.output = presenter
 
         return CatalogueContainer(viewController: viewController, input: presenter, router: router)
 	}
