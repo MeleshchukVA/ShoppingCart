@@ -14,6 +14,13 @@ extension UITableViewHeaderFooterView: ReuseIdentifiable {}
 extension UITableView {
     
     // MARK: TableViewCell
+    func register<T: UITableViewCell>(_ cellType: T.Type) {
+        self.register(
+            cellType,
+            forCellReuseIdentifier: cellType.reuseIdentifier
+        )
+    }
+    
     func dequeueCell<T: UITableViewCell>(cellType: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = self.dequeueReusableCell(
             withIdentifier: T.reuseIdentifier,
@@ -23,13 +30,6 @@ extension UITableView {
         }
         
         return cell
-    }
-    
-    func register<T: UITableViewCell>(_ cellType: T.Type) {
-        self.register(
-            cellType,
-            forCellReuseIdentifier: cellType.reuseIdentifier
-        )
     }
     
     // MARK: TableViewHeaderFooterView
