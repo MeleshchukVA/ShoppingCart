@@ -17,7 +17,10 @@ final class AppCoordinator {
     private lazy var tabBarController = UITabBarController()
     
     // MARK: Init
-    init(window: UIWindow, appDependency: AppDependency) {
+    init(
+        window: UIWindow,
+        appDependency: AppDependency
+    ) {
         self.window = window
         self.appDependency = appDependency
         navigationControllers = AppCoordinator.makeNavigationControllers()
@@ -26,7 +29,7 @@ final class AppCoordinator {
     // MARK: Public methods
     func start() {
         if #available(iOS 13.0, *) {
-            window.overrideUserInterfaceStyle = .dark
+            window.overrideUserInterfaceStyle = .light
         }
         
         // Задаем элементы UITabBarController: каталог, корзина.
