@@ -12,6 +12,7 @@ class BaseView: UIView {
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .large)
         activity.color = Colors.lightGray
+        activity.translatesAutoresizingMaskIntoConstraints = false
         return activity
     }()
 }
