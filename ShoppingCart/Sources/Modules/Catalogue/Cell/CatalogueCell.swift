@@ -8,10 +8,12 @@
 import UIKit
 
 final class CatalogueCell: UITableViewCell {
+    
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = Font.sber(ofSize: Font.Size.fouthteen, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -20,9 +22,9 @@ final class CatalogueCell: UITableViewCell {
         
         selectionStyle = .none
         
-        self.setupView()
-        self.setupSubviews()
-        self.setupConstraints()
+        setupView()
+        setupSubviews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -31,6 +33,7 @@ final class CatalogueCell: UITableViewCell {
 }
 
 extension CatalogueCell {
+    
     func fill(viewModel: CatalogueViewModel) {
         label.text = viewModel.name
     }
@@ -62,9 +65,10 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
     }
     
     func setupConstraints() {
-        label.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.directionalVerticalEdges.trailing.equalToSuperview()
-        }
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 }
