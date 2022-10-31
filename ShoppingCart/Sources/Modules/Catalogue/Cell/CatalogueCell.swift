@@ -7,8 +7,11 @@
 
 import UIKit
 
+// MARK: - Class
+
 final class CatalogueCell: UITableViewCell {
     
+    // MARK: Private properties
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
@@ -17,6 +20,7 @@ final class CatalogueCell: UITableViewCell {
         return label
     }()
     
+    // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -31,6 +35,8 @@ final class CatalogueCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - Extension
 
 extension CatalogueCell {
     
@@ -54,7 +60,7 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
             
             accessory.image = image
             accessory.tintColor = UIColor.white
-            self.accessoryView = accessory
+            accessoryView = accessory
         }
         
         backgroundColor = Colors.cellColor
