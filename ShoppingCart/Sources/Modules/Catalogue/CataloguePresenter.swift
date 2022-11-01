@@ -54,9 +54,12 @@ extension CataloguePresenter: CatalogueInteractorOutput {
     
     func didObtainCategories(categories: Categories) {
         let viewModels = categories.map {
-            CatalogueViewModel(id: UUID(), name: $0.capitalized)
+            CatalogueViewModel(
+                id: UUID(),
+                name: $0.capitalized.replacingOccurrences(of: "-", with: " ")
+            )
         }
-        
+                
         DispatchQueue.main.async {
             if viewModels.isEmpty {
                 self.tableViewAdapter.setEmptyMessage(
