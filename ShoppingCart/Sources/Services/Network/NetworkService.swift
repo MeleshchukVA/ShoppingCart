@@ -10,6 +10,7 @@ import Foundation
 enum NetworkErrors: Error {
     case wrongURL
     case dataIsEmpty
+    case invalidResponce
     case decodeIsFail
 }
 
@@ -22,7 +23,7 @@ final class NetworkService {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
+        URLSession.shared.dataTask(with: url) { data, response, error in
             print(url)
             
             if let error = error {
@@ -35,7 +36,13 @@ final class NetworkService {
                 return
             }
             
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completion(.failure(NetworkErrors.invalidResponce))
+                return
+            }
+            
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
             
             do {
                 let decodedModel = try decoder.decode(T.self, from: data)
