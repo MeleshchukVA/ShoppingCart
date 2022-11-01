@@ -9,8 +9,8 @@ excluded:
 - ShoppingCart/Products
 - ShoppingCart/Pods
 - ShoppingCart/Frameworks
-- ShoppingCart/Sources/App/AppDelegate.swift
-- ShoppingCart/Sources/App/SceneDelegate.swift
+- ShoppingCart/Sources/📱App/AppDelegate.swift
+- ShoppingCart/Sources/📱App/SceneDelegate.swift
 
 opt_in_rules:
 - operator_usage_whitespace
