@@ -22,6 +22,8 @@ protocol CatalogueModuleOutput: AnyObject {
 // MARK: - ViewControllerInput
 
 protocol CatalogueViewControllerInput: AnyObject {
+    func startActivityIndicator()
+    func stopActivityIndicator()
 }
 
 // MARK: - ViewControllerOutput
@@ -39,6 +41,7 @@ protocol CatalogueInteractorInput: AnyObject {
 // MARK: - InteractorOutput
 
 protocol CatalogueInteractorOutput: AnyObject {
+    func didObtainCategories(categories: Categories)
 }
 
 // MARK: - RouterInput

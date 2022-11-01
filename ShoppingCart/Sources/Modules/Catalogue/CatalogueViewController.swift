@@ -14,7 +14,11 @@ final class CatalogueViewController: UIViewController {
     
     // MARK: Properties
 	private let output: CatalogueViewControllerOutput
-    
+    private let searchController = UISearchController(searchResultsController: nil)
+
+    // Чтобы иметь доступ к activityIndecator'у.
+    lazy var catalogueView = self.view as? CatalogueView
+
     // MARK: Init
     init(output: CatalogueViewControllerOutput) {
         self.output = output
@@ -27,14 +31,71 @@ final class CatalogueViewController: UIViewController {
     }
     
     // MARK: Lifecycle
+    override func loadView() {
+        let view = CatalogueView(frame: UIScreen.main.bounds)
+        self.view = view
+    }
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
         output.viewDidLoad()
+        setupSearchController()
 	}
 }
 
 // MARK: - ViewControllerInput
 
 extension CatalogueViewController: CatalogueViewControllerInput {
+    
+    func startActivityIndicator() {
+        catalogueView?.activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator() {
+        catalogueView?.activityIndicator.stopAnimating()
+    }
+}
+
+// MARK: - UISearchBarDelegate, UISearchResultsUpdating
+
+extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating {
+    
+    private func setupSearchController() {
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.compatibleSearchTextField.textColor = .white
+        searchController.searchBar.compatibleSearchTextField.backgroundColor = Colors.searchBarBackground
+        searchController.searchBar.searchTextField.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
+        ]
+        
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+            .setTitleTextAttributes(attributes, for: .normal)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+            .title = "Отменить"
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
+            .tintColor = .white
+        
+        let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.dark
+        
+        let glassIconView = textField?.leftView as? UIImageView
+        glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
+        glassIconView?.tintColor = .white
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        if !text.isEmpty {}
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {}
 }

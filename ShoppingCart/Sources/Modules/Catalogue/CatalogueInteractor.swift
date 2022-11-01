@@ -27,13 +27,13 @@ final class CatalogueInteractor {
 extension CatalogueInteractor: CatalogueInteractorInput {
     
     func reload() {
-        networkService.fetchCategories { result in
+        networkService.fetchCategories { [weak self] result in
             switch result {
             case .success(let results):
-                print(results)
+                self?.output?.didObtainCategories(categories: results)
                 
             case .failure:
-                break
+                self?.output?.didObtainCategories(categories: [])
             }
         }
     }

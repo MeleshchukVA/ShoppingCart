@@ -8,6 +8,13 @@
 
 import UIKit
 
+// MARK: - CatalogueContext
+
+struct CatalogueContext {
+    let moduleDependencies: ModuleDependencies
+    weak var moduleOutput: CatalogueModuleOutput?
+}
+
 // MARK: - Container
 
 final class CatalogueContainer {
@@ -26,23 +33,25 @@ final class CatalogueContainer {
     
     // MARK: Methods
 	static func assemble(with context: CatalogueContext) -> CatalogueContainer {
+        let tableViewAdapter = CatalogueTableViewAdapter()
+        
         let router = CatalogueRouter()
         let interactor = CatalogueInteractor(networkService: context.moduleDependencies.networkService)
-        let presenter = CataloguePresenter(router: router, interactor: interactor)
+        let presenter = CataloguePresenter(
+            router: router,
+            interactor: interactor,
+            tableViewAdapter: tableViewAdapter
+        )
 		let viewController = CatalogueViewController(output: presenter)
         
         interactor.output = presenter
-
 		presenter.viewController = viewController
 		presenter.moduleOutput = context.moduleOutput
+        
+        if let catalogueView = viewController.catalogueView {
+            tableViewAdapter.setupTable(tableView: catalogueView.tableView)
+        }
 
         return CatalogueContainer(viewController: viewController, input: presenter, router: router)
 	}
-}
-
-// MARK: - ModuleOutput
-
-struct CatalogueContext {
-    let moduleDependencies: ModuleDependencies
-	weak var moduleOutput: CatalogueModuleOutput?
 }
