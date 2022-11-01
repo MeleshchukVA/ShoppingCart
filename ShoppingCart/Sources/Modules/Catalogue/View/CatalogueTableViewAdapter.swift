@@ -28,9 +28,9 @@ protocol CatalogueTableViewAdapterProtocol {
 final class CatalogueTableViewAdapter: NSObject {
     
     // MARK: Properties
-    weak var delegate: CatalogueTableViewAdapterDelegate?
+    private weak var delegate: CatalogueTableViewAdapterDelegate?
     private weak var tableView: UITableView?
-    var viewModels = [CatalogueViewModel]()
+    private var viewModels = [CatalogueViewModel]()
 }
 
 // MARK: - CatalogueTableViewAdapterProtocol

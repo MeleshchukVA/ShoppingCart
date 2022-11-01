@@ -20,9 +20,9 @@ struct CatalogueContext {
 final class CatalogueContainer {
     
     // MARK: Properties
-    let input: CatalogueModuleInput
+    private let input: CatalogueModuleInput
 	let viewController: UIViewController
-	weak var router: CatalogueRouterInput?
+	private weak var router: CatalogueRouterInput?
     
     // MARK: Init
     private init(viewController: UIViewController, input: CatalogueModuleInput, router: CatalogueRouterInput) {

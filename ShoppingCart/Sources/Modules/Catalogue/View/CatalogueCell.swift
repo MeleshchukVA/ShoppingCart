@@ -11,7 +11,7 @@ import UIKit
 
 final class CatalogueCell: UITableViewCell {
     
-    // MARK: Private properties
+    // MARK: Properties
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
