@@ -22,7 +22,6 @@ final class CatalogueViewController: UIViewController {
     // MARK: Init
     init(output: CatalogueViewControllerOutput) {
         self.output = output
-        
         super.init(nibName: nil, bundle: nil)
     }
     

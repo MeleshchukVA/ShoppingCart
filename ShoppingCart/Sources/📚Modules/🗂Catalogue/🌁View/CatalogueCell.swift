@@ -23,9 +23,7 @@ final class CatalogueCell: UITableViewCell {
     // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        selectionStyle = .none
-        
+
         setupView()
         setupSubviews()
         setupConstraints()
@@ -63,6 +61,7 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
             accessoryView = accessory
         }
         
+        selectionStyle = .none
         backgroundColor = Colors.cellColor
     }
     
