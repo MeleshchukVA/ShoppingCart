@@ -13,5 +13,6 @@ enum API {
     
     enum TypeOf {
         static let categories = "/products/categories"
+        static let products = "/products/category"
     }
 }

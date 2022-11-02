@@ -9,4 +9,5 @@ import Foundation
 
 protocol NetworkServiceProtocol {
     func fetchCategories(completion: @escaping (Result<Categories, Error>) -> Void)
+    func fetchProducts(with name: String, completion: @escaping (Result<Products, Error>) -> Void)
 }

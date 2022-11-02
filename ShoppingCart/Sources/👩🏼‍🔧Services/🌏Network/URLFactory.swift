@@ -8,20 +8,26 @@
 import Foundation
 
 enum URLFactory {
-    private static let baseURLComponents: URLComponents = {
-        let url = URL(string: API.main)!
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        urlComponents.queryItems = []
+    private static let baseURLComponents: URLComponents? = {
+        var urlComponents = URLComponents(string: API.main)
+        urlComponents?.queryItems = []
         return urlComponents
     }()
     
-    private static var baseURL: URL {
-        return baseURLComponents.url!
+    private static var baseURL: URL? {
+        return baseURLComponents?.url
     }
     
-    static func getCategories() -> String {
-        return baseURL
+    static func getCategories() -> String? {
+        return baseURL?
             .appendingPathComponent(API.TypeOf.categories)
+            .absoluteString
+    }
+    
+    static func getProducts(name: String) -> String? {
+        return baseURL?
+            .appendingPathComponent(API.TypeOf.products)
+            .appendingPathComponent(name)
             .absoluteString
     }
 }
