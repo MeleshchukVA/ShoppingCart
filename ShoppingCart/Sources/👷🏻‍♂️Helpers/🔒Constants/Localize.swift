@@ -12,7 +12,7 @@ enum Localize {
     static let cart = "Cart"
     
     enum Images {
-        static let catalogueIcon = UIImage(systemName: "magnifyingglass")!
-        static let cartIcon = UIImage(systemName: "cart")!
+        static let catalogueIcon: UIImage? = UIImage(systemName: "magnifyingglass")
+        static let cartIcon: UIImage? = UIImage(systemName: "cart")
     }
 }

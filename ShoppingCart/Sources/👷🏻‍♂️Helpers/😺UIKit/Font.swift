@@ -25,13 +25,13 @@ enum Font {
     }
     
     // Функция возвращает шрифты в зависимости от их толщины.
-    static func sber(ofSize size: CGFloat, weight: Weight) -> UIFont {
+    static func sber(ofSize size: CGFloat, weight: Weight) -> UIFont? {
         switch weight {
         case .regular:
-            return UIFont(name: "SBSansInterface-Regular", size: size)!
+            return UIFont(name: "SBSansInterface-Regular", size: size)
             
         case .bold:
-            return UIFont(name: "SBSansDisplay-Semibold", size: size)!
+            return UIFont(name: "SBSansDisplay-Semibold", size: size)
         }
     }
 }

@@ -105,9 +105,13 @@ private extension AppCoordinator {
         
         let tabBarItemAppearance = UITabBarItemAppearance()
         // Шрифт для тайтла элемента tabBar'а, если он не выбран.
-        tabBarItemAppearance.normal.titleTextAttributes = [.font: Font.sber(ofSize: Font.Size.ten, weight: .bold)]
+        tabBarItemAppearance.normal.titleTextAttributes = [
+            .font: Font.sber(ofSize: Font.Size.ten, weight: .bold) as Any
+        ]
         // Шрифт для тайтла элемента tabBar'а, если он выбран.
-        tabBarItemAppearance.selected.titleTextAttributes = [.font: Font.sber(ofSize: Font.Size.ten, weight: .bold)]
+        tabBarItemAppearance.selected.titleTextAttributes = [
+            .font: Font.sber(ofSize: Font.Size.ten, weight: .bold) as Any
+        ]
         tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
         
         // Полосочка над tabBar'ом.
@@ -134,12 +138,12 @@ private extension AppCoordinator {
         // Шрифт, цвет шрифта, размер текста, когда тайтл не large.
         navigationBarAppearance.titleTextAttributes = [
             .foregroundColor: UIColor.black,
-            .font: Font.sber(ofSize: Font.Size.twenty, weight: .bold)
+            .font: Font.sber(ofSize: Font.Size.twenty, weight: .bold) as Any
         ]
         // Шрифт, цвет шрифта, размер текста, paragraphStyle, расстояние между буквами (.kern), когда тайтл large.
         navigationBarAppearance.largeTitleTextAttributes = [
             .foregroundColor: UIColor.black,
-            .font: Font.sber(ofSize: Font.Size.thirtyFour, weight: .bold),
+            .font: Font.sber(ofSize: Font.Size.thirtyFour, weight: .bold) as Any,
             .paragraphStyle: paragraphStyle,
             .kern: 0.41
         ]
@@ -170,7 +174,7 @@ private enum NavigationControllersType: Int, CaseIterable {
         }
     }
     
-    var image: UIImage {
+    var image: UIImage? {
         switch self {
         case .catalogue:
             return Localize.Images.catalogueIcon

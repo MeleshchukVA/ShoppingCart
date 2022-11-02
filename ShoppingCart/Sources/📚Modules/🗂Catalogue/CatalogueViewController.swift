@@ -74,7 +74,7 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
         searchController.obscuresBackgroundDuringPresentation = false
         
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
+            .font: Font.sber(ofSize: Font.Size.seventeen, weight: .regular) as Any
         ]
         
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
