@@ -8,6 +8,7 @@
 import UIKit
 
 // MARK: - Class
+
 final class AppCoordinator {
     
     // MARK: Properties
@@ -23,10 +24,9 @@ final class AppCoordinator {
     ) {
         self.window = window
         self.appDependency = appDependency
-        navigationControllers = AppCoordinator.makeNavigationControllers()
     }
     
-    // MARK: Public methods
+    // MARK: Start
     func start() {
         if #available(iOS 13.0, *) {
             window.overrideUserInterfaceStyle = .light
