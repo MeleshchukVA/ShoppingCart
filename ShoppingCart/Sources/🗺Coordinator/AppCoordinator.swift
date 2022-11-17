@@ -26,13 +26,12 @@ final class AppCoordinator {
         self.appDependency = appDependency
     }
     
-    // MARK: Start
+    // MARK: Public
     func start() {
         if #available(iOS 13.0, *) {
             window.overrideUserInterfaceStyle = .light
         }
         
-        // Задаем элементы UITabBarController: каталог, корзина.
         setupCatalogue()
         
         let navigationControllers = NavigationControllersType.allCases.compactMap {
@@ -48,15 +47,13 @@ final class AppCoordinator {
     }
 }
 
-// MARK: - Private methods
+// MARK: - Private
 
 private extension AppCoordinator {
     
     static func makeNavigationControllers() -> [NavigationControllersType: UINavigationController] {
-        // Результат - это словарь: ключ - енам NavigationControllersType, значение - UINavigationController.
         var result: [NavigationControllersType: UINavigationController] = [:]
         
-        // Проходимся по каждому case'у в енаме NavigationControllersType.
         NavigationControllersType.allCases.forEach { navigationControllerKey in
             let navigationController = UINavigationController()
             let tabBarItem: UITabBarItem = UITabBarItem(
@@ -93,28 +90,21 @@ private extension AppCoordinator {
     // Внешний вид TabBarController.
     func setupAppearanceTabBar(with tabBarController: UITabBarController) {
         let tabBarAppearance = UITabBarAppearance()
-        // Цвет фона tabBar'а.
         tabBarAppearance.backgroundColor = Colors.lightGray
         tabBarController.tabBar.standardAppearance = tabBarAppearance
-        // Цвет иконки в tabBar'е, если она не выбрана.
         tabBarController.tabBar.unselectedItemTintColor = Colors.grayTabBar
-        // Цвет иконки в tabBar'е, если она выбрана.
         UITabBar.appearance().tintColor = Colors.purple
-        // Открывает по умолчанию экран, который будет задан первым в массиве ViewController'ов (индекс = 0).
         tabBarController.selectedIndex = 0
         
         let tabBarItemAppearance = UITabBarItemAppearance()
-        // Шрифт для тайтла элемента tabBar'а, если он не выбран.
         tabBarItemAppearance.normal.titleTextAttributes = [
             .font: Font.sber(ofSize: Font.Size.ten, weight: .bold) as Any
         ]
-        // Шрифт для тайтла элемента tabBar'а, если он выбран.
         tabBarItemAppearance.selected.titleTextAttributes = [
             .font: Font.sber(ofSize: Font.Size.ten, weight: .bold) as Any
         ]
         tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
         
-        // Полосочка над tabBar'ом.
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
         path.addLine(to: CGPoint(x: tabBarController.tabBar.frame.width, y: 0))
@@ -128,19 +118,15 @@ private extension AppCoordinator {
     // Внешний вид NavigationBar.
     func setupAppearanceNavigationBar(with controller: UINavigationController) {
         let navigationBarAppearance = UINavigationBarAppearance()
-        // Задний фон NavigationBar'а фиолетового цвета.
         navigationBarAppearance.backgroundColor = Colors.purple
         
         let paragraphStyle = NSMutableParagraphStyle()
-        // Высота области NavigationBar'а.
         paragraphStyle.lineHeightMultiple = 1.01
         
-        // Шрифт, цвет шрифта, размер текста, когда тайтл не large.
         navigationBarAppearance.titleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font: Font.sber(ofSize: Font.Size.twenty, weight: .bold) as Any
         ]
-        // Шрифт, цвет шрифта, размер текста, paragraphStyle, расстояние между буквами (.kern), когда тайтл large.
         navigationBarAppearance.largeTitleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font: Font.sber(ofSize: Font.Size.thirtyFour, weight: .bold) as Any,
@@ -148,10 +134,8 @@ private extension AppCoordinator {
             .kern: 0.41
         ]
         
-        // Цвет кнопки "отменить" и прочих.
         UINavigationBar.appearance().tintColor = Colors.purple
         
-        // Задаем внешний вид при разных видах navigationBar'а.
         controller.navigationBar.standardAppearance = navigationBarAppearance
         controller.navigationBar.compactAppearance = navigationBarAppearance
         controller.navigationBar.scrollEdgeAppearance = navigationBarAppearance
