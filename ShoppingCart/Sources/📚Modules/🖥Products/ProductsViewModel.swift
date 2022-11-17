@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductViewModel: Identifiable {
+struct ProductsViewModel: Identifiable {
     var id: Int
     var title: String
     var description: String
@@ -19,4 +19,5 @@ struct ProductViewModel: Identifiable {
     var category: String
     var thumbnail: String
     var images: [String]
+    var didTap: (Int) -> Void
 }
