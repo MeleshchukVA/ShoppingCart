@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductsConstants {
+struct ProductConstants {
     
     struct Network {
         static let limit = 10
