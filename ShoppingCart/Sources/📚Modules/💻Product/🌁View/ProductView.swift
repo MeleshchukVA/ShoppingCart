@@ -1,0 +1,101 @@
+//
+//  ProductView.swift
+//  ShoppingCart
+//
+//  Created by Владимир Мелещук on 18.11.2022.
+//
+
+import UIKit
+
+extension ProductView {
+    struct Appearance {
+        let tableViewBackgroundColor = UIColor.black
+        let tableViewContentInsetTop: CGFloat = 30.0
+    }
+}
+
+final class ProductView: BaseView {
+    let appearance: Appearance
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
+        collectionView.indicatorStyle = .white
+        collectionView.backgroundColor = .black
+        collectionView.register(ProductCell.self)
+        return collectionView
+    }()
+    
+    init(
+        frame: CGRect = .zero,
+        appearance: Appearance = Appearance()
+    ) {
+        self.appearance = appearance
+        super.init(frame: frame)
+        self.setupView()
+        self.setupSubviews()
+        self.setupConstraints()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+//MARK: - ProductViewProtocol
+extension ProductView: ProductViewProtocol {
+    func updateCollectionViewData(
+        delegate: UICollectionViewDelegate,
+        dataSource: UICollectionViewDataSource,
+        isEmptyCollectionData: Bool
+    ) {
+        if isEmptyCollectionData {
+            collectionView.delegate = delegate
+            collectionView.dataSource = dataSource
+            collectionView.reloadData()
+            collectionView.collectionViewLayout.invalidateLayout()
+            collectionView.setEmptyMessage(message: "Не найдено товаров")
+        } else {
+            collectionView.restore()
+            collectionView.delegate = delegate
+            collectionView.dataSource = dataSource
+            collectionView.reloadData()
+            collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
+    func invalidateCollectionViewLayout() {
+        collectionView.collectionViewLayout.invalidateLayout()
+        invalidateIntrinsicContentSize()
+    }
+}
+
+//MARK: - ProgrammaticallyInitializableViewProtocol
+extension ProductView: ProgrammaticallyInitializableViewProtocol {
+    func setupView() {
+        backgroundColor = .clear
+    }
+    
+    func setupSubviews() {
+        [collectionView, activityIndicator].forEach { addSubview($0) }
+    }
+    
+    func setupConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+}
