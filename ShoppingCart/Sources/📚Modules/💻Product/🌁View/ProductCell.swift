@@ -7,16 +7,21 @@
 
 import UIKit
 
+// MARK: - Appearance
+
 extension ProductCell {
+    
     struct Appearance {
         let cardButtonImagePlus = Localize.Images.cartPlusIcon
         let cardButtonImageMinus = Localize.Images.cartMinusIcon
-        let likeButtonEmpty = Localize.Images.heartIcon
-        let likeButtonFill = Localize.Images.heartFillIcon
     }
 }
 
+// MARK: - Class
+
 final class ProductCell: UICollectionViewCell {
+    
+    // MARK: Properties
     private let imageLoader: ImageLoaderProtocol = ImageLoader.shared
     private let appearance: Appearance
     private var id: Int?
@@ -33,19 +38,8 @@ final class ProductCell: UICollectionViewCell {
     
     private lazy var cardButton: UIButton = {
         let button = UIButton(frame: .zero)
-        let config = UIImage.SymbolConfiguration(pointSize: 35, weight: .bold, scale: .large)
-        button.setImage(appearance.cardButtonImagePlus?.withConfiguration(config), for: .normal)
+        button.setImage(appearance.cardButtonImagePlus, for: .normal)
         button.tintColor = .white
-        button.addTarget(self, action: #selector(cardButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private lazy var likeButton: UIButton = {
-        let button = UIButton(frame: .zero)
-        let config = UIImage.SymbolConfiguration(pointSize: 35, weight: .bold, scale: .large)
-        button.setImage(appearance.likeButtonEmpty?.withConfiguration(config), for: .normal)
-        button.setImage(appearance.likeButtonFill?.withConfiguration(config), for: .selected)
-        button.tintColor = .red
         button.addTarget(self, action: #selector(cardButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -140,10 +134,11 @@ final class ProductCell: UICollectionViewCell {
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.style = .medium
+        indicator.style = UIActivityIndicatorView.Style.medium
         return indicator
     }()
     
+    // MARK: Init
     override init(frame: CGRect) {
         self.appearance = Appearance()
         super.init(frame: frame)
@@ -156,6 +151,7 @@ final class ProductCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Lifecycle
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
@@ -164,7 +160,9 @@ final class ProductCell: UICollectionViewCell {
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
+
 extension ProductCell: ProgrammaticallyInitializableViewProtocol {
+    
     func setupView() {
         CurrencyFormatter.shared.configurate()
         layer.cornerRadius = ProductConstants.Layout.cornerRadius
@@ -182,7 +180,6 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
     func setupConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         cardButton.translatesAutoresizingMaskIntoConstraints = false
-        likeButton.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         discountLabel.translatesAutoresizingMaskIntoConstraints = false
         ratingLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -191,7 +188,7 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
         stockLabel.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
-        let constraints = [
+        NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
@@ -208,7 +205,7 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
             cardButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             cardButton.heightAnchor.constraint(equalToConstant: 35),
             cardButton.widthAnchor.constraint(equalToConstant: 35),
-                        
+            
             priceLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 3),
             priceLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             priceLabel.trailingAnchor.constraint(equalTo: cardButton.leadingAnchor),
@@ -227,29 +224,33 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
             
             activityIndicator.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }
 
+// MARK: - ProductCell methods and actions
+
 extension ProductCell {
+    
+    // MARK: Actions
     @objc private func cardButtonTapped() {
         if let id = self.id {
             self.tapHandler?(id)
+            
             UIView.animate(
                 withDuration: 0.7,
-                delay: .zero, usingSpringWithDamping: 1,
+                delay: .zero,
+                usingSpringWithDamping: 1,
                 initialSpringVelocity: 0.5,
                 options: .curveEaseIn
             ) {
-                let config = UIImage.SymbolConfiguration(pointSize: 35, weight: .bold, scale: .large)
-                self.cardButton.setImage(self.appearance.cardButtonImageMinus?.withConfiguration(config), for: .normal)
+                self.cardButton.setImage(self.appearance.cardButtonImageMinus, for: .normal)
                 self.cardButton.transform = CGAffineTransform(scaleX: 0.25, y: 0.25)
             }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 guard let `self` = self else { return }
-                let config = UIImage.SymbolConfiguration(pointSize: 35, weight: .bold, scale: .large)
-                self.cardButton.setImage(self.appearance.cardButtonImagePlus?.withConfiguration(config), for: .normal)
+                self.cardButton.setImage(self.appearance.cardButtonImagePlus, for: .normal)
                 UIView.animate(
                     withDuration: 1,
                     delay: .zero,
@@ -263,13 +264,11 @@ extension ProductCell {
         }
     }
     
-    @objc private func likeButtonTapped() {
-        print("LIKE!")
-    }
-    
+    // MARK: Public methods
     func fill(with viewModel: ProductViewModel) {
         self.id = viewModel.id
         self.tapHandler = viewModel.didTap
+        
         discountLabel.text = "-\(Int(viewModel.discountPercentage))%"
         discountLabel.sizeToFit()
         discountLabel.frame = CGRect(
@@ -294,6 +293,7 @@ extension ProductCell {
         stockLabel.text = "In stock - \(viewModel.stock)"
         
         activityIndicator.startAnimating()
+        
         imageLoader.loadImage(for: viewModel.thumbnail) { [weak self] result in
             guard let self else { return }
             switch result {
@@ -306,7 +306,7 @@ extension ProductCell {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.imageView.image = UIImage(systemName: "photo")
+                    self.imageView.image = UIImage(named: "photo")
                     print(error)
                 }
             }
