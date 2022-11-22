@@ -7,14 +7,21 @@
 
 import UIKit
 
+// MARK: - Appearance
+
 extension ProductView {
+    
     struct Appearance {
         let tableViewBackgroundColor = UIColor.black
         let tableViewContentInsetTop: CGFloat = 30.0
     }
 }
 
+// MARK: - Class
+
 final class ProductView: BaseView {
+    
+    // MARK: Properties
     let appearance: Appearance
     
     private lazy var collectionView: UICollectionView = {
@@ -28,6 +35,7 @@ final class ProductView: BaseView {
         return collectionView
     }()
     
+    // MARK: Init
     init(
         frame: CGRect = .zero,
         appearance: Appearance = Appearance()
@@ -45,8 +53,10 @@ final class ProductView: BaseView {
     }
 }
 
-//MARK: - ProductViewProtocol
+// MARK: - ProductViewProtocol
+
 extension ProductView: ProductViewProtocol {
+    
     func updateCollectionViewData(
         delegate: UICollectionViewDelegate,
         dataSource: UICollectionViewDataSource,
@@ -73,8 +83,10 @@ extension ProductView: ProductViewProtocol {
     }
 }
 
-//MARK: - ProgrammaticallyInitializableViewProtocol
+// MARK: - ProgrammaticallyInitializableViewProtocol
+
 extension ProductView: ProgrammaticallyInitializableViewProtocol {
+    
     func setupView() {
         backgroundColor = .clear
     }
@@ -87,7 +99,7 @@ extension ProductView: ProgrammaticallyInitializableViewProtocol {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
-        let constraints = [
+        NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -95,7 +107,6 @@ extension ProductView: ProgrammaticallyInitializableViewProtocol {
             
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }
