@@ -5,14 +5,11 @@
 //  Created by Владимир Мелещук on 27.10.2022.
 //
 
-import UIKit
+import UIKit.UISearchBar
 
 extension UISearchBar {
-    
     var compatibleSearchTextField: UITextField {
-        guard #available(iOS 13.0, *) else {
-            return legacySearchField
-        }
+        guard #available(iOS 13.0, *) else { return legacySearchField }
         return self.searchTextField
     }
 
