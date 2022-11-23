@@ -13,16 +13,19 @@ final class AppDependency {
     
     // MARK: Properties
     let network: NetworkService
+    let persistent: PersistentProvider
     
     // MARK: Init
-    init(network: NetworkService) {
+    init(network: NetworkService, persistent: PersistentProvider) {
         self.network = network
+        self.persistent = persistent
     }
     
     // MARK: Methods
     static func makeDefault() -> AppDependency {
         let networkService = NetworkService()
-        return AppDependency(network: networkService)
+        let persistent = PersistentProvider()
+        return AppDependency(network: networkService, persistent: persistent)
     }
 }
 
@@ -30,6 +33,7 @@ final class AppDependency {
 
 protocol HasDependencies {
     var networkService: NetworkServiceProtocol { get }
+    var persistentProvider: PersistentProviderProtocol { get }
 }
 
 // MARK: - Properties
@@ -38,5 +42,9 @@ extension AppDependency: HasDependencies {
     
     var networkService: NetworkServiceProtocol {
         self.network
+    }
+    
+    var persistentProvider: PersistentProviderProtocol {
+        self.persistent
     }
 }
