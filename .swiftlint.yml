@@ -1,8 +1,13 @@
 warning_threshold: 15
+file_length:
+  warning: 800
+  error: 1500
 
 disabled_rules:
 - unused_optional_binding
 - trailing_whitespace
+- legacy_constructor
+- function_body_length
 
 excluded:
 - Pods
