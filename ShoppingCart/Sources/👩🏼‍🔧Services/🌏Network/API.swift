@@ -14,5 +14,8 @@ enum API {
     enum TypeOf {
         static let categories = "/products/categories"
         static let products = "/products/category"
+        static let productsSearch = "/products/search"
+        static let addCart = "/carts/add"
+        static let getUser = "/users/2"
     }
 }
