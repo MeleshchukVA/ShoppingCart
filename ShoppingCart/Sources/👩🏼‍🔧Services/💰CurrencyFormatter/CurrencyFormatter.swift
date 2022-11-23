@@ -13,7 +13,6 @@ enum CurrencyFormatterLocale: String {
 }
 
 final class CurrencyFormatter: NumberFormatter {
-    
     static let shared = CurrencyFormatter()
     
     private override init() {
@@ -40,7 +39,6 @@ final class CurrencyFormatter: NumberFormatter {
 }
 
 extension CurrencyFormatter {
-    
     override func copy(with zone: NSZone? = nil) -> Any {
         return self
     }
