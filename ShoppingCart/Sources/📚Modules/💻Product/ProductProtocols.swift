@@ -6,40 +6,28 @@
 //  
 //
 
-import Foundation
-
-// MARK: - ModuleInput
+import UIKit
 
 protocol ProductModuleInput {
-	var moduleOutput: ProductModuleOutput? { get }
+    var moduleOutput: ProductModuleOutput? { get }
 }
 
-// MARK: - ModuleOutput
+protocol ProductModuleOutput: AnyObject {}
 
-protocol ProductModuleOutput: AnyObject {
+protocol ProductViewInput: ViewInput {
+    func updateCollectionViewData(adapter: ProductCollectionViewAdapter, isEmpty: Bool)
 }
 
-// MARK: - ViewControllerInput
-
-protocol ProductViewControllerInput: AnyObject {
+protocol ProductViewOutput: AnyObject {
+    func viewDidLoad()
 }
 
-// MARK: - ViewControllerOutput
-
-protocol ProductViewControllerOutput: AnyObject {
+protocol ProductInteractorInput: BaseInteractorInput {
+    func reload(category: String)
 }
-
-// MARK: - InteractorInput
-
-protocol ProductInteractorInput: AnyObject {
-}
-
-// MARK: - InteractorOutput
 
 protocol ProductInteractorOutput: AnyObject {
+    func didObtainProducts(products: [Products])
 }
 
-// MARK: - RouterInput
-
-protocol ProductRouterInput: AnyObject {
-}
+protocol ProductRouterInput: AnyObject {}

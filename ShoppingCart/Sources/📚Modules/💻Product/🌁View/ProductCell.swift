@@ -134,7 +134,7 @@ final class ProductCell: UICollectionViewCell {
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.style = UIActivityIndicatorView.Style.medium
+        indicator.style = .white
         return indicator
     }()
     

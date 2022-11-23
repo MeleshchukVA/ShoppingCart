@@ -8,40 +8,53 @@
 
 import UIKit
 
-// MARK: - Container
+struct ProductContext {
+    let moduleDependencies: ModuleDependencies
+    weak var moduleOutput: ProductModuleOutput?
+}
 
 final class ProductContainer {
-    
-    // MARK: Properties
     let input: ProductModuleInput
-	let viewController: UIViewController
-	weak var router: ProductRouterInput?
-    
-    // MARK: Init
-    private init(viewController: UIViewController, input: ProductModuleInput, router: ProductRouterInput) {
-        self.viewController = viewController
+    let viewController: UIViewController
+    weak var router: ProductRouterInput?
+
+    static func assemble(with context: ProductContext, viewModel: CatalogueViewModel) -> ProductContainer {
+        let collectionViewAdapter = ProductCollectionViewAdapter()
+        let router = ProductRouter()
+        let interactor = ProductInteractor(
+            networkService: context.moduleDependencies.networkService,
+            persistentProvider: context.moduleDependencies.persistentProvider
+        )
+        let presenter = ProductPresenter(
+            router: router,
+            interactor: interactor,
+            collectionViewAdapter: collectionViewAdapter,
+            viewModel: viewModel
+        )
+        collectionViewAdapter.delegate = presenter
+        
+        let viewController = ProductViewController(output: presenter, viewModel: viewModel)
+        
+        presenter.view = viewController
+        presenter.moduleOutput = context.moduleOutput
+
+        interactor.output = presenter
+        
+        router.viewControllerProvider = { [weak viewController] in
+            viewController
+        }
+        router.navigationControllerProvider = { [weak viewController] in
+            viewController?.navigationController
+        }
+        
+        router.moduleDependencies = context.moduleDependencies
+
+        return ProductContainer(view: viewController, input: presenter, router: router)
+    }
+
+    private init(view: UIViewController, input: ProductModuleInput, router: ProductRouterInput) {
+        self.viewController = view
         self.input = input
         self.router = router
     }
-    
-    // MARK: Methods
-	static func assemble(with context: ProductContext) -> ProductContainer {
-        let router = ProductRouter()
-        let interactor = ProductInteractor()
-        let presenter = ProductPresenter(router: router, interactor: interactor)
-        let viewController = ProductViewController(output: presenter)
-
-        interactor.output = presenter
-
-		presenter.viewController = viewController
-		presenter.moduleOutput = context.moduleOutput
-
-        return ProductContainer(viewController: viewController, input: presenter, router: router)
-	}
-}
-
-// MARK: - ModuleOutput
-
-struct ProductContext {
-	weak var moduleOutput: ProductModuleOutput?
 }
