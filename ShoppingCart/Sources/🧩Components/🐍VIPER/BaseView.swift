@@ -8,11 +8,9 @@
 import UIKit
 
 class BaseView: UIView {
-    
     lazy var activityIndicator: UIActivityIndicatorView = {
-        let activity = UIActivityIndicatorView(style: .large)
+        let activity = UIActivityIndicatorView(style: .whiteLarge)
         activity.color = Colors.lightGray
-        activity.translatesAutoresizingMaskIntoConstraints = false
         return activity
     }()
 }
