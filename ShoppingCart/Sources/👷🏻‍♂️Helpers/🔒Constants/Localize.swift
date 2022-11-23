@@ -10,14 +10,17 @@ import UIKit
 enum Localize {
     static let catalogue = "Catalogue"
     static let cart = "Cart"
+    static let profile = "Profile"
     
     enum Images {
-        static let catalogueIcon: UIImage? = UIImage(systemName: "magnifyingglass")
-        static let cartIcon: UIImage? = UIImage(systemName: "cart")
-        static let cartPlusIcon: UIImage? = UIImage(systemName: "cart.badge.plus")
-        static let cartMinusIcon: UIImage? = UIImage(systemName: "cart.fill.badge.minus")
-        static let profileIcon: UIImage? = UIImage(systemName: "person")
-        static let heartIcon: UIImage? = UIImage(systemName: "heart")
-        static let heartFillIcon: UIImage? = UIImage(systemName: "heart.fill")
+        static let catalogueIcon: UIImage? = UIImage(named: "magnifyingglass")
+        static let cartIcon: UIImage? = UIImage(named: "cart")
+        static let cartPlusIcon: UIImage? = UIImage(named: "cart.badge.plus")
+        static let cartMinusIcon: UIImage? = UIImage(named: "cart.badge.minus")
+        static let profileIcon: UIImage? = UIImage(named: "person")
+        static let photo: UIImage? = UIImage(named: "photo")
+        static let minusIcon: UIImage? = UIImage(named: "minus.square.fill")
+        static let plusIcon: UIImage? = UIImage(named: "plus.square.fill")
+        static let ellipsisIcon: UIImage? = UIImage(named: "ellipsis")
     }
 }
