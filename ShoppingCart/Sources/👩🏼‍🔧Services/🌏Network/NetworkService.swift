@@ -10,22 +10,37 @@ import Foundation
 enum NetworkErrors: Error {
     case wrongURL
     case dataIsEmpty
-    case invalidResponce
     case decodeIsFail
+    case failEncodeBodyData
 }
 
 final class NetworkService {
-    
-    // Базовый запрос.
-    func baseRequest<T: Decodable>(url: String, completion: @escaping (Result<T, Error>) -> Void) {
+    func baseRequest<T: Decodable>(
+        url: String,
+        method: HTTPMethod = .get,
+        body: [String: Any]? = nil,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
         guard let url = URL(string: url) else {
             completion(.failure(NetworkErrors.wrongURL))
             return
         }
+        var request = URLRequest(url: url)
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            print(url)
-            
+        request.httpMethod = method.rawValue.uppercased()
+        
+        if let body = body {
+            if let bodyData = try? JSONSerialization.data(withJSONObject: body) {
+                request.httpBody = bodyData
+                let headers = ["Content-Type": "application/json"]
+                FieldsEncoder.encode(urlRequest: &request, with: headers)
+            } else {
+                completion(.failure(NetworkErrors.wrongURL))
+            }
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            print("curl \(url)")
             if let error = error {
                 completion(.failure(error))
                 return
@@ -36,14 +51,7 @@ final class NetworkService {
                 return
             }
             
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(.failure(NetworkErrors.invalidResponce))
-                return
-            }
-            
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
             do {
                 let decodedModel = try decoder.decode(T.self, from: data)
                 completion(.success(decodedModel))
