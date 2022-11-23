@@ -10,50 +10,74 @@ import UIKit
 // MARK: - Class
 
 final class AppCoordinator {
-    
-    // MARK: Properties
     private let window: UIWindow
-    private let appDependency: AppDependency
-    private lazy var navigationControllers = AppCoordinator.makeNavigationControllers()
     private lazy var tabBarController = UITabBarController()
+    private lazy var navigationControllers = AppCoordinator.makeNavigationControllers()
+    private let appDependency: AppDependency
+    private var isUserHasSeenOnboarding: Bool = false
     
-    // MARK: Init
     init(
         window: UIWindow,
         appDependency: AppDependency
     ) {
         self.window = window
         self.appDependency = appDependency
+        navigationControllers = AppCoordinator.makeNavigationControllers()
+        checkIfUserHasSeenOnboarding()
     }
     
-    // MARK: Public
     func start() {
-        if #available(iOS 13.0, *) {
-            window.overrideUserInterfaceStyle = .light
+        if isUserHasSeenOnboarding {
+            startMainFlow()
+        } else {
+            startOnboardingFlow()
         }
+    }
+    
+    private func startOnboardingFlow() {
+        let onboardingVC = OnboardingViewController(
+            transitionStyle: .scroll,
+            navigationOrientation: .horizontal,
+            onboardingCompletion: { [weak self] completion in
+            switch completion {
+            case true:
+                self?.userHasSeenOnboarding()
+                self?.startMainFlow()
+                
+            case false:
+                break
+            }
+        })
         
+        window.rootViewController = onboardingVC
+    }
+    
+    private func startMainFlow() {
         setupCatalogue()
-        
+//        setupCart()
+//        setupProfile()
         let navigationControllers = NavigationControllersType.allCases.compactMap {
             self.navigationControllers[$0]
         }
-
         tabBarController.setViewControllers(navigationControllers, animated: true)
-
         setupAppearanceTabBar(with: tabBarController)
-        
         window.rootViewController = tabBarController
-        window.makeKeyAndVisible()
+    }
+    
+    private func userHasSeenOnboarding() {
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
+    }
+    
+    private func checkIfUserHasSeenOnboarding() {
+        let defaults = UserDefaults.standard
+        self.isUserHasSeenOnboarding = defaults.bool(forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
     }
 }
 
-// MARK: - Private
-
 private extension AppCoordinator {
-    
     static func makeNavigationControllers() -> [NavigationControllersType: UINavigationController] {
         var result: [NavigationControllersType: UINavigationController] = [:]
-        
         NavigationControllersType.allCases.forEach { navigationControllerKey in
             let navigationController = UINavigationController()
             let tabBarItem: UITabBarItem = UITabBarItem(
@@ -61,93 +85,99 @@ private extension AppCoordinator {
                 image: navigationControllerKey.image,
                 tag: navigationControllerKey.rawValue
             )
-            
             navigationController.tabBarItem = tabBarItem
             navigationController.navigationBar.prefersLargeTitles = true
             navigationController.navigationBar.sizeToFit()
-            
             result[navigationControllerKey] = navigationController
         }
-        
         return result
     }
     
-    // Каталог.
     func setupCatalogue() {
-        guard let navigationController = self.navigationControllers[.catalogue] else {
-            fatalError("Something wrong with appCoordinator.")
+        guard let navController = self.navigationControllers[.catalogue] else {
+            fatalError("something wrong with appCoordinator")
         }
-        
-        let context = CatalogueContext(moduleDependencies: appDependency, moduleOutput: nil)
+        let context = CatalogueContext(moduleDependencies: appDependency)
         let container = CatalogueContainer.assemble(with: context)
-        let catalogueViewController = container.viewController
-        
-        catalogueViewController.navigationItem.title = Localize.catalogue
-        navigationController.setViewControllers([catalogueViewController], animated: false)
-        setupAppearanceNavigationBar(with: navigationController)
+        let catalogueVC = container.viewController
+        catalogueVC.navigationItem.title = Localize.catalogue
+        navController.setViewControllers([catalogueVC], animated: false)
+        setupAppearanceNavigationBar()
     }
     
-    // Внешний вид TabBarController.
-    func setupAppearanceTabBar(with tabBarController: UITabBarController) {
-        let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.backgroundColor = Colors.lightGray
-        tabBarController.tabBar.standardAppearance = tabBarAppearance
-        tabBarController.tabBar.unselectedItemTintColor = Colors.grayTabBar
-        UITabBar.appearance().tintColor = Colors.purple
-        tabBarController.selectedIndex = 0
-        
-        let tabBarItemAppearance = UITabBarItemAppearance()
-        tabBarItemAppearance.normal.titleTextAttributes = [
-            .font: Font.sber(ofSize: Font.Size.ten, weight: .bold) as Any
-        ]
-        tabBarItemAppearance.selected.titleTextAttributes = [
-            .font: Font.sber(ofSize: Font.Size.ten, weight: .bold) as Any
-        ]
-        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: tabBarController.tabBar.frame.width, y: 0))
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.cgPath
-        shapeLayer.strokeColor = Colors.lightWhite.cgColor
-        shapeLayer.lineWidth = 0.4
-        tabBarController.tabBar.layer.addSublayer(shapeLayer)
-    }
+//    func setupCart() {
+//        guard let navController = self.navigationControllers[.cart] else {
+//            fatalError("something wrong with appCoordinator")
+//        }
+//        let context = CartContext(moduleDependencies: appDependency)
+//        let container = CartContainer.assemble(with: context)
+//        let cartVC = container.viewController
+//        cartVC.navigationItem.title = Localize.cart
+//        navController.setViewControllers([cartVC], animated: false)
+//    }
+//
+//    func setupProfile() {
+//        guard let navController = self.navigationControllers[.profile] else {
+//            fatalError("something wrong with appCoordinator")
+//        }
+//        let context = ProfileContext(moduleDependencies: appDependency)
+//        let container = ProfileContainer.assemble(with: context)
+//        let profileVC = container.viewController
+//        profileVC.navigationItem.title = Localize.profile
+//        navController.setViewControllers([profileVC], animated: false)
+//    }
     
-    // Внешний вид NavigationBar.
-    func setupAppearanceNavigationBar(with controller: UINavigationController) {
-        let navigationBarAppearance = UINavigationBarAppearance()
+    func setupAppearanceNavigationBar() {
+        let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.backgroundColor = Colors.purple
-        
+        navigationBarAppearance.barTintColor = Colors.purple
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.01
-        
         navigationBarAppearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.white,
             .font: Font.sber(ofSize: Font.Size.twenty, weight: .bold) as Any
         ]
         navigationBarAppearance.largeTitleTextAttributes = [
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.white,
             .font: Font.sber(ofSize: Font.Size.thirtyFour, weight: .bold) as Any,
             .paragraphStyle: paragraphStyle,
             .kern: 0.41
         ]
+        navigationBarAppearance.tintColor = .white
+        navigationBarAppearance.isTranslucent = false
+        navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
+        navigationBarAppearance.shadowImage = UIImage()
+    }
+    
+    func setupAppearanceTabBar(with controller: UITabBarController) {
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.shadowImage = UIImage()
+        tabBarAppearance.backgroundImage = UIImage()
+        tabBarAppearance.backgroundColor = Colors.lightGray
+        tabBarAppearance.barTintColor = Colors.lightGray
+        controller.tabBar.unselectedItemTintColor = Colors.grayTabBar
+        controller.selectedIndex = 0
         
-        UINavigationBar.appearance().tintColor = Colors.purple
+        UITabBar.appearance().tintColor = Colors.purple2
+        let tabBarItemAppearance = UITabBarItem.appearance()
+        let textAtributes = [NSAttributedString.Key.font: Font.sber(ofSize: Font.Size.ten, weight: .bold)]
+        tabBarItemAppearance.setTitleTextAttributes(textAtributes as [NSAttributedString.Key: Any], for: .normal)
         
-        controller.navigationBar.standardAppearance = navigationBarAppearance
-        controller.navigationBar.compactAppearance = navigationBarAppearance
-        controller.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: controller.tabBar.frame.width, y: 0))
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = Colors.lightGray.cgColor
+        shapeLayer.lineWidth = 0.4
+        
+        controller.tabBar.layer.addSublayer(shapeLayer)
     }
 }
 
-// MARK: - Enum
-
-// Енам с тайтлом и SFSymbol'ом для каждого элемента UITabBarController'а.
 private enum NavigationControllersType: Int, CaseIterable {
-    case catalogue, cart
-    
+    case catalogue, cart, profile
     var title: String {
         switch self {
         case .catalogue:
@@ -155,6 +185,9 @@ private enum NavigationControllersType: Int, CaseIterable {
             
         case .cart:
             return Localize.cart
+            
+        case .profile:
+            return Localize.profile
         }
     }
     
@@ -165,6 +198,9 @@ private enum NavigationControllersType: Int, CaseIterable {
             
         case .cart:
             return Localize.Images.cartIcon
+            
+        case .profile:
+            return Localize.Images.profileIcon
         }
     }
 }
