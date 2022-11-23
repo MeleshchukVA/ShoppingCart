@@ -7,26 +7,20 @@
 
 import UIKit
 
-// MARK: - Class
-
 final class CatalogueCell: UITableViewCell {
-    
-    // MARK: Properties
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = Font.sber(ofSize: Font.Size.fouthteen, weight: .regular)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        setupView()
-        setupSubviews()
-        setupConstraints()
+        selectionStyle = .none
+        self.setupView()
+        self.setupSubviews()
+        self.setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -34,34 +28,21 @@ final class CatalogueCell: UITableViewCell {
     }
 }
 
-// MARK: - Extension
-
 extension CatalogueCell {
-    
     func fill(viewModel: CatalogueViewModel) {
         label.text = viewModel.name
     }
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
-
 extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
-    
     func setupView() {
-        if let image = UIImage(systemName: "chevron.right") {
-            let accessory = UIImageView(frame: CGRect(
-                x: 0,
-                y: 0,
-                width: image.size.width,
-                height: image.size.height
-            ))
-            
+        if let image = UIImage(named: "chevron.right") {
+            let accessory = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
             accessory.image = image
             accessory.tintColor = UIColor.white
-            accessoryView = accessory
+            self.accessoryView = accessory
         }
-        
-        selectionStyle = .none
         backgroundColor = Colors.cellColor
     }
     
@@ -70,10 +51,12 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            label.topAnchor.constraint(equalTo: self.topAnchor),
+            label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
 }

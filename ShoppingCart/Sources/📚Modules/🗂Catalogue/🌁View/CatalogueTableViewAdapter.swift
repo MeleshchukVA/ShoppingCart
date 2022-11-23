@@ -7,8 +7,6 @@
 
 import UIKit
 
-// MARK: - Protocols
-
 protocol CatalogueTableViewAdapterDelegate: AnyObject {
     func catalogueTableViewAdapter(
         _ adapter: CatalogueTableViewAdapter,
@@ -23,20 +21,15 @@ protocol CatalogueTableViewAdapterProtocol {
     func restore()
 }
 
-// MARK: - Class
-
 final class CatalogueTableViewAdapter: NSObject {
     
-    // MARK: Properties
-    private weak var delegate: CatalogueTableViewAdapterDelegate?
+    weak var delegate: CatalogueTableViewAdapterDelegate?
     private weak var tableView: UITableView?
-    private var viewModels = [CatalogueViewModel]()
+    var viewModels = [CatalogueViewModel]()
 }
 
 // MARK: - CatalogueTableViewAdapterProtocol
-
 extension CatalogueTableViewAdapter: CatalogueTableViewAdapterProtocol {
-    
     func setupTable(tableView: UITableView) {
         self.tableView = tableView
         self.tableView?.delegate = self
@@ -56,11 +49,8 @@ extension CatalogueTableViewAdapter: CatalogueTableViewAdapterProtocol {
         self.tableView?.restore()
     }
 }
-
 // MARK: - UITableViewDataSource
-
 extension CatalogueTableViewAdapter: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModels.count
     }
@@ -73,11 +63,8 @@ extension CatalogueTableViewAdapter: UITableViewDataSource {
         return cell
     }
 }
-
 // MARK: - UITableViewDelegate
-
 extension CatalogueTableViewAdapter: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         49
     }

@@ -8,50 +8,59 @@
 
 import UIKit
 
-// MARK: - CatalogueContext
-
 struct CatalogueContext {
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: CatalogueModuleOutput?
 }
 
-// MARK: - Container
-
 final class CatalogueContainer {
-    
-    // MARK: Properties
-    private let input: CatalogueModuleInput
-	let viewController: UIViewController
-	private weak var router: CatalogueRouterInput?
-    
-    // MARK: Init
-    private init(viewController: UIViewController, input: CatalogueModuleInput, router: CatalogueRouterInput) {
-        self.viewController = viewController
-        self.input = input
-        self.router = router
-    }
-    
-    // MARK: Methods
-	static func assemble(with context: CatalogueContext) -> CatalogueContainer {
+    weak var router: CatalogueRouterInput?
+    let input: CatalogueModuleInput
+    let viewController: UIViewController
+
+    static func assemble(with context: CatalogueContext) -> CatalogueContainer {
         let tableViewAdapter = CatalogueTableViewAdapter()
-        
+        let collectionViewAdapter = ProductCollectionViewAdapter()
         let router = CatalogueRouter()
-        let interactor = CatalogueInteractor(networkService: context.moduleDependencies.networkService)
+        let interactor = CatalogueInteractor(
+            networkService: context.moduleDependencies.networkService,
+            persistentProvider: context.moduleDependencies.persistentProvider
+        )
         let presenter = CataloguePresenter(
             router: router,
             interactor: interactor,
-            tableViewAdapter: tableViewAdapter
+            tableViewAdapter: tableViewAdapter,
+            collectionViewAdapter: collectionViewAdapter
         )
-		let viewController = CatalogueViewController(output: presenter)
+        collectionViewAdapter.delegate = presenter
+        tableViewAdapter.delegate = presenter
         
+        let viewController = CatalogueViewController(output: presenter)
+
+        presenter.view = viewController
+        presenter.moduleOutput = context.moduleOutput
+
         interactor.output = presenter
-		presenter.viewController = viewController
-		presenter.moduleOutput = context.moduleOutput
+        
+        router.viewControllerProvider = { [weak viewController] in
+            viewController
+        }
+        router.navigationControllerProvider = { [weak viewController] in
+            viewController?.navigationController
+        }
+        
+        router.moduleDependencies = context.moduleDependencies
         
         if let catalogueView = viewController.catalogueView {
             tableViewAdapter.setupTable(tableView: catalogueView.tableView)
         }
+        
+        return CatalogueContainer(view: viewController, input: presenter, router: router)
+    }
 
-        return CatalogueContainer(viewController: viewController, input: presenter, router: router)
-	}
+    private init(view: UIViewController, input: CatalogueModuleInput, router: CatalogueRouterInput) {
+        self.viewController = view
+        self.input = input
+        self.router = router
+    }
 }

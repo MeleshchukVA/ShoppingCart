@@ -8,43 +8,38 @@
 
 import Foundation
 
-// MARK: - ModuleInput
-
 protocol CatalogueModuleInput {
-	var moduleOutput: CatalogueModuleOutput? { get }
+    var moduleOutput: CatalogueModuleOutput? { get }
 }
 
-// MARK: - ModuleOutput
+protocol CatalogueModuleOutput: AnyObject {}
 
-protocol CatalogueModuleOutput: AnyObject {
+protocol CatalogueViewInput: ViewInput {
+    func hideTableView(isHidden: Bool)
+    func hideCollectionView()
+    func updateCollectionViewData(adapter: ProductCollectionViewAdapter, isEmpty: Bool)
 }
 
-// MARK: - ViewControllerInput
-
-protocol CatalogueViewControllerInput: AnyObject {
-    func startActivityIndicator()
-    func stopActivityIndicator()
-}
-
-// MARK: - ViewControllerOutput
-
-protocol CatalogueViewControllerOutput: AnyObject {
+protocol CatalogueViewOutput: AnyObject {
     func viewDidLoad()
+    func viewDidAppear()
+    func searchBarTextDidEndEditing(with query: String)
+    func searchBarCancelButtonClicked()
 }
 
-// MARK: - InteractorInput
-
-protocol CatalogueInteractorInput: AnyObject {
+protocol CatalogueInteractorInput: BaseInteractorInput {
     func reload()
+    func reload(by query: String, skip: Int)
+    func obtainCartProducts()
+    func obtainCartProductsCount() -> Int
 }
-
-// MARK: - InteractorOutput
 
 protocol CatalogueInteractorOutput: AnyObject {
     func didObtainCategories(categories: Categories)
+    func didObtainDBProducts(products: [ProductCDModel])
+    func didObtainProducts(products: [Products])
 }
 
-// MARK: - RouterInput
-
 protocol CatalogueRouterInput: AnyObject {
+    func showDetail(with viewModel: CatalogueViewModel)
 }
