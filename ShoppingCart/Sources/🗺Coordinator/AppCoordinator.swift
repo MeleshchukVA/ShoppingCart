@@ -55,7 +55,7 @@ final class AppCoordinator {
     private func startMainFlow() {
         setupCatalogue()
         setupCart()
-//        setupProfile()
+        setupProfile()
         let navigationControllers = NavigationControllersType.allCases.compactMap {
             self.navigationControllers[$0]
         }
@@ -115,17 +115,17 @@ private extension AppCoordinator {
         cartVC.navigationItem.title = Localize.cart
         navController.setViewControllers([cartVC], animated: false)
     }
-//
-//    func setupProfile() {
-//        guard let navController = self.navigationControllers[.profile] else {
-//            fatalError("something wrong with appCoordinator")
-//        }
-//        let context = ProfileContext(moduleDependencies: appDependency)
-//        let container = ProfileContainer.assemble(with: context)
-//        let profileVC = container.viewController
-//        profileVC.navigationItem.title = Localize.profile
-//        navController.setViewControllers([profileVC], animated: false)
-//    }
+
+    func setupProfile() {
+        guard let navController = self.navigationControllers[.profile] else {
+            fatalError("something wrong with appCoordinator")
+        }
+        let context = ProfileContext(moduleDependencies: appDependency)
+        let container = ProfileContainer.assemble(with: context)
+        let profileVC = container.viewController
+        profileVC.navigationItem.title = Localize.profile
+        navController.setViewControllers([profileVC], animated: false)
+    }
     
     func setupAppearanceNavigationBar() {
         let navigationBarAppearance = UINavigationBar.appearance()

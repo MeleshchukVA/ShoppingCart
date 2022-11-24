@@ -44,6 +44,13 @@
 		3F12B031292F8A5A00338F1D /* CheckoutProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B030292F8A5A00338F1D /* CheckoutProtocols.swift */; };
 		3F12B033292F8A7100338F1D /* CheckoutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B032292F8A7100338F1D /* CheckoutInteractor.swift */; };
 		3F12B035292F8A8B00338F1D /* CheckoutContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B034292F8A8B00338F1D /* CheckoutContainer.swift */; };
+		3F12B038292F8ED100338F1D /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B037292F8ED100338F1D /* ProfilePresenter.swift */; };
+		3F12B03A292F8EE600338F1D /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B039292F8EE600338F1D /* ProfileRouter.swift */; };
+		3F12B03C292F8F0100338F1D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B03B292F8F0100338F1D /* ProfileViewController.swift */; };
+		3F12B03E292F8F1200338F1D /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B03D292F8F1200338F1D /* ProfileProtocols.swift */; };
+		3F12B040292F8F2400338F1D /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B03F292F8F2400338F1D /* ProfileInteractor.swift */; };
+		3F12B042292F8F3500338F1D /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B041292F8F3500338F1D /* ProfileContainer.swift */; };
+		3F12B044292F908A00338F1D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B043292F908A00338F1D /* ProfileView.swift */; };
 		3F25169E292695C0008F5820 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25169D292695C0008F5820 /* LRUCache.swift */; };
 		3F2516A029269617008F5820 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25169F29269617008F5820 /* ImageCache.swift */; };
 		3F2516A229269644008F5820 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2516A129269644008F5820 /* ImageLoader.swift */; };
@@ -142,6 +149,13 @@
 		3F12B030292F8A5A00338F1D /* CheckoutProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutProtocols.swift; sourceTree = "<group>"; };
 		3F12B032292F8A7100338F1D /* CheckoutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutInteractor.swift; sourceTree = "<group>"; };
 		3F12B034292F8A8B00338F1D /* CheckoutContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutContainer.swift; sourceTree = "<group>"; };
+		3F12B037292F8ED100338F1D /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		3F12B039292F8EE600338F1D /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		3F12B03B292F8F0100338F1D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3F12B03D292F8F1200338F1D /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
+		3F12B03F292F8F2400338F1D /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		3F12B041292F8F3500338F1D /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
+		3F12B043292F908A00338F1D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3F25169D292695C0008F5820 /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
 		3F25169F29269617008F5820 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		3F2516A129269644008F5820 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -285,6 +299,20 @@
 			path = "🌁View";
 			sourceTree = "<group>";
 		};
+		3F12B036292F8E8B00338F1D /* 👤Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3F12B037292F8ED100338F1D /* ProfilePresenter.swift */,
+				3F12B039292F8EE600338F1D /* ProfileRouter.swift */,
+				3F12B03B292F8F0100338F1D /* ProfileViewController.swift */,
+				3F12B03D292F8F1200338F1D /* ProfileProtocols.swift */,
+				3F12B03F292F8F2400338F1D /* ProfileInteractor.swift */,
+				3F12B041292F8F3500338F1D /* ProfileContainer.swift */,
+				3F12B043292F908A00338F1D /* ProfileView.swift */,
+			);
+			path = "👤Profile";
+			sourceTree = "<group>";
+		};
 		3F25169C29269570008F5820 /* 🎆ImageLoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,10 +369,11 @@
 		3F6E98EF2906F07F00F25E9B /* 📚Modules */ = {
 			isa = PBXGroup;
 			children = (
-				3F12B022292F892D00338F1D /* ✅Checkout */,
 				3F12B00C292E55FD00338F1D /* 🛒Cart */,
+				3F12B022292F892D00338F1D /* ✅Checkout */,
 				3F91E43F292E3BF40000A994 /* 📽Onboarding */,
 				3F2C06382927C092009F84D4 /* 💻Product */,
+				3F12B036292F8E8B00338F1D /* 👤Profile */,
 				3F6E991429083FDC00F25E9B /* 🗂Catalogue */,
 			);
 			path = "📚Modules";
@@ -708,12 +737,14 @@
 				3F91E441292E3C2D0000A994 /* OnboardingViewController.swift in Sources */,
 				3F12B01B292E56E700338F1D /* CartProtocols.swift in Sources */,
 				3F12B02D292F8A2700338F1D /* CheckoutRouter.swift in Sources */,
+				3F12B042292F8F3500338F1D /* ProfileContainer.swift in Sources */,
 				3F2516A8292699CE008F5820 /* CurrencyFormatter.swift in Sources */,
 				3F08A628292D166B00F02EDF /* TextField.swift in Sources */,
 				3F12B019292E56D000338F1D /* CartViewController.swift in Sources */,
 				3F91E443292E3C5A0000A994 /* PageViewController.swift in Sources */,
 				3F12B035292F8A8B00338F1D /* CheckoutContainer.swift in Sources */,
 				3F91E42E292D31BC0000A994 /* ShoppingCartModel.xcdatamodeld in Sources */,
+				3F12B040292F8F2400338F1D /* ProfileInteractor.swift in Sources */,
 				3F5A22C1290ADF0E00438114 /* UISearchBar + Extension.swift in Sources */,
 				3F91E436292D34110000A994 /* PersistentConstants.swift in Sources */,
 				3F08A6082927C91000F02EDF /* ProductView.swift in Sources */,
@@ -740,6 +771,7 @@
 				3F08A634292D191600F02EDF /* FieldsEncoder.swift in Sources */,
 				3F12B017292E56BA00338F1D /* CartRouter.swift in Sources */,
 				3F9668A12909878E0034FEFE /* API.swift in Sources */,
+				3F12B03E292F8F1200338F1D /* ProfileProtocols.swift in Sources */,
 				3F5A22BF290ADD8300438114 /* ReuseIdentifier.swift in Sources */,
 				3F08A63C292D1A6F00F02EDF /* UICollectionView + Extension.swift in Sources */,
 				3F7A78D729098F4600B24982 /* AppDependency.swift in Sources */,
@@ -785,8 +817,12 @@
 				3F8A6F3629102A1500BB8190 /* BaseView.swift in Sources */,
 				3F8A6F3B29102E5C00BB8190 /* CatalogueView.swift in Sources */,
 				3F2C06402927C166009F84D4 /* ProductRouter.swift in Sources */,
+				3F12B03A292F8EE600338F1D /* ProfileRouter.swift in Sources */,
 				3F12B01F292E571200338F1D /* CartContainer.swift in Sources */,
 				3F12B033292F8A7100338F1D /* CheckoutInteractor.swift in Sources */,
+				3F12B038292F8ED100338F1D /* ProfilePresenter.swift in Sources */,
+				3F12B03C292F8F0100338F1D /* ProfileViewController.swift in Sources */,
+				3F12B044292F908A00338F1D /* ProfileView.swift in Sources */,
 				3F96689D290848B80034FEFE /* CatalogueInteractor.swift in Sources */,
 				3F12B01D292E56FC00338F1D /* CartInteractor.swift in Sources */,
 			);
