@@ -7,10 +7,13 @@
 
 import UIKit
 
+// MARK: - BaseRouter Class
+
 class BaseRouter {
     
+    // MARK: Properties
     var moduleDependencies: ModuleDependencies?
-
+    
     var navigationControllerProvider: (() -> UINavigationController?)?
     var navigationController: UINavigationController? {
         self.navigationControllerProvider?()
