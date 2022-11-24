@@ -92,7 +92,7 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
         textFieldInsideUISearchBar?.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
 
         // SearchBar placeholder
-        let labelInsideUISearchBar = textFieldInsideUISearchBar!.value(forKey: "placeholderLabel") as? UILabel
+        let labelInsideUISearchBar = textFieldInsideUISearchBar?.value(forKey: "placeholderLabel") as? UILabel
         labelInsideUISearchBar?.textColor = UIColor.red
         labelInsideUISearchBar?.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
         searchController.obscuresBackgroundDuringPresentation = false

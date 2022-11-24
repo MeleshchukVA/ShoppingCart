@@ -8,31 +8,29 @@
 import Foundation
 
 enum URLFactory {
-    
-    private static var baseURL: URL {
-        return baseURLComponents.url!
-    }
 
-    private static let baseURLComponents: URLComponents = {
-        let url = URL(string: API.main)!
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        urlComponents.queryItems = []
+    private static let baseURLComponents: URLComponents? = {
+        guard let url = URL(string: API.main) else { return nil }
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = []
         return urlComponents
     }()
+    
+    private static var baseURL: URL? {
+        return baseURLComponents?.url
+    }
 
     static func getCategories() -> String {
-        let urlComponents = baseURLComponents
-        return urlComponents.url!
+        return baseURL?
             .appendingPathComponent(API.TypeOf.categories)
-            .absoluteString
+            .absoluteString ?? ""
     }
 
     static func getProducts(name: String) -> String {
-        let urlComponents = baseURLComponents
-        return urlComponents.url!
+        return baseURL?
             .appendingPathComponent(API.TypeOf.products)
             .appendingPathComponent(name)
-            .absoluteString
+            .absoluteString ?? ""
     }
 
     static func getProducts(by query: String, skip: Int) -> String {
@@ -42,23 +40,21 @@ enum URLFactory {
             URLQueryItem(name: "limit", value: "\(ProductConstants.Network.limit)"),
             URLQueryItem(name: "skip", value: "\(skip)")
         ]
-        urlComponents.queryItems?.append(contentsOf: paramsQueryItem)
-        return urlComponents.url!
+        urlComponents?.queryItems?.append(contentsOf: paramsQueryItem)
+        return baseURL?
             .appendingPathComponent(API.TypeOf.productsSearch)
-            .absoluteString
+            .absoluteString ?? ""
     }
 
     static func addCart() -> String {
-        let urlComponents = baseURLComponents
-        return urlComponents.url!
+        return baseURL?
             .appendingPathComponent(API.TypeOf.addCart)
-            .absoluteString
+            .absoluteString ?? ""
     }
 
     static func getUser() -> String {
-        let urlComponents = baseURLComponents
-        return urlComponents.url!
+        return baseURL?
             .appendingPathComponent(API.TypeOf.getUser)
-            .absoluteString
+            .absoluteString ?? ""
     }
 }
