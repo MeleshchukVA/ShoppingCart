@@ -33,7 +33,7 @@ class BaseInteractor {
     }
 }
 
-// MARK: - BaseInteractor public methods
+// MARK: - BaseInteractor + BaseInteractorInput
 
 extension BaseInteractor: BaseInteractorInput {
 
