@@ -8,4 +8,4 @@
 import Foundation
 
 typealias ModuleDependencies = HasDependencies
-typealias ViewInput = AnyObject & Indicator
+typealias ViewInput = AnyObject & IndicatorProtocol & UpdateTabBarProtocol
