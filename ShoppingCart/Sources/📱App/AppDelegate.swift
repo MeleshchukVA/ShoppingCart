@@ -9,10 +9,13 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    // MARK: Properties
     var window: UIWindow?
     private lazy var appDependency: AppDependency = AppDependency.makeDefault()
     private var appCoordinator: AppCoordinator?
     
+    // MARK: Public methods
     func application(
         _ application: UIApplication,
         willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
