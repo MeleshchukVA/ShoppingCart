@@ -3,7 +3,7 @@
 //  ShoppingCart
 //
 //  Created by Владимир Мелещук on 25.10.2022.
-//  
+//
 //
 
 import UIKit
@@ -11,6 +11,7 @@ import UIKit
 final class CatalogueRouter: BaseRouter {}
 
 extension CatalogueRouter: CatalogueRouterInput {
+    
     func showDetail(with viewModel: CatalogueViewModel) {
         guard let moduleDependencies = moduleDependencies else { return }
         let context = ProductContext(moduleDependencies: moduleDependencies, moduleOutput: self)

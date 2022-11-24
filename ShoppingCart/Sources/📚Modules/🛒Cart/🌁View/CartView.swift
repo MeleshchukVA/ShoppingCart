@@ -8,7 +8,9 @@
 import UIKit
 
 extension CartView {
+    
     struct Appearance {
+        
         let tableViewBackgroundColor = UIColor.black
         let purpleColor = Colors.purple
         let textCollor = Colors.lightWhite
@@ -21,9 +23,10 @@ extension CartView {
 }
 
 final class CartView: BaseView {
+    
     private let output: CartViewOutput
     let appearance: Appearance
-    
+
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .none
@@ -32,7 +35,7 @@ final class CartView: BaseView {
         tableView.register(CartCell.self)
         return tableView
     }()
-    
+
     private lazy var checkoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = appearance.textCollor
@@ -42,7 +45,7 @@ final class CartView: BaseView {
         button.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+
     init(
         frame: CGRect = .zero,
         output: CartViewOutput,
@@ -55,12 +58,12 @@ final class CartView: BaseView {
         self.setupSubviews()
         self.setupConstraints()
     }
-    
+
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc private func checkoutButtonTapped() {
         output.checkoutButtonTapped()
     }
@@ -68,19 +71,20 @@ final class CartView: BaseView {
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
 extension CartView: ProgrammaticallyInitializableViewProtocol {
+    
     func setupView() {
         tableView.backgroundColor = appearance.tableViewBackgroundColor
     }
-    
+
     func setupSubviews() {
         [tableView, activityIndicator, checkoutButton].forEach { addSubview($0) }
     }
-    
+
     func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         checkoutButton.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let constraints = [
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -89,7 +93,7 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
                 equalTo: self.safeAreaLayoutGuide.bottomAnchor,
                 constant: -(appearance.checkoutButtonHeight + appearance.checkoutButtonVerticalInset)
             ),
-            
+
             checkoutButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,
                                                    constant: -appearance.checkoutButtonVerticalInset),
             checkoutButton.heightAnchor.constraint(equalToConstant: appearance.checkoutButtonHeight),
@@ -97,11 +101,11 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
                                                     constant: appearance.checkoutButtonSideInset),
             checkoutButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,
                                                      constant: -appearance.checkoutButtonSideInset),
-            
+
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ]
-        
+
         NSLayoutConstraint.activate(constraints)
     }
 }

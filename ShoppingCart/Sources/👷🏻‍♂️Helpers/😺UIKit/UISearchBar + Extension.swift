@@ -8,6 +8,7 @@
 import UIKit.UISearchBar
 
 extension UISearchBar {
+    
     var compatibleSearchTextField: UITextField {
         guard #available(iOS 13.0, *) else { return legacySearchField }
         return self.searchTextField

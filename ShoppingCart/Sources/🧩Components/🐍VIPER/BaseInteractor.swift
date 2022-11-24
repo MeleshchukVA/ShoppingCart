@@ -17,12 +17,12 @@ protocol BaseInteractorInput: AnyObject {
 // MARK: - Class
 
 class BaseInteractor {
-    
+
     // MARK: Properties
     let networkService: NetworkServiceProtocol
     let persistentProvider: PersistentProviderProtocol
     let queue = DispatchQueue(label: "com.sc.baseInteractor", qos: .background)
-    
+
     // MARK: Init
     init(
         networkService: NetworkServiceProtocol,
@@ -36,7 +36,7 @@ class BaseInteractor {
 // MARK: - BaseInteractor
 
 extension BaseInteractor: BaseInteractorInput {
-    
+
     // MARK: Public methods
     func addToCart(products: [Product], completion: @escaping (PersistentState) -> Void) {
         queue.async { [weak self] in
@@ -45,14 +45,14 @@ extension BaseInteractor: BaseInteractorInput {
                 switch result {
                 case .success(let state):
                     completion(state)
-                    
+
                 case .failure:
                     break
                 }
             }
         }
     }
-    
+
     func obtainCartProductsCount() -> Int {
         persistentProvider.fetchProducts().count
     }

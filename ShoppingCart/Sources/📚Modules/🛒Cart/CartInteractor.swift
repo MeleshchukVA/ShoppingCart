@@ -8,19 +8,21 @@
 import Foundation
 
 final class CartInteractor: BaseInteractor {
+    
     weak var output: CartInteractorOutput?
 }
 
 extension CartInteractor: CartInteractorInput {
+    
     func obtainCartProducts() {
         let products = persistentProvider.fetchProducts()
         output?.didObtainCartProducts(products: products)
     }
-    
+
     func deleteProduct(id: Int) {
         persistentProvider.deleteProduct(id: id)
     }
-    
+
     func updateCountOfProduct(id: Int, count: Int) {
         guard let updatedProduct = persistentProvider.updateCountOfProduct(id: id, count: count) else { return }
         output?.didObtainCartProduct(product: updatedProduct)

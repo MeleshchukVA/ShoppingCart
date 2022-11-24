@@ -10,6 +10,7 @@ import UIKit
 final class ProfileRouter: BaseRouter {}
 
 extension ProfileRouter: ProfileRouterInput {
+    
     func showError(text: String) {
         let cancelAction = UIAlertAction(title: "OK", style: .cancel)
         cancelAction.setValue(Colors.purple2, forKey: "titleTextColor")

@@ -3,17 +3,19 @@
 //  ShoppingCart
 //
 //  Created by Владимир Мелещук on 18.11.2022.
-//  
+//
 //
 
 import UIKit
 
 struct ProductContext {
+    
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: ProductModuleOutput?
 }
 
 final class ProductContainer {
+    
     let input: ProductModuleInput
     let viewController: UIViewController
     weak var router: ProductRouterInput?
@@ -32,21 +34,21 @@ final class ProductContainer {
             viewModel: viewModel
         )
         collectionViewAdapter.delegate = presenter
-        
+
         let viewController = ProductViewController(output: presenter, viewModel: viewModel)
-        
+
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
 
         interactor.output = presenter
-        
+
         router.viewControllerProvider = { [weak viewController] in
             viewController
         }
         router.navigationControllerProvider = { [weak viewController] in
             viewController?.navigationController
         }
-        
+
         router.moduleDependencies = context.moduleDependencies
 
         return ProductContainer(view: viewController, input: presenter, router: router)

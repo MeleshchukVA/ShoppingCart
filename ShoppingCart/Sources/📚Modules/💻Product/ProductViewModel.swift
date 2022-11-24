@@ -8,6 +8,7 @@
 import Foundation
 
 struct ProductViewModel: Identifiable {
+    
     var id: Int
     var title: String
     var description: String

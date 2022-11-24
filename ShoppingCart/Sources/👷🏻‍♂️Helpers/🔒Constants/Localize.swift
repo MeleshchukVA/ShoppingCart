@@ -8,11 +8,13 @@
 import UIKit
 
 enum Localize {
+    
     static let catalogue = "Catalogue"
     static let cart = "Cart"
     static let profile = "Profile"
-    
+
     enum Images {
+        
         static let catalogueIcon: UIImage? = UIImage(named: "magnifyingglass")
         static let cartIcon: UIImage? = UIImage(named: "cart")
         static let cartPlusIcon: UIImage? = UIImage(named: "cart.badge.plus")

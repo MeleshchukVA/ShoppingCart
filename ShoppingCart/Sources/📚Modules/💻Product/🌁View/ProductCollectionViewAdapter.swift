@@ -18,7 +18,7 @@ protocol ProductCollectionViewAdapterDelegate: AnyObject {
 }
 
 extension ProductCollectionViewAdapterDelegate {
-    
+
     func productCollectionViewAdapter(
         _ adapter: ProductCollectionViewAdapter,
         didSelectComponentAt indexPath: IndexPath
@@ -29,7 +29,7 @@ extension ProductCollectionViewAdapterDelegate {
 // MARK: - Class
 
 final class ProductCollectionViewAdapter: NSObject {
-    
+
     // MARK: Properties
     weak var delegate: ProductCollectionViewAdapterDelegate?
     var viewModels: [ProductViewModel] = []
@@ -39,11 +39,11 @@ final class ProductCollectionViewAdapter: NSObject {
 // MARK: - UICollectionViewDataSource
 
 extension ProductCollectionViewAdapter: UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModels.count
     }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
@@ -53,14 +53,14 @@ extension ProductCollectionViewAdapter: UICollectionViewDataSource {
         cell.fill(with: viewModel)
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.productCollectionViewAdapter(
             self,
             didSelectComponentAt: indexPath
         )
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) {
             UIView.animate(
@@ -74,7 +74,7 @@ extension ProductCollectionViewAdapter: UICollectionViewDataSource {
             }
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) {
             UIView.animate(
@@ -93,6 +93,7 @@ extension ProductCollectionViewAdapter: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension ProductCollectionViewAdapter: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -101,16 +102,16 @@ extension ProductCollectionViewAdapter: UICollectionViewDelegateFlowLayout {
         let width = itemWidth(for: self.boundsWidth, spacing: ProductConstants.Layout.spacing)
         return CGSize(width: width, height: width + ProductConstants.Layout.heightProductCard)
     }
-    
+
     func itemWidth(for width: CGFloat, spacing: CGFloat) -> CGFloat {
         let totalSpacing: CGFloat =
-        (ProductConstants.Layout.itemsInRow * ProductConstants.Layout.spacingLeft
-        + (ProductConstants.Layout.itemsInRow - 1) * ProductConstants.Layout.spacingRight)
-        + ProductConstants.Layout.minimumInteritemSpacingForSectionAt - ProductConstants.Layout.spacing
+            (ProductConstants.Layout.itemsInRow * ProductConstants.Layout.spacingLeft
+                + (ProductConstants.Layout.itemsInRow - 1) * ProductConstants.Layout.spacingRight)
+            + ProductConstants.Layout.minimumInteritemSpacingForSectionAt - ProductConstants.Layout.spacing
         let finalWidth = (width - totalSpacing) / ProductConstants.Layout.itemsInRow
         return floor(finalWidth)
     }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -123,7 +124,7 @@ extension ProductCollectionViewAdapter: UICollectionViewDelegateFlowLayout {
             right: ProductConstants.Layout.spacingRight
         )
     }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -131,7 +132,7 @@ extension ProductCollectionViewAdapter: UICollectionViewDelegateFlowLayout {
     ) -> CGFloat {
         ProductConstants.Layout.spacingBottom
     }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -139,7 +140,7 @@ extension ProductCollectionViewAdapter: UICollectionViewDelegateFlowLayout {
     ) -> CGFloat {
         ProductConstants.Layout.minimumInteritemSpacingForSectionAt
     }
-    
+
     func collectionView(
         _ collectionView: UICollectionView,
         willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {

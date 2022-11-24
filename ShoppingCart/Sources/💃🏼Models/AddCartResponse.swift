@@ -8,6 +8,7 @@
 import Foundation
 
 struct AddCartResponse: Codable {
+    
     let id: Int
     let total: Int
     let discountedTotal: Int

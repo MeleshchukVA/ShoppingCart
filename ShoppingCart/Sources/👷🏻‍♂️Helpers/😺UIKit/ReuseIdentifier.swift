@@ -12,6 +12,7 @@ protocol ReuseIdentifiable {
 }
 
 extension ReuseIdentifiable {
+    
     static var reuseIdentifier: String {
         return String(describing: self)
     }
@@ -24,14 +25,15 @@ extension UITableViewHeaderFooterView: ReuseIdentifiable {}
 extension UICollectionReusableView: ReuseIdentifiable {}
 
 extension UICollectionView {
+    
     func dequeueCell<T: UICollectionViewCell>(cellType: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = self.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier,
-                for: indexPath) as? T else {
+                                                  for: indexPath) as? T else {
             fatalError("can't dequeue")
         }
         return cell
     }
-    
+
     func dequeueSectionHeaderCell<T: UICollectionReusableView>(cellType: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = self.dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionHeader,
@@ -42,11 +44,11 @@ extension UICollectionView {
         }
         return cell
     }
-    
+
     func register<T: UICollectionViewCell>(_ cellType: T.Type) {
         self.register(cellType, forCellWithReuseIdentifier: cellType.reuseIdentifier)
     }
-    
+
     func register<T: UICollectionReusableView>(_ cellType: T.Type) {
         self.register(
             T.self,
@@ -57,9 +59,10 @@ extension UICollectionView {
 }
 
 extension UITableView {
+    
     func dequeueCell<T: UITableViewCell>(cellType: T.Type, for indexPath: IndexPath) -> T {
         guard let cell = self.dequeueReusableCell(withIdentifier: T.reuseIdentifier,
-                for: indexPath) as? T else {
+                                                  for: indexPath) as? T else {
             fatalError("can't dequeue")
         }
         return cell
@@ -68,11 +71,11 @@ extension UITableView {
     func register<T: UITableViewCell>(_ cellType: T.Type) {
         self.register(cellType, forCellReuseIdentifier: cellType.reuseIdentifier)
     }
-    
+
     func register<T: UITableViewHeaderFooterView>(_ cellType: T.Type) {
         self.register(cellType, forHeaderFooterViewReuseIdentifier: cellType.reuseIdentifier)
     }
-    
+
     func dequeueHeaderFooterViewCell<T: UITableViewHeaderFooterView>(cellType: T.Type) -> T {
         guard let cell = self.dequeueReusableHeaderFooterView(
             withIdentifier: T.reuseIdentifier

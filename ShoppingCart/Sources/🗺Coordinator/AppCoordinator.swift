@@ -10,12 +10,13 @@ import UIKit
 // MARK: - Class
 
 final class AppCoordinator {
+    
     private let window: UIWindow
     private lazy var tabBarController = UITabBarController()
     private lazy var navigationControllers = AppCoordinator.makeNavigationControllers()
     private let appDependency: AppDependency
     private var isUserHasSeenOnboarding: Bool = false
-    
+
     init(
         window: UIWindow,
         appDependency: AppDependency
@@ -25,7 +26,7 @@ final class AppCoordinator {
         navigationControllers = AppCoordinator.makeNavigationControllers()
         checkIfUserHasSeenOnboarding()
     }
-    
+
     func start() {
         if isUserHasSeenOnboarding {
             startMainFlow()
@@ -33,25 +34,25 @@ final class AppCoordinator {
             startOnboardingFlow()
         }
     }
-    
+
     private func startOnboardingFlow() {
         let onboardingVC = OnboardingViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal,
             onboardingCompletion: { [weak self] completion in
-            switch completion {
-            case true:
-                self?.userHasSeenOnboarding()
-                self?.startMainFlow()
-                
-            case false:
-                break
-            }
-        })
-        
+                switch completion {
+                case true:
+                    self?.userHasSeenOnboarding()
+                    self?.startMainFlow()
+
+                case false:
+                    break
+                }
+            })
+
         window.rootViewController = onboardingVC
     }
-    
+
     private func startMainFlow() {
         setupCatalogue()
         setupCart()
@@ -63,12 +64,12 @@ final class AppCoordinator {
         setupAppearanceTabBar(with: tabBarController)
         window.rootViewController = tabBarController
     }
-    
+
     private func userHasSeenOnboarding() {
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
     }
-    
+
     private func checkIfUserHasSeenOnboarding() {
         let defaults = UserDefaults.standard
         self.isUserHasSeenOnboarding = defaults.bool(forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
@@ -76,6 +77,7 @@ final class AppCoordinator {
 }
 
 private extension AppCoordinator {
+    
     static func makeNavigationControllers() -> [NavigationControllersType: UINavigationController] {
         var result: [NavigationControllersType: UINavigationController] = [:]
         NavigationControllersType.allCases.forEach { navigationControllerKey in
@@ -92,7 +94,7 @@ private extension AppCoordinator {
         }
         return result
     }
-    
+
     func setupCatalogue() {
         guard let navController = self.navigationControllers[.catalogue] else {
             fatalError("something wrong with appCoordinator")
@@ -104,7 +106,7 @@ private extension AppCoordinator {
         navController.setViewControllers([catalogueVC], animated: false)
         setupAppearanceNavigationBar()
     }
-    
+
     func setupCart() {
         guard let navController = self.navigationControllers[.cart] else {
             fatalError("something wrong with appCoordinator")
@@ -126,7 +128,7 @@ private extension AppCoordinator {
         profileVC.navigationItem.title = Localize.profile
         navController.setViewControllers([profileVC], animated: false)
     }
-    
+
     func setupAppearanceNavigationBar() {
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.backgroundColor = Colors.purple
@@ -148,7 +150,7 @@ private extension AppCoordinator {
         navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
         navigationBarAppearance.shadowImage = UIImage()
     }
-    
+
     func setupAppearanceTabBar(with controller: UITabBarController) {
         let tabBarAppearance = UITabBar.appearance()
         tabBarAppearance.shadowImage = UIImage()
@@ -157,48 +159,49 @@ private extension AppCoordinator {
         tabBarAppearance.barTintColor = Colors.lightGray
         controller.tabBar.unselectedItemTintColor = Colors.grayTabBar
         controller.selectedIndex = 0
-        
+
         UITabBar.appearance().tintColor = Colors.purple2
         let tabBarItemAppearance = UITabBarItem.appearance()
         let textAtributes = [NSAttributedString.Key.font: Font.sber(ofSize: Font.Size.ten, weight: .bold)]
         tabBarItemAppearance.setTitleTextAttributes(textAtributes as [NSAttributedString.Key: Any], for: .normal)
-        
+
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
         path.addLine(to: CGPoint(x: controller.tabBar.frame.width, y: 0))
-        
+
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.strokeColor = Colors.lightGray.cgColor
         shapeLayer.lineWidth = 0.4
-        
+
         controller.tabBar.layer.addSublayer(shapeLayer)
     }
 }
 
 private enum NavigationControllersType: Int, CaseIterable {
+    
     case catalogue, cart, profile
     var title: String {
         switch self {
         case .catalogue:
             return Localize.catalogue
-            
+
         case .cart:
             return Localize.cart
-            
+
         case .profile:
             return Localize.profile
         }
     }
-    
+
     var image: UIImage? {
         switch self {
         case .catalogue:
             return Localize.Images.catalogueIcon
-            
+
         case .cart:
             return Localize.Images.cartIcon
-            
+
         case .profile:
             return Localize.Images.profileIcon
         }

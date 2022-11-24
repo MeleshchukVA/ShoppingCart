@@ -37,7 +37,7 @@ import UIKit
 
 /// Notification that cache should be cleared
 public let LRUCacheMemoryWarningNotification: NSNotification.Name =
-UIApplication.didReceiveMemoryWarningNotification
+    UIApplication.didReceiveMemoryWarningNotification
 
 #else
 
@@ -48,26 +48,27 @@ public let LRUCacheMemoryWarningNotification: NSNotification.Name =
 #endif
 
 public final class LRUCache<Key: Hashable, Value> {
+    
     private var values: [Key: Container] = [:]
     private unowned(unsafe) var head: Container?
     private unowned(unsafe) var tail: Container?
     private let lock: NSLock = .init()
     private var token: AnyObject?
     private let notificationCenter: NotificationCenter
-    
+
     /// The current total cost of values in the cache
     public private(set) var totalCost: Int = 0
-    
+
     /// The maximum total cost permitted
     public var totalCostLimit: Int {
         didSet { clean() }
     }
-    
+
     /// The maximum number of values permitted
     public var countLimit: Int {
         didSet { clean() }
     }
-    
+
     /// Initialize the cache with the specified `totalCostLimit` and `countLimit`
     public init(
         totalCostLimit: Int = .max,
@@ -77,7 +78,7 @@ public final class LRUCache<Key: Hashable, Value> {
         self.totalCostLimit = totalCostLimit
         self.countLimit = countLimit
         self.notificationCenter = notificationCenter
-        
+
         self.token = notificationCenter.addObserver(
             forName: LRUCacheMemoryWarningNotification,
             object: nil,
@@ -86,7 +87,7 @@ public final class LRUCache<Key: Hashable, Value> {
             self?.removeAllValues()
         }
     }
-    
+
     deinit {
         if let token = token {
             notificationCenter.removeObserver(token)
@@ -95,16 +96,17 @@ public final class LRUCache<Key: Hashable, Value> {
 }
 
 public extension LRUCache {
+    
     /// The number of values currently stored in the cache
     var count: Int {
         values.count
     }
-    
+
     /// Is the cache empty?
     var isEmpty: Bool {
         values.isEmpty
     }
-    
+
     /// Insert a value into the cache with optional `cost`
     func setValue(_ value: Value?, forKey key: Key, cost: Int = 0) {
         guard let value = value else {
@@ -131,7 +133,7 @@ public extension LRUCache {
         lock.unlock()
         clean()
     }
-    
+
     /// Remove a value  from the cache and return it
     @discardableResult func removeValue(forKey key: Key) -> Value? {
         lock.lock()
@@ -143,7 +145,7 @@ public extension LRUCache {
         totalCost -= container.cost
         return container.value
     }
-    
+
     /// Fetch a value from the cache
     func value(forKey key: Key) -> Value? {
         lock.lock()
@@ -155,7 +157,7 @@ public extension LRUCache {
         }
         return nil
     }
-    
+
     /// Remove all values from the cache
     func removeAllValues() {
         lock.lock()
@@ -167,20 +169,22 @@ public extension LRUCache {
 }
 
 private extension LRUCache {
+    
     final class Container {
+        
         var value: Value
         var cost: Int
         let key: Key
         unowned(unsafe) var prev: Container?
         unowned(unsafe) var next: Container?
-        
+
         init(value: Value, cost: Int, key: Key) {
             self.value = value
             self.cost = cost
             self.key = key
         }
     }
-    
+
     // Remove container from list
     func remove(_ container: Container) {
         if head === container {
@@ -193,7 +197,7 @@ private extension LRUCache {
         container.prev?.next = container.next
         container.next = nil
     }
-    
+
     // Append container to list
     func append(_ container: Container) {
         assert(container.next == nil)
@@ -204,7 +208,7 @@ private extension LRUCache {
         tail?.next = container
         tail = container
     }
-    
+
     func clean() {
         lock.lock()
         defer { lock.unlock() }

@@ -8,6 +8,7 @@
 import UIKit
 
 enum Colors {
+    
     static let lightWhite = UIColor.rgba(255, 255, 247)
     static let lightGray = UIColor.rgba(28, 28, 30)
     static let grayTabBar = UIColor.rgba(142, 142, 147)
@@ -19,8 +20,9 @@ enum Colors {
     static let cellColor = UIColor.rgba(36, 36, 38)
     static let searchBarBackground = UIColor.rgba(62, 62, 66)
     static let rowFilterColor = UIColor.rgba(199, 199, 204)
-    
+
     enum Gradient {
+        
         static let midColor = UIColor.rgba(216, 245, 240)
         static let topColor = UIColor.rgba(211, 236, 242)
     }

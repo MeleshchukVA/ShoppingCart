@@ -8,6 +8,7 @@
 import Foundation
 
 struct CartViewModel: Identifiable {
+    
     var id: Int
     var name: String
     var thumbnail: String
@@ -21,18 +22,21 @@ struct CartViewModel: Identifiable {
 }
 
 extension CartViewModel: Hashable {
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 }
 
 extension CartViewModel: Equatable {
+    
     static func == (lhs: CartViewModel, rhs: CartViewModel) -> Bool {
         lhs.id == rhs.id && lhs.count == rhs.count
     }
 }
 
 extension CartViewModel {
+    
     func prepareAddCartBody() -> [String: Any] {
         var dict: [String: Any] = [:]
         dict["id"] = id

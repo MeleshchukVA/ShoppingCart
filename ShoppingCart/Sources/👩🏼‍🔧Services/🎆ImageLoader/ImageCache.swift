@@ -12,8 +12,9 @@ protocol ImageCacheProtocol {
 }
 
 final class ImageCache {
-    static let shared = ImageCache()
     
+    static let shared = ImageCache()
+
     private lazy var cache: LRUCache<NSURL, Data> = {
         let cache = LRUCache<NSURL, Data>()
         cache.countLimit = 30
@@ -23,6 +24,7 @@ final class ImageCache {
 }
 
 extension ImageCache: ImageCacheProtocol {
+    
     subscript(url: URL) -> Data? {
         get {
             cache.value(forKey: url as NSURL)

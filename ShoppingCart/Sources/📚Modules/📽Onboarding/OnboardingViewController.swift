@@ -8,7 +8,9 @@
 import UIKit
 
 extension OnboardingViewController {
+    
     struct Appearence {
+        
         let bottomMargin: CGFloat = 50
         let regular20 = Font.sber(ofSize: Font.Size.twenty, weight: .regular)
         let backgroundColor = Colors.purple
@@ -18,12 +20,13 @@ extension OnboardingViewController {
 }
 
 final class OnboardingViewController: UIPageViewController {
-    var currentPage = 0
     
+    var currentPage = 0
+
     private let appearence = Appearence()
     private var pages = [UIViewController]()
     private var onboardingCompletion: (_ success: Bool) -> Void
-    
+
     private lazy var skipButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Skip and go!", for: .normal)
@@ -41,17 +44,17 @@ final class OnboardingViewController: UIPageViewController {
         self.onboardingCompletion = onboardingCompletion
         super.init(transitionStyle: style, navigationOrientation: navigationOrientation)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageController()
         setupUI()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startSkipButtonPulseAnimation()
@@ -60,35 +63,35 @@ final class OnboardingViewController: UIPageViewController {
 
 // MARK: - Private
 extension OnboardingViewController {
-    @objc
-    private func skipButtonTapped() {
+    
+    @objc private func skipButtonTapped() {
         onboardingCompletion(true)
     }
-    
+
     private func setupPageController() {
         setupPageControll()
         dataSource = self
         delegate = self
-        
+
         let page1 = PageViewController(imageType: ImageType.welcome, text: "Welcome \n to my test App!")
         let page2 = PageViewController(imageType: ImageType.search, text: "Search for products \n and add to cart")
         let page3 = PageViewController(imageType: ImageType.stored, text: "Products are stored \n in Core Data")
         let page4 = PageViewController(imageType: ImageType.image, text: "Images are loaded \n and saved in the cache")
-        
+
         pages.append(page1)
         pages.append(page2)
         pages.append(page3)
         pages.append(page4)
-        
+
         setViewControllers([pages[currentPage]], direction: .forward, animated: true)
     }
-    
+
     private func setupPageControll() {
         let pageControllAppesrence = UIPageControl.appearance()
         pageControllAppesrence.currentPageIndicatorTintColor = appearence.foregroundColor
         pageControllAppesrence.pageIndicatorTintColor = appearence.unselectedForegroundColor
     }
-    
+
     private func startSkipButtonPulseAnimation() {
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimation.duration = 0.7
@@ -98,17 +101,17 @@ extension OnboardingViewController {
         scaleAnimation.toValue = 0.9
         skipButton.layer.add(scaleAnimation, forKey: "scale")
     }
-    
+
     private func setupUI() {
         self.view.backgroundColor = appearence.backgroundColor
         setupSubviews()
         setupConstraints()
     }
-    
+
     private func setupSubviews() {
         self.view.addSubview(skipButton)
     }
-    
+
     private func setupConstraints() {
         skipButton.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
@@ -122,14 +125,15 @@ extension OnboardingViewController {
 
 // MARK: - UIPageViewControllerDataSource
 extension OnboardingViewController: UIPageViewControllerDataSource {
+    
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         currentPage
     }
-    
+
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         pages.count
     }
-    
+
     func pageViewController(
         _ pageViewController: UIPageViewController,
         viewControllerBefore viewController: UIViewController
@@ -141,7 +145,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
             return pages[currentIndex - 1]
         }
     }
-    
+
     func pageViewController(
         _ pageViewController: UIPageViewController,
         viewControllerAfter viewController: UIViewController
@@ -157,6 +161,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
 
 // MARK: - UIPageViewControllerDelegate
 extension OnboardingViewController: UIPageViewControllerDelegate {
+    
     func pageViewController(
         _ pageViewController: UIPageViewController,
         didFinishAnimating finished: Bool,

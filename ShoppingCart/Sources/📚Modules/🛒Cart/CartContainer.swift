@@ -8,11 +8,13 @@
 import UIKit
 
 struct CartContext {
+    
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: CartModuleOutput?
 }
 
 final class CartContainer {
+    
     let input: CartModuleInput
     let viewController: UIViewController
     weak var router: CartRouterInput?
@@ -36,16 +38,16 @@ final class CartContainer {
         presenter.moduleOutput = context.moduleOutput
 
         interactor.output = presenter
-        
+
         router.viewControllerProvider = { [weak viewController] in
             viewController
         }
         router.navigationControllerProvider = { [weak viewController] in
             viewController?.navigationController
         }
-        
+
         router.moduleDependencies = context.moduleDependencies
-        
+
         if let cartView = viewController.cartView {
             tableViewAdapter.setupTable(tableView: cartView.tableView)
         }

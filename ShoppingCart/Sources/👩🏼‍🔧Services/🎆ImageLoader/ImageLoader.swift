@@ -12,12 +12,14 @@ protocol ImageLoaderProtocol {
 }
 
 final class ImageLoader {
+    
     private let cache = ImageCache.shared
 }
 
 extension ImageLoader: ImageLoaderProtocol {
-    static let shared = ImageLoader()
     
+    static let shared = ImageLoader()
+
     func loadImage(for stringUrl: String, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void) {
         guard let url = URL(string: stringUrl) else {
             completion(.failure(.badUrl))
@@ -33,7 +35,7 @@ extension ImageLoader: ImageLoaderProtocol {
             }
         }
     }
-    
+
     private func downloadImage(from url: URL, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void) {
         if let data = try? Data(contentsOf: url) {
             decodeImage(from: data) { [weak self] result in
@@ -42,7 +44,7 @@ extension ImageLoader: ImageLoaderProtocol {
                 case .success(let image):
                     self.cache[url] = data
                     completion(.success(image))
-                    
+
                 case .failure(let error):
                     completion(.failure(error))
                 }
@@ -51,7 +53,7 @@ extension ImageLoader: ImageLoaderProtocol {
             completion(.failure(.failDownloadImage))
         }
     }
-    
+
     private func decodeImage(from data: Data, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void) {
         if let image = UIImage(data: data) {
             completion(.success(image))

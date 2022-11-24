@@ -8,16 +8,19 @@
 import Foundation
 
 struct Products: Decodable {
+    
     let results: [Product]
     let total, skip, limit: Int
-    
+
     enum CodingKeys: String, CodingKey {
+        
         case results = "products"
         case total, skip, limit
     }
 }
 
 struct Product: Decodable {
+    
     let id: Int
     let title: String
     let productDescription: String
@@ -31,6 +34,7 @@ struct Product: Decodable {
     let images: [String]
 
     enum CodingKeys: String, CodingKey {
+        
         case id, title
         // Название оставляем productDescription, т.к. при создании
         // аттрибута с именем "description" ругается CoreData.

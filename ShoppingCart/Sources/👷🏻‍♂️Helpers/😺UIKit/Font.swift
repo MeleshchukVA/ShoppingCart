@@ -8,7 +8,9 @@
 import UIKit.UIFont
 
 enum Font {
+    
     enum Size {
+        
         static let ten: CGFloat = 10.0
         static let eleven: CGFloat = 11.0
         static let thirteen: CGFloat = 13.0
@@ -19,17 +21,19 @@ enum Font {
         static let twentyEight: CGFloat = 28.0
         static let thirtyFour: CGFloat = 34.0
     }
-    
+
     enum Weight {
-        case regular, bold
+        
+        case regular
+        case bold
     }
-    
+
     // Функция возвращает шрифты в зависимости от их толщины.
     static func sber(ofSize size: CGFloat, weight: Weight) -> UIFont? {
         switch weight {
         case .regular:
             return UIFont(name: "SBSansInterface-Regular", size: size)
-            
+
         case .bold:
             return UIFont(name: "SBSansDisplay-Semibold", size: size)
         }

@@ -8,7 +8,9 @@
 import UIKit
 
 extension CheckoutCell {
+    
     struct Appearence {
+        
         let borderBackgroundColor: CGColor = UIColor(red: 0.259, green: 0.259, blue: 0.267, alpha: 1).cgColor
         let labelFont = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
         let priceFont = Font.sber(ofSize: Font.Size.seventeen, weight: .bold)
@@ -22,8 +24,9 @@ extension CheckoutCell {
 }
 
 final class CheckoutCell: UITableViewCell {
-    let appearence = Appearence()
     
+    let appearence = Appearence()
+
     private lazy var lineLayer: CALayer = {
         let layer = CALayer()
         layer.frame = CGRect(
@@ -36,7 +39,7 @@ final class CheckoutCell: UITableViewCell {
         layer.borderColor = appearence.borderBackgroundColor
         return layer
     }()
-    
+
     private lazy var productNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -53,7 +56,7 @@ final class CheckoutCell: UITableViewCell {
         )
         return label
     }()
-    
+
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.text = "100$"
@@ -62,7 +65,7 @@ final class CheckoutCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
-    
+
     private lazy var countLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -78,7 +81,7 @@ final class CheckoutCell: UITableViewCell {
         )
         return label
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -86,16 +89,16 @@ final class CheckoutCell: UITableViewCell {
         self.setupSubviews()
         self.setupConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         [productNameLabel, countLabel, priceLabel].forEach { $0.text = "" }
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         lineLayer.removeFromSuperlayer()
@@ -104,6 +107,7 @@ final class CheckoutCell: UITableViewCell {
 }
 
 extension CheckoutCell {
+    
     private func createPrice(
         _ attributedText: inout NSMutableAttributedString,
         _ price: String,
@@ -129,7 +133,7 @@ extension CheckoutCell {
         attributedText.append(attributedString2)
         priceLabel.attributedText = attributedText
     }
-    
+
     func fill(viewModel: CartViewModel) {
         DispatchQueue.main.async {
             let nameLabelText = NSMutableAttributedString(
@@ -141,7 +145,7 @@ extension CheckoutCell {
                 attributes: [.foregroundColor: self.appearence.textCollor]
             )
             nameLabelText.append(productText)
-        
+
             let countLabelText = NSMutableAttributedString(
                 string: "Count: ",
                 attributes: [.foregroundColor: self.appearence.secondaryTextCollor]
@@ -151,7 +155,7 @@ extension CheckoutCell {
                 attributes: [.foregroundColor: self.appearence.textCollor]
             )
             countLabelText.append(productCount)
-            
+
             self.productNameLabel.attributedText = nameLabelText
             self.countLabel.attributedText = countLabelText
             self.priceLabel.text = CurrencyFormatter.shared.string(
@@ -163,19 +167,20 @@ extension CheckoutCell {
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
 extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
+    
     func setupView() {
         backgroundColor = Colors.cellColor
     }
-    
+
     func setupSubviews() {
         [productNameLabel, priceLabel, countLabel].forEach { contentView.addSubview($0) }
     }
-    
+
     func setupConstraints() {
         productNameLabel.translatesAutoresizingMaskIntoConstraints = false
         countLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let constraints = [
             productNameLabel.leadingAnchor.constraint(
                 equalTo: self.contentView.leadingAnchor,
@@ -187,10 +192,10 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
             ),
             productNameLabel.topAnchor.constraint(
                 equalTo: self.contentView.topAnchor,
-             constant: appearence.verticalInset
+                constant: appearence.verticalInset
             ),
             productNameLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight / 2),
-            
+
             countLabel.leadingAnchor.constraint(
                 equalTo: self.contentView.leadingAnchor,
                 constant: appearence.horizontalInset
@@ -200,7 +205,7 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
                 constant: appearence.verticalInset / 2
             ),
             countLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight / 2),
-            
+
             priceLabel.trailingAnchor.constraint(
                 equalTo: self.contentView.trailingAnchor,
                 constant: -appearence.horizontalInset

@@ -9,9 +9,11 @@ import Foundation
 
 // Ссылки на API в формате String.
 enum API {
-    static let main = "https://dummyjson.com"
     
+    static let main = "https://dummyjson.com"
+
     enum TypeOf {
+        
         static let categories = "/products/categories"
         static let products = "/products/category"
         static let productsSearch = "/products/search"

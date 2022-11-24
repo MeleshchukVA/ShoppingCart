@@ -8,11 +8,13 @@
 import UIKit
 
 struct ProfileContext {
+    
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: ProfileModuleOutput?
 }
 
 final class ProfileContainer {
+    
     let input: ProfileModuleInput
     let viewController: UIViewController
     weak var router: ProfileRouterInput?

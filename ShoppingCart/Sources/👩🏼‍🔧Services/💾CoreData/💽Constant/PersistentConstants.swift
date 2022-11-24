@@ -8,6 +8,7 @@
 import Foundation
 
 enum PersistentConstants {
+    
     static let target = "ShoppingCartModel"
     static let productModel = "ProductCDModel"
 }

@@ -3,21 +3,22 @@
 //  ShoppingCart
 //
 //  Created by Владимир Мелещук on 18.11.2022.
-//  
+//
 //
 
 import Foundation
 
 final class ProductPresenter {
+    
     weak var view: ProductViewInput?
     weak var moduleOutput: ProductModuleOutput?
-    
+
     private let router: ProductRouterInput
     let interactor: ProductInteractorInput
     private var collectionViewAdapter: ProductCollectionViewAdapter
     private let viewModel: CatalogueViewModel
     private var products: [Product] = []
-    
+
     init(
         router: ProductRouterInput,
         interactor: ProductInteractorInput,
@@ -36,6 +37,7 @@ extension ProductPresenter: ProductModuleInput {}
 
 // MARK: - ProductViewOutput
 extension ProductPresenter: ProductViewOutput {
+    
     func viewDidLoad() {
         view?.startActivityIndicator()
         interactor.reload(category: viewModel.name.lowercased())
@@ -44,6 +46,7 @@ extension ProductPresenter: ProductViewOutput {
 
 // MARK: - ProductInteractorOutput
 extension ProductPresenter: ProductInteractorOutput {
+    
     func didObtainProducts(products: [Products]) {
         guard let product = products.first else { return }
         self.products = product.results
@@ -73,16 +76,17 @@ extension ProductPresenter: ProductInteractorOutput {
                             let productsInCart = self.interactor.obtainCartProductsCount()
                             self.view?.updateTabBarItems(badgeCount: productsInCart + 1)
                         }
-                        
+
                     case .remove:
                         break
-                        
+
                     case .update:
                         break
                     }
                 }
             }
         }
+        
         DispatchQueue.main.async {
             self.collectionViewAdapter.viewModels = viewModels
             self.view?.updateCollectionViewData(adapter: self.collectionViewAdapter, isEmpty: viewModels.isEmpty)
@@ -93,6 +97,7 @@ extension ProductPresenter: ProductInteractorOutput {
 
 // MARK: - ProductCollectionViewAdapterDelegate
 extension ProductPresenter: ProductCollectionViewAdapterDelegate {
+    
     func productCollectionViewAdapter(
         _ adapter: ProductCollectionViewAdapter,
         didSelectComponentAt indexPath: IndexPath

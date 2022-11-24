@@ -12,6 +12,7 @@ import CoreData
 extension ProductCDModel {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ProductCDModel> {
+        
         return NSFetchRequest<ProductCDModel>(entityName: PersistentConstants.productModel)
     }
 

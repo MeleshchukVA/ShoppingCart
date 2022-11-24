@@ -8,10 +8,11 @@
 import CoreData
 
 final class PersistentProvider {
+    
     private var persistentContainer: NSPersistentContainer!
     var mainViewContext: NSManagedObjectContext!
     var backgroundViewContext: NSManagedObjectContext!
-    
+
     init() {
         let container = NSPersistentContainer(name: PersistentConstants.target)
         container.loadPersistentStores(completionHandler: { (_, error) in
@@ -24,7 +25,7 @@ final class PersistentProvider {
         backgroundViewContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundViewContext.parent = mainViewContext
     }
-    
+
     func saveContext() {
         if backgroundViewContext.hasChanges {
             do {

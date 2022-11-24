@@ -8,12 +8,13 @@
 import Foundation
 
 struct CatalogueViewModel: Identifiable {
+    
     var id: UUID
     var name: String
 }
 
 extension CatalogueViewModel: Hashable {
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

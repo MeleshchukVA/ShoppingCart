@@ -10,8 +10,9 @@ import UIKit
 // MARK: - Appearance
 
 extension ProductView {
-    
+
     struct Appearance {
+        
         let tableViewBackgroundColor = UIColor.black
         let tableViewContentInsetTop: CGFloat = 30.0
     }
@@ -20,10 +21,10 @@ extension ProductView {
 // MARK: - Class
 
 final class ProductView: BaseView {
-    
+
     // MARK: Properties
     let appearance: Appearance
-    
+
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -34,7 +35,7 @@ final class ProductView: BaseView {
         collectionView.register(ProductCell.self)
         return collectionView
     }()
-    
+
     // MARK: Init
     init(
         frame: CGRect = .zero,
@@ -46,7 +47,7 @@ final class ProductView: BaseView {
         self.setupSubviews()
         self.setupConstraints()
     }
-    
+
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -56,7 +57,7 @@ final class ProductView: BaseView {
 // MARK: - ProductViewProtocol
 
 extension ProductView: ProductViewProtocol {
-    
+
     func updateCollectionViewData(
         delegate: UICollectionViewDelegate,
         dataSource: UICollectionViewDataSource,
@@ -76,7 +77,7 @@ extension ProductView: ProductViewProtocol {
             collectionView.collectionViewLayout.invalidateLayout()
         }
     }
-    
+
     func invalidateCollectionViewLayout() {
         collectionView.collectionViewLayout.invalidateLayout()
         invalidateIntrinsicContentSize()
@@ -86,25 +87,25 @@ extension ProductView: ProductViewProtocol {
 // MARK: - ProgrammaticallyInitializableViewProtocol
 
 extension ProductView: ProgrammaticallyInitializableViewProtocol {
-    
+
     func setupView() {
         backgroundColor = .clear
     }
-    
+
     func setupSubviews() {
         [collectionView, activityIndicator].forEach { addSubview($0) }
     }
-    
+
     func setupConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            
+
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])

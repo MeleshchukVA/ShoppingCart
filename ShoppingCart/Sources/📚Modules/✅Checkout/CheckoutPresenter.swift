@@ -8,14 +8,15 @@
 import Foundation
 
 final class CheckoutPresenter {
+    
     weak var view: CheckoutViewInput?
     weak var moduleOutput: CheckoutModuleOutput?
-    
+
     private let router: CheckoutRouterInput
     private let interactor: CheckoutInteractorInput
     private let tableViewAdapter: CheckoutTableViewAdapterProtocol
     private let products: [CartViewModel]
-    
+
     init(router: CheckoutRouterInput,
          interactor: CheckoutInteractorInput,
          products: [CartViewModel],
@@ -30,11 +31,12 @@ final class CheckoutPresenter {
 extension CheckoutPresenter: CheckoutModuleInput {}
 
 extension CheckoutPresenter: CheckoutViewOutput {
+    
     func buyButtonTapped() {
         let body = prepareAddCartBody()
         interactor.addCart(body)
     }
-    
+
     private func prepareAddCartBody() -> [String: Any] {
         var body = [String: Any]()
         var productsArray: [Any] = []
@@ -48,6 +50,7 @@ extension CheckoutPresenter: CheckoutViewOutput {
 }
 
 extension CheckoutPresenter: CheckoutInteractorOutput {
+    
     func didAddCart(success: Bool) {
         DispatchQueue.main.async {
             if success {

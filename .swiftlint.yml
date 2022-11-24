@@ -21,3 +21,10 @@ opt_in_rules:
 - operator_usage_whitespace
 - vertical_whitespace_between_cases
 - vertical_whitespace_closing_braces
+
+custom_rules:
+  space_after_main_type:
+    name: "No space after main type"
+    regex: '(class|struct|enum|extension)((?-s)\s.*\{$\n)(?!^\s*$)'
+    message: "Empty line required after main declarations"
+    severity: warning

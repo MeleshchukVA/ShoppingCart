@@ -8,15 +8,18 @@
 import UIKit
 
 extension CatalogueView {
+    
     struct Appearance {
+        
         let tableViewBackgroundColor = UIColor.black
         let tableViewContentInsetTop: CGFloat = 30.0
     }
 }
 
 final class CatalogueView: BaseView {
-    let appearance: Appearance
     
+    let appearance: Appearance
+
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.keyboardDismissMode = .onDrag
@@ -25,7 +28,7 @@ final class CatalogueView: BaseView {
         tableView.register(CatalogueCell.self)
         return tableView
     }()
-    
+
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -37,7 +40,7 @@ final class CatalogueView: BaseView {
         collectionView.register(ProductCell.self)
         return collectionView
     }()
-    
+
     init(
         frame: CGRect = .zero,
         appearance: Appearance = Appearance()
@@ -48,7 +51,7 @@ final class CatalogueView: BaseView {
         self.setupSubviews()
         self.setupConstraints()
     }
-    
+
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -57,18 +60,19 @@ final class CatalogueView: BaseView {
 
 // MARK: - Public
 extension CatalogueView {
+    
     func hideTableView(isHidden: Bool) {
         tableView.isHidden = isHidden
     }
-    
+
     func hideCollectionView(isHidden: Bool) {
         collectionView.isHidden = isHidden
     }
-    
+
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
     }
-    
+
     func startActivityIndicator() {
         activityIndicator.startAnimating()
     }
@@ -76,41 +80,43 @@ extension CatalogueView {
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
 extension CatalogueView: ProgrammaticallyInitializableViewProtocol {
+    
     func setupView() {
         tableView.backgroundColor = appearance.tableViewBackgroundColor
         collectionView.isHidden = true
     }
-    
+
     func setupSubviews() {
         [tableView, collectionView, activityIndicator].forEach { addSubview($0) }
     }
-    
+
     func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let constraints = [
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            
+
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            
+
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ]
-        
+
         NSLayoutConstraint.activate(constraints)
     }
 }
 
 // MARK: - ProductViewProtocol
 extension CatalogueView: ProductViewProtocol {
+    
     func updateCollectionViewData(
         delegate: UICollectionViewDelegate,
         dataSource: UICollectionViewDataSource,
@@ -130,7 +136,7 @@ extension CatalogueView: ProductViewProtocol {
             collectionView.collectionViewLayout.invalidateLayout()
         }
     }
-    
+
     func invalidateCollectionViewLayout() {
         collectionView.collectionViewLayout.invalidateLayout()
         invalidateIntrinsicContentSize()

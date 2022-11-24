@@ -10,17 +10,17 @@ import Foundation
 // MARK: - Class
 
 final class AppDependency {
-    
+
     // MARK: Properties
     let network: NetworkService
     let persistent: PersistentProvider
-    
+
     // MARK: Init
     init(network: NetworkService, persistent: PersistentProvider) {
         self.network = network
         self.persistent = persistent
     }
-    
+
     // MARK: Methods
     static func makeDefault() -> AppDependency {
         let networkService = NetworkService()
@@ -39,11 +39,11 @@ protocol HasDependencies {
 // MARK: - Properties
 
 extension AppDependency: HasDependencies {
-    
+
     var networkService: NetworkServiceProtocol {
         self.network
     }
-    
+
     var persistentProvider: PersistentProviderProtocol {
         self.persistent
     }

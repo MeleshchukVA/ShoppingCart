@@ -8,6 +8,7 @@
 import UIKit
 
 class BaseView: UIView {
+    
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .whiteLarge)
         activity.color = Colors.lightGray

@@ -8,9 +8,13 @@
 import Foundation
 
 enum PersistentState {
-    case add, remove, update
+    
+    case add
+    case remove
+    case update
 }
 
 enum PersistentInfo {
+    
     case products
 }

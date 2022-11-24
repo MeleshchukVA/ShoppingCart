@@ -8,14 +8,15 @@
 import Foundation
 
 final class CartPresenter {
+    
     weak var view: CartViewInput?
     weak var moduleOutput: CartModuleOutput?
-    
+
     private let router: CartRouterInput
     let interactor: CartInteractorInput
     private let tableViewAdapter: CartTableViewAdapterProtocol
     private var products: [CartViewModel] = []
-    
+
     init(
         router: CartRouterInput,
         interactor: CartInteractorInput,
@@ -32,12 +33,13 @@ extension CartPresenter: CartModuleInput {}
 
 // MARK: - CartViewOutput
 extension CartPresenter: CartViewOutput {
+    
     func checkoutButtonTapped() {
         if !products.isEmpty {
             router.showCheckoutView(products: products)
         }
     }
-    
+
     func viewDidLoad() {
         view?.startActivityIndicator()
         interactor.obtainCartProducts()
@@ -46,6 +48,7 @@ extension CartPresenter: CartViewOutput {
 
 // MARK: - CartInteractorOutput
 extension CartPresenter: CartInteractorOutput {
+    
     func didObtainCartProducts(products: [ProductCDModel]) {
         let viewModels = products.map { product in
             let procent = (Double(1) + Double(Int(product.discountPercentage)) / Double(100))
@@ -58,21 +61,21 @@ extension CartPresenter: CartInteractorOutput {
                 price: UInt(product.price),
                 fullPrice: UInt(Double(round(100 * fullPrice) / 100)),
                 count: UInt(product.count)) { [weak self] id in
-                    guard let `self` = self,
-                          let viewModel = self.products.first(where: { $0.id == id }) else {
-                        return
-                    }
-                    self.router.showAlertController(viewModel: viewModel)
-                } deleteHandler: { [weak self] id in
-                    guard let `self` = self,
-                          let viewModel = self.products.first(where: { $0.id == id }) else {
-                        return
-                    }
-                    self.deteleItem(viewModel: viewModel)
-                    self.interactor.obtainCartProducts()
-                } updateHandler: { [weak self] value in
-                    self?.updateCountOfProduct(id: value.0, count: value.1)
+                guard let `self` = self,
+                      let viewModel = self.products.first(where: { $0.id == id }) else {
+                    return
                 }
+                self.router.showAlertController(viewModel: viewModel)
+            } deleteHandler: { [weak self] id in
+                guard let `self` = self,
+                      let viewModel = self.products.first(where: { $0.id == id }) else {
+                    return
+                }
+                self.deteleItem(viewModel: viewModel)
+                self.interactor.obtainCartProducts()
+            } updateHandler: { [weak self] value in
+                self?.updateCountOfProduct(id: value.0, count: value.1)
+            }
         }
         DispatchQueue.main.async {
             if !viewModels.isEmpty {
@@ -87,7 +90,7 @@ extension CartPresenter: CartInteractorOutput {
             }
         }
     }
-    
+
     func didObtainCartProduct(product: ProductCDModel) {
         DispatchQueue.main.async {
             for (index, model) in self.products.enumerated() where model.id == product.id {
@@ -96,7 +99,7 @@ extension CartPresenter: CartInteractorOutput {
             }
         }
     }
-    
+
     private func updateCountOfProduct(id: Int, count: Int) {
         self.interactor.updateCountOfProduct(id: id, count: count)
     }
@@ -104,6 +107,7 @@ extension CartPresenter: CartInteractorOutput {
 
 // MARK: - CartTableViewAdapterDelegate
 extension CartPresenter: CartTableViewAdapterDelegate {
+    
     func deteleItem(viewModel: CartViewModel) {
         let count = interactor.obtainCartProductsCount()
         interactor.deleteProduct(id: viewModel.id)
@@ -116,7 +120,7 @@ extension CartPresenter: CartTableViewAdapterDelegate {
             self.tableViewAdapter.setEmptyMessage(message: "Ваша корзина пустая")
         }
     }
-    
+
     func cartTableViewAdapter(_ adapter: CartTableViewAdapter, didSelectComponentAt indexPath: IndexPath) {
         print(#function)
     }

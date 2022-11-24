@@ -8,6 +8,7 @@
 import CoreData
 
 extension PersistentProvider: PersistentProviderProtocol {
+    
     func update(
         models: [Product],
         action: PersistentState,
@@ -30,15 +31,15 @@ extension PersistentProvider: PersistentProviderProtocol {
                 }
                 saveContext()
             }
-            
+
         case .update:
             break
-            
+
         case .remove:
             break
         }
     }
-    
+
     func updateCountOfProduct(id: Int, count: Int) -> ProductCDModel? {
         var prod: ProductCDModel?
         mainViewContext.performAndWait {
@@ -50,7 +51,7 @@ extension PersistentProvider: PersistentProviderProtocol {
         }
         return prod
     }
-    
+
     func fetchProducts() -> [ProductCDModel] {
         let request = ProductCDModel.fetchRequest()
         request.returnsObjectsAsFaults = false
@@ -60,7 +61,7 @@ extension PersistentProvider: PersistentProviderProtocol {
         guard let table = table else { return [ProductCDModel]() }
         return table
     }
-    
+
     func deleteProduct(id: Int) {
         let request = ProductCDModel.fetchRequest()
         request.predicate = .init(format: "id == %i", id)
@@ -74,12 +75,13 @@ extension PersistentProvider: PersistentProviderProtocol {
 
 // MARK: - FetchRequest with id CD Model Product and extension ProductCDModel
 private extension PersistentProvider {
+    
     func fetchRequest(for product: Product) -> NSFetchRequest<ProductCDModel> {
         let request = ProductCDModel.fetchRequest()
         request.predicate = .init(format: "id == %i", product.id)
         return request
     }
-    
+
     func fetchRequest(by id: Int) -> NSFetchRequest<ProductCDModel> {
         let request = ProductCDModel.fetchRequest()
         request.predicate = .init(format: "id == %i", id)
@@ -89,6 +91,7 @@ private extension PersistentProvider {
 
 // MARK: - ProductCDModel
 fileprivate extension ProductCDModel {
+    
     func update(with product: Product) {
         count = Int64(1)
         title = product.title.capitalized
@@ -102,11 +105,11 @@ fileprivate extension ProductCDModel {
         thumbnail = product.thumbnail
         images = product.images
     }
-    
+
     func update(countOfProduct: Int) {
         count = Int64(countOfProduct)
     }
-    
+
     func configNew(with product: Product) {
         id = Int64(product.id)
         update(with: product)

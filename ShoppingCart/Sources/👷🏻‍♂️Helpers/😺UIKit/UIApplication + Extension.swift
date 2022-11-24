@@ -8,6 +8,7 @@
 import UIKit.UIApplication
 
 extension UIApplication {
+    
     var statusBarUIView: UIView? {
         if #available(iOS 13.0, *) {
             let tag = 38482458385
