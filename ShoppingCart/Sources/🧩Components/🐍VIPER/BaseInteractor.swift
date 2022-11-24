@@ -7,21 +7,21 @@
 
 import Foundation
 
-// MARK: - BaseInteractorInput
+// MARK: - BaseInteractorInput Protocol
 
 protocol BaseInteractorInput: AnyObject {
     func addToCart(products: [Product], completion: @escaping (PersistentState) -> Void)
     func obtainCartProductsCount() -> Int
 }
 
-// MARK: - Class
+// MARK: - BaseInteractor Class
 
 class BaseInteractor {
 
     // MARK: Properties
     let networkService: NetworkServiceProtocol
     let persistentProvider: PersistentProviderProtocol
-    let queue = DispatchQueue(label: "com.sc.baseInteractor", qos: .background)
+    let queue = DispatchQueue(label: "BaseInteractor", qos: .background)
 
     // MARK: Init
     init(
@@ -33,11 +33,10 @@ class BaseInteractor {
     }
 }
 
-// MARK: - BaseInteractor
+// MARK: - BaseInteractor public methods
 
 extension BaseInteractor: BaseInteractorInput {
 
-    // MARK: Public methods
     func addToCart(products: [Product], completion: @escaping (PersistentState) -> Void) {
         queue.async { [weak self] in
             guard let `self` = self else { return }
