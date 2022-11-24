@@ -392,9 +392,9 @@
 		3F6E98F12906F0B200F25E9B /* 🧩Components */ = {
 			isa = PBXGroup;
 			children = (
+				3F81A70F292FD0B300D41DCF /* 🖼CustomViews */,
 				3F8A6F3729102CC400BB8190 /* 📜Protocols */,
 				3F8A6F342910296700BB8190 /* 🐍VIPER */,
-				3F08A627292D166B00F02EDF /* TextField.swift */,
 				3F5A22AF2909988100438114 /* Typealias.swift */,
 			);
 			path = "🧩Components";
@@ -479,6 +479,14 @@
 				3F966898290848B80034FEFE /* CatalogueContainer.swift */,
 			);
 			path = "🗂Catalogue";
+			sourceTree = "<group>";
+		};
+		3F81A70F292FD0B300D41DCF /* 🖼CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				3F08A627292D166B00F02EDF /* TextField.swift */,
+			);
+			path = "🖼CustomViews";
 			sourceTree = "<group>";
 		};
 		3F8A6F31291022AB00BB8190 /* 🌁View */ = {
