@@ -7,6 +7,7 @@
 
 import Foundation
 
+// От данного протокола наследуются View и Cell в проекте.
 protocol ProgrammaticallyInitializableViewProtocol: AnyObject {
     func setupView()
     func setupSubviews()
