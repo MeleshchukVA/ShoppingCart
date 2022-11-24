@@ -39,6 +39,8 @@ final class AppCoordinator {
     }
 }
 
+// MARK: - AppCoordinator private methods
+
 private extension AppCoordinator {
     
     // MARK: Onboarding methods
@@ -74,12 +76,12 @@ private extension AppCoordinator {
 
     func userHasSeenOnboarding() {
         let defaults = UserDefaults.standard
-        defaults.set(true, forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
+        defaults.set(true, forKey: UserDefaultsKeys.isUserHasSeenOnboarding)
     }
 
     func checkIfUserHasSeenOnboarding() {
         let defaults = UserDefaults.standard
-        self.isUserHasSeenOnboarding = defaults.bool(forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
+        self.isUserHasSeenOnboarding = defaults.bool(forKey: UserDefaultsKeys.isUserHasSeenOnboarding)
     }
     
     // MARK: makeNavigationControllers
