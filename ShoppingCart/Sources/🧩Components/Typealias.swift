@@ -7,5 +7,5 @@
 
 import Foundation
 
-typealias ModuleDependencies = HasDependencies
+typealias ModuleDependencies = AppDependencyProtocol
 typealias ViewInput = AnyObject & IndicatorProtocol & UpdateTabBarProtocol

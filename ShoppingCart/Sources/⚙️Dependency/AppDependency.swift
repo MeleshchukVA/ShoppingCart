@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Class
+// MARK: - AppDependency Class
 
 final class AppDependency {
 
@@ -21,24 +21,24 @@ final class AppDependency {
         self.persistent = persistent
     }
 
-    // MARK: Methods
+    // MARK: Public methods
     static func makeDefault() -> AppDependency {
-        let networkService = NetworkService()
+        let network = NetworkService()
         let persistent = PersistentProvider()
-        return AppDependency(network: networkService, persistent: persistent)
+        return AppDependency(network: network, persistent: persistent)
     }
 }
 
-// MARK: - Protocol
+// MARK: - AppDependencyProtocol
 
-protocol HasDependencies {
+protocol AppDependencyProtocol {
     var networkService: NetworkServiceProtocol { get }
     var persistentProvider: PersistentProviderProtocol { get }
 }
 
-// MARK: - Properties
+// MARK: - AppDependency + AppDependencyProtocol
 
-extension AppDependency: HasDependencies {
+extension AppDependency: AppDependencyProtocol {
 
     var networkService: NetworkServiceProtocol {
         self.network
