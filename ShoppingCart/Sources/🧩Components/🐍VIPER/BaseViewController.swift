@@ -7,8 +7,11 @@
 
 import UIKit
 
+// MARK: - BaseViewController Class
+
 class BaseViewController: UIViewController {
     
+    // MARK: Init
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -16,14 +19,17 @@ class BaseViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarUIView?.backgroundColor = Colors.purple
     }
 }
 
-extension BaseViewController {
+// MARK: - BaseViewController + UpdateTabBarProtocol
+
+extension BaseViewController: UpdateTabBarProtocol {
     
     func updateTabBarItems(badgeCount: Int) {
         tabBarController?.tabBar.items?[1].badgeColor = .red
