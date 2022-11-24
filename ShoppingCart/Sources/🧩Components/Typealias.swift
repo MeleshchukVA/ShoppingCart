@@ -8,5 +8,4 @@
 import Foundation
 
 typealias ModuleDependencies = HasDependencies
-// MARK: - For VIPER
 typealias ViewInput = AnyObject & Indicator
