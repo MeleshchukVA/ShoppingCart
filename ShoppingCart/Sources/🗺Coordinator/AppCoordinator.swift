@@ -7,16 +7,18 @@
 
 import UIKit
 
-// MARK: - Class
+// MARK: - AppCoordinator Class
 
 final class AppCoordinator {
     
+    // MARK: Properties
     private let window: UIWindow
     private lazy var tabBarController = UITabBarController()
     private lazy var navigationControllers = AppCoordinator.makeNavigationControllers()
     private let appDependency: AppDependency
-    private var isUserHasSeenOnboarding: Bool = false
-
+    private var isUserHasSeenOnboarding = false
+    
+    // MARK: Init
     init(
         window: UIWindow,
         appDependency: AppDependency
@@ -26,7 +28,8 @@ final class AppCoordinator {
         navigationControllers = AppCoordinator.makeNavigationControllers()
         checkIfUserHasSeenOnboarding()
     }
-
+    
+    // MARK: Public methods
     func start() {
         if isUserHasSeenOnboarding {
             startMainFlow()
@@ -34,8 +37,12 @@ final class AppCoordinator {
             startOnboardingFlow()
         }
     }
+}
 
-    private func startOnboardingFlow() {
+private extension AppCoordinator {
+    
+    // MARK: Onboarding methods
+    func startOnboardingFlow() {
         let onboardingVC = OnboardingViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal,
@@ -53,7 +60,7 @@ final class AppCoordinator {
         window.rootViewController = onboardingVC
     }
 
-    private func startMainFlow() {
+    func startMainFlow() {
         setupCatalogue()
         setupCart()
         setupProfile()
@@ -65,19 +72,17 @@ final class AppCoordinator {
         window.rootViewController = tabBarController
     }
 
-    private func userHasSeenOnboarding() {
+    func userHasSeenOnboarding() {
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
     }
 
-    private func checkIfUserHasSeenOnboarding() {
+    func checkIfUserHasSeenOnboarding() {
         let defaults = UserDefaults.standard
         self.isUserHasSeenOnboarding = defaults.bool(forKey: ProductConstants.UserDefaults.isUserHasSeenOnboarding)
     }
-}
-
-private extension AppCoordinator {
     
+    // MARK: makeNavigationControllers
     static func makeNavigationControllers() -> [NavigationControllersType: UINavigationController] {
         var result: [NavigationControllersType: UINavigationController] = [:]
         NavigationControllersType.allCases.forEach { navigationControllerKey in
@@ -94,7 +99,8 @@ private extension AppCoordinator {
         }
         return result
     }
-
+    
+    // MARK: Setup methods
     func setupCatalogue() {
         guard let navController = self.navigationControllers[.catalogue] else {
             fatalError("something wrong with appCoordinator")
@@ -128,7 +134,8 @@ private extension AppCoordinator {
         profileVC.navigationItem.title = Localize.profile
         navController.setViewControllers([profileVC], animated: false)
     }
-
+    
+    // MARK: Appearance methods
     func setupAppearanceNavigationBar() {
         let navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.backgroundColor = Colors.purple
@@ -177,6 +184,8 @@ private extension AppCoordinator {
         controller.tabBar.layer.addSublayer(shapeLayer)
     }
 }
+
+// MARK: - Enum
 
 private enum NavigationControllersType: Int, CaseIterable {
     
