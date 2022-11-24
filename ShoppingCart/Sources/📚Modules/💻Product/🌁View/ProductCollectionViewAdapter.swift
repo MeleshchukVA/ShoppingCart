@@ -23,6 +23,7 @@ extension ProductCollectionViewAdapterDelegate {
         _ adapter: ProductCollectionViewAdapter,
         didSelectComponentAt indexPath: IndexPath
     ) {}
+    
     func willDisplay(at index: Int) {}
 }
 

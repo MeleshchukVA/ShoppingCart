@@ -28,3 +28,10 @@ custom_rules:
     regex: '(class|struct|enum|extension)((?-s)\s.*\{$\n)(?!^\s*$)'
     message: "Empty line required after main declarations"
     severity: warning
+  
+  whitespace_between_functions:
+    include: "*.swift"
+    regex: '([}]\n[[:blank:]]*func\s\w+(\(.*\))\s[{])'
+    name: "Single line space between functions"
+    message: "Single line space violation: Expected single whitespace between functions"
+    severity: warning

@@ -11,7 +11,8 @@ protocol CheckoutModuleInput {
     var moduleOutput: CheckoutModuleOutput? { get }
 }
 
-protocol CheckoutModuleOutput: AnyObject {}
+protocol CheckoutModuleOutput: AnyObject {
+}
 
 protocol CheckoutViewInput: AnyObject {}
 
