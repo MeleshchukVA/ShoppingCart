@@ -14,7 +14,6 @@
 		3F08A60A292D036800F02EDF /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A609292D036800F02EDF /* BaseInteractor.swift */; };
 		3F08A626292D086700F02EDF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A625292D086700F02EDF /* Product.swift */; };
 		3F08A628292D166B00F02EDF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A627292D166B00F02EDF /* TextField.swift */; };
-		3F08A62A292D16DD00F02EDF /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A629292D16DD00F02EDF /* Indicator.swift */; };
 		3F08A62C292D173A00F02EDF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A62B292D173A00F02EDF /* BaseViewController.swift */; };
 		3F08A62E292D17D900F02EDF /* AddCartResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A62D292D17D900F02EDF /* AddCartResponse.swift */; };
 		3F08A630292D17F500F02EDF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A62F292D17F500F02EDF /* User.swift */; };
@@ -82,6 +81,8 @@
 		3F7A78D329098AE500B24982 /* NetworkService + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A78D229098AE500B24982 /* NetworkService + Extension.swift */; };
 		3F7A78D529098B1500B24982 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A78D429098B1500B24982 /* NetworkServiceProtocol.swift */; };
 		3F7A78D729098F4600B24982 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A78D629098F4600B24982 /* AppDependency.swift */; };
+		3F81A70C292FC99500D41DCF /* IndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81A70B292FC99500D41DCF /* IndicatorProtocol.swift */; };
+		3F81A70E292FC9C700D41DCF /* UpdateTabBarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81A70D292FC9C700D41DCF /* UpdateTabBarProtocol.swift */; };
 		3F8A6F33291026E600BB8190 /* CatalogueTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A6F32291026E600BB8190 /* CatalogueTableViewAdapter.swift */; };
 		3F8A6F3629102A1500BB8190 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A6F3529102A1500BB8190 /* BaseView.swift */; };
 		3F8A6F3B29102E5C00BB8190 /* CatalogueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A6F3A29102E5C00BB8190 /* CatalogueView.swift */; };
@@ -119,7 +120,6 @@
 		3F08A609292D036800F02EDF /* BaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
 		3F08A625292D086700F02EDF /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		3F08A627292D166B00F02EDF /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		3F08A629292D16DD00F02EDF /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		3F08A62B292D173A00F02EDF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3F08A62D292D17D900F02EDF /* AddCartResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCartResponse.swift; sourceTree = "<group>"; };
 		3F08A62F292D17F500F02EDF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -188,6 +188,8 @@
 		3F7A78D229098AE500B24982 /* NetworkService + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService + Extension.swift"; sourceTree = "<group>"; };
 		3F7A78D429098B1500B24982 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		3F7A78D629098F4600B24982 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
+		3F81A70B292FC99500D41DCF /* IndicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorProtocol.swift; sourceTree = "<group>"; };
+		3F81A70D292FC9C700D41DCF /* UpdateTabBarProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTabBarProtocol.swift; sourceTree = "<group>"; };
 		3F8A6F32291026E600BB8190 /* CatalogueTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueTableViewAdapter.swift; sourceTree = "<group>"; };
 		3F8A6F3529102A1500BB8190 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		3F8A6F3A29102E5C00BB8190 /* CatalogueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueView.swift; sourceTree = "<group>"; };
@@ -503,8 +505,9 @@
 		3F8A6F3729102CC400BB8190 /* 📜Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				3F81A70B292FC99500D41DCF /* IndicatorProtocol.swift */,
 				3F5A22BB290ADC2700438114 /* ProgrammaticallyInitializableViewProtocol.swift */,
-				3F08A629292D16DD00F02EDF /* Indicator.swift */,
+				3F81A70D292FC9C700D41DCF /* UpdateTabBarProtocol.swift */,
 			);
 			path = "📜Protocols";
 			sourceTree = "<group>";
@@ -745,12 +748,14 @@
 				3F12B035292F8A8B00338F1D /* CheckoutContainer.swift in Sources */,
 				3F91E42E292D31BC0000A994 /* ShoppingCartModel.xcdatamodeld in Sources */,
 				3F12B040292F8F2400338F1D /* ProfileInteractor.swift in Sources */,
+				3F81A70C292FC99500D41DCF /* IndicatorProtocol.swift in Sources */,
 				3F5A22C1290ADF0E00438114 /* UISearchBar + Extension.swift in Sources */,
 				3F91E436292D34110000A994 /* PersistentConstants.swift in Sources */,
 				3F08A6082927C91000F02EDF /* ProductView.swift in Sources */,
 				3F91E433292D338E0000A994 /* ProductCDModel+CoreDataProperties.swift in Sources */,
 				3F08A6062927C8C000F02EDF /* ProductCollectionViewAdapter.swift in Sources */,
 				3F6E98FB2906F4A200F25E9B /* Localize.swift in Sources */,
+				3F81A70E292FC9C700D41DCF /* UpdateTabBarProtocol.swift in Sources */,
 				3F96689B290848B80034FEFE /* CatalogueViewController.swift in Sources */,
 				3F08A632292D18FA00F02EDF /* HTTPMethod.swift in Sources */,
 				3F8A6F33291026E600BB8190 /* CatalogueTableViewAdapter.swift in Sources */,
@@ -799,7 +804,6 @@
 				3F2516A629269706008F5820 /* GlobalConstants.swift in Sources */,
 				3F2516A229269644008F5820 /* ImageLoader.swift in Sources */,
 				3F12B013292E568E00338F1D /* CartView.swift in Sources */,
-				3F08A62A292D16DD00F02EDF /* Indicator.swift in Sources */,
 				3F96689E290848B80034FEFE /* CatalogueContainer.swift in Sources */,
 				3F5A22B02909988100438114 /* Typealias.swift in Sources */,
 				3F12B027292F89DF00338F1D /* CheckoutTableViewAdapter.swift in Sources */,
