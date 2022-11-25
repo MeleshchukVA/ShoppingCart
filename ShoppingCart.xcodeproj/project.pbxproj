@@ -403,9 +403,9 @@
 		3F6E98F22906F0BC00F25E9B /* 💃🏼Models */ = {
 			isa = PBXGroup;
 			children = (
+				3F08A62D292D17D900F02EDF /* AddCartResponse.swift */,
 				3F6E99042908361D00F25E9B /* Categories.swift */,
 				3F08A625292D086700F02EDF /* Product.swift */,
-				3F08A62D292D17D900F02EDF /* AddCartResponse.swift */,
 				3F08A62F292D17F500F02EDF /* User.swift */,
 			);
 			path = "💃🏼Models";
