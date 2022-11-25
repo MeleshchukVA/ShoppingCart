@@ -35,41 +35,46 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 
-/// Notification that cache should be cleared
+// Notification that cache should be cleared.
 public let LRUCacheMemoryWarningNotification: NSNotification.Name =
     UIApplication.didReceiveMemoryWarningNotification
 
 #else
 
-/// Notification that cache should be cleared
+// Notification that cache should be cleared.
 public let LRUCacheMemoryWarningNotification: NSNotification.Name =
     .init("LRUCacheMemoryWarningNotification")
 
 #endif
 
+// MARK: - LRUCache Class
+
 public final class LRUCache<Key: Hashable, Value> {
     
+    // MARK: Private properties
     private var values: [Key: Container] = [:]
     private unowned(unsafe) var head: Container?
     private unowned(unsafe) var tail: Container?
     private let lock: NSLock = .init()
     private var token: AnyObject?
     private let notificationCenter: NotificationCenter
-
-    /// The current total cost of values in the cache
+    
+    // MARK: Public properties
+    // The current total cost of values in the cache.
     public private(set) var totalCost: Int = 0
 
-    /// The maximum total cost permitted
+    // The maximum total cost permitted.
     public var totalCostLimit: Int {
         didSet { clean() }
     }
 
-    /// The maximum number of values permitted
+    // The maximum number of values permitted.
     public var countLimit: Int {
         didSet { clean() }
     }
-
-    /// Initialize the cache with the specified `totalCostLimit` and `countLimit`
+    
+    // MARK: Init
+    // Initialize the cache with the specified `totalCostLimit` and `countLimit`.
     public init(
         totalCostLimit: Int = .max,
         countLimit: Int = .max,
@@ -87,7 +92,8 @@ public final class LRUCache<Key: Hashable, Value> {
             self?.removeAllValues()
         }
     }
-
+    
+    // MARK: Deinit
     deinit {
         if let token = token {
             notificationCenter.removeObserver(token)
@@ -95,19 +101,21 @@ public final class LRUCache<Key: Hashable, Value> {
     }
 }
 
+// MARK: - LRUCache public extension
+
 public extension LRUCache {
     
-    /// The number of values currently stored in the cache
+    // The number of values currently stored in the cache.
     var count: Int {
         values.count
     }
 
-    /// Is the cache empty?
+    // Is the cache empty?
     var isEmpty: Bool {
         values.isEmpty
     }
 
-    /// Insert a value into the cache with optional `cost`
+    // Insert a value into the cache with optional `cost`.
     func setValue(_ value: Value?, forKey key: Key, cost: Int = 0) {
         guard let value = value else {
             removeValue(forKey: key)
@@ -134,7 +142,7 @@ public extension LRUCache {
         clean()
     }
 
-    /// Remove a value  from the cache and return it
+    // Remove a value  from the cache and return it.
     @discardableResult func removeValue(forKey key: Key) -> Value? {
         lock.lock()
         defer { lock.unlock() }
@@ -146,7 +154,7 @@ public extension LRUCache {
         return container.value
     }
 
-    /// Fetch a value from the cache
+    // Fetch a value from the cache.
     func value(forKey key: Key) -> Value? {
         lock.lock()
         defer { lock.unlock() }
@@ -158,7 +166,7 @@ public extension LRUCache {
         return nil
     }
 
-    /// Remove all values from the cache
+    // Remove all values from the cache.
     func removeAllValues() {
         lock.lock()
         values.removeAll()
@@ -168,8 +176,11 @@ public extension LRUCache {
     }
 }
 
+// MARK: - LRUCache private extension
+
 private extension LRUCache {
     
+    // MARK: Container class
     final class Container {
         
         var value: Value
@@ -185,7 +196,7 @@ private extension LRUCache {
         }
     }
 
-    // Remove container from list
+    // Remove container from list.
     func remove(_ container: Container) {
         if head === container {
             head = container.next
@@ -198,7 +209,7 @@ private extension LRUCache {
         container.next = nil
     }
 
-    // Append container to list
+    // Append container to list.
     func append(_ container: Container) {
         assert(container.next == nil)
         if head == nil {

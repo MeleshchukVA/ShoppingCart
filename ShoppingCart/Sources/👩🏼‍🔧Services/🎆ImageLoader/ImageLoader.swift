@@ -7,19 +7,27 @@
 
 import UIKit
 
+// MARK: - ImageLoaderProtocol
+
 protocol ImageLoaderProtocol {
     func loadImage(for stringUrl: String, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void)
 }
+
+// MARK: - ImageLoader Class
 
 final class ImageLoader {
     
     private let cache = ImageCache.shared
 }
 
+// MARK: - ImageLoader + ImageLoaderProtocol
+
 extension ImageLoader: ImageLoaderProtocol {
     
+    // MARK: Properties
     static let shared = ImageLoader()
-
+    
+    // MARK: Public methods
     func loadImage(for stringUrl: String, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void) {
         guard let url = URL(string: stringUrl) else {
             completion(.failure(.badUrl))
@@ -35,7 +43,8 @@ extension ImageLoader: ImageLoaderProtocol {
             }
         }
     }
-
+    
+    // MARK: Private methods
     private func downloadImage(from url: URL, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void) {
         if let data = try? Data(contentsOf: url) {
             decodeImage(from: data) { [weak self] result in

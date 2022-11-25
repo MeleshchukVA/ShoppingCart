@@ -7,9 +7,13 @@
 
 import Foundation
 
+// MARK: - ImageCacheProtocol
+
 protocol ImageCacheProtocol {
     subscript(_ url: URL) -> Data? { get set }
 }
+
+// MARK: - ImageCache
 
 final class ImageCache {
     
@@ -22,6 +26,8 @@ final class ImageCache {
         return cache
     }()
 }
+
+// MARK: - ImageCache + ImageCacheProtocol
 
 extension ImageCache: ImageCacheProtocol {
     

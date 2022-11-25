@@ -7,12 +7,16 @@
 
 import Foundation
 
+// MARK: - ImageLoaderError enum
+
 enum ImageLoaderError {
     
     case badUrl
     case failDownloadImage
     case failToDecodeImage
 }
+
+// MARK: - ImageLoaderError + LocalizedError
 
 extension ImageLoaderError: LocalizedError {
     
