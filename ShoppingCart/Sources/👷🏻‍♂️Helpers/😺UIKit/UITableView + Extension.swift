@@ -9,6 +9,8 @@ import UIKit.UITableView
 
 extension UITableView {
     
+    // Функция отображает лэйбл с текстом.
+    // Функция используется, когде недоступна сеть.
     func setEmptyMessage(message: String) {
         let messageLabel = UILabel(
             frame: CGRect(
@@ -26,7 +28,7 @@ extension UITableView {
 
         self.backgroundView = messageLabel
     }
-
+    
     func restore() {
         self.backgroundView = nil
     }
