@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - CartTableViewAdapterDelegate
+
 protocol CartTableViewAdapterDelegate: AnyObject {
     func cartTableViewAdapter(
         _ adapter: CartTableViewAdapter,
@@ -14,6 +16,8 @@ protocol CartTableViewAdapterDelegate: AnyObject {
     )
     func deteleItem(viewModel: CartViewModel)
 }
+
+// MARK: - CartTableViewAdapterProtocol
 
 protocol CartTableViewAdapterProtocol {
     func setupTable(tableView: UITableView)
@@ -24,16 +28,21 @@ protocol CartTableViewAdapterProtocol {
     func restore()
 }
 
-final class CartTableViewAdapter: NSObject {
+// MARK: - CartTableViewAdapter class
 
+final class CartTableViewAdapter: NSObject {
+    
+    // MARK: Properties
     weak var delegate: CartTableViewAdapterDelegate?
     private weak var tableView: UITableView?
     var viewModels = [CartViewModel]()
 }
 
-// MARK: - CartTableViewAdapterProtocol
+// MARK: - CartTableViewAdapter + CartTableViewAdapterProtocol
+
 extension CartTableViewAdapter: CartTableViewAdapterProtocol {
     
+    // MARK: Public methods
     func setupTable(tableView: UITableView) {
         self.tableView = tableView
         self.tableView?.delegate = self
@@ -69,6 +78,7 @@ extension CartTableViewAdapter: CartTableViewAdapterProtocol {
 }
 
 // MARK: - UITableViewDataSource
+
 extension CartTableViewAdapter: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,6 +99,7 @@ extension CartTableViewAdapter: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
+
 extension CartTableViewAdapter: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

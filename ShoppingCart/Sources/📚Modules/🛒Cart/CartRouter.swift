@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - CartRouter class
+
 final class CartRouter: BaseRouter {}
+
+// MARK: - CartRouter extension
 
 extension CartRouter {
     
@@ -17,6 +21,8 @@ extension CartRouter {
         self.viewController?.present(activityViewController, animated: true, completion: nil)
     }
 }
+
+// MARK: - CartRouterInput
 
 extension CartRouter: CartRouterInput {
     

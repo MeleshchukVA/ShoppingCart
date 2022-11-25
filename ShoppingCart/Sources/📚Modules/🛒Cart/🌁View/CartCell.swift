@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - CartCell Appearance
+
 extension CartCell {
     
     struct Appearance {
@@ -28,8 +30,11 @@ extension CartCell {
     }
 }
 
+// MARK: - CartCell Class
+
 final class CartCell: UITableViewCell {
     
+    // MARK: Properties
     private let imageLoader: ImageLoaderProtocol = ImageLoader.shared
     private let appearance: Appearance
     private var id: Int?
@@ -176,7 +181,8 @@ final class CartCell: UITableViewCell {
         indicator.style = .white
         return indicator
     }()
-
+    
+    // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.appearance = Appearance()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -189,7 +195,8 @@ final class CartCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override
     override func prepareForReuse() {
         super.prepareForReuse()
         productImageView.image = nil
@@ -203,8 +210,11 @@ final class CartCell: UITableViewCell {
     }
 }
 
+// MARK: - CartCell extension
+
 extension CartCell {
     
+    // MARK: Private methods
     private func createPrice(
         _ attributedText: inout NSMutableAttributedString,
         _ price: String,
@@ -230,7 +240,8 @@ extension CartCell {
         attributedText.append(attributedString2)
         priceLabel.attributedText = attributedText
     }
-
+    
+    // MARK: Public methods
     func fill(viewModel: CartViewModel) {
         self.id = viewModel.id
         self.price = viewModel.price
@@ -259,7 +270,10 @@ extension CartCell {
         attributedText.append(attributedString2)
         idLabel.attributedText = attributedText
 
-        attributedText = NSMutableAttributedString(string: "Brand: ", attributes: [.foregroundColor: UIColor.gray])
+        attributedText = NSMutableAttributedString(
+            string: "Brand: ",
+            attributes: [.foregroundColor: UIColor.gray]
+        )
         attributedString2 = NSMutableAttributedString(
             string: "\(viewModel.brand)",
             attributes: [.foregroundColor: UIColor.white]
@@ -275,7 +289,9 @@ extension CartCell {
            ) {
             createPrice(&attributedText, priceText, &attributedString2, fullPriceText)
         }
+        
         activityIndicator.startAnimating()
+        
         imageLoader.loadImage(for: viewModel.thumbnail) { [weak self] result in
             guard let `self` else { return }
             switch result {
@@ -294,7 +310,8 @@ extension CartCell {
             }
         }
     }
-
+    
+    // MARK: Actions
     @objc func plusButtonTapped() {
         guard let price,
               let fullPrice,
@@ -350,6 +367,7 @@ extension CartCell {
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
+
 extension CartCell: ProgrammaticallyInitializableViewProtocol {
     
     func setupView() {
@@ -377,7 +395,7 @@ extension CartCell: ProgrammaticallyInitializableViewProtocol {
         editButton.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
-        let constraints = [
+        NSLayoutConstraint.activate([
             productImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 17),
             productImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 13),
             productImageView.widthAnchor.constraint(equalToConstant: 87),
@@ -421,8 +439,6 @@ extension CartCell: ProgrammaticallyInitializableViewProtocol {
 
             activityIndicator.centerXAnchor.constraint(equalTo: self.productImageView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.productImageView.centerYAnchor)
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }

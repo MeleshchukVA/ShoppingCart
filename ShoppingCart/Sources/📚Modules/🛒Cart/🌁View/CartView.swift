@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - CartView + Appearance
+
 extension CartView {
     
     struct Appearance {
@@ -22,8 +24,11 @@ extension CartView {
     }
 }
 
+// MARK: - CartView Class
+
 final class CartView: BaseView {
     
+    // MARK: Properties
     private let output: CartViewOutput
     let appearance: Appearance
 
@@ -45,7 +50,8 @@ final class CartView: BaseView {
         button.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
         return button
     }()
-
+    
+    // MARK: Init
     init(
         frame: CGRect = .zero,
         output: CartViewOutput,
@@ -63,13 +69,20 @@ final class CartView: BaseView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
+// MARK: - CartView extension
+
+extension CartView {
+    
+    // MARK: Actions
     @objc private func checkoutButtonTapped() {
         output.checkoutButtonTapped()
     }
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
+
 extension CartView: ProgrammaticallyInitializableViewProtocol {
     
     func setupView() {
@@ -85,7 +98,7 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         checkoutButton.translatesAutoresizingMaskIntoConstraints = false
 
-        let constraints = [
+        NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -94,18 +107,24 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
                 constant: -(appearance.checkoutButtonHeight + appearance.checkoutButtonVerticalInset)
             ),
 
-            checkoutButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,
-                                                   constant: -appearance.checkoutButtonVerticalInset),
-            checkoutButton.heightAnchor.constraint(equalToConstant: appearance.checkoutButtonHeight),
-            checkoutButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                                    constant: appearance.checkoutButtonSideInset),
-            checkoutButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,
-                                                     constant: -appearance.checkoutButtonSideInset),
+            checkoutButton.bottomAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.bottomAnchor,
+                constant: -appearance.checkoutButtonVerticalInset
+            ),
+            checkoutButton.heightAnchor.constraint(
+                equalToConstant: appearance.checkoutButtonHeight
+            ),
+            checkoutButton.leadingAnchor.constraint(
+                equalTo: self.leadingAnchor,
+                constant: appearance.checkoutButtonSideInset
+            ),
+            checkoutButton.trailingAnchor.constraint(
+                equalTo: self.trailingAnchor,
+                constant: -appearance.checkoutButtonSideInset
+            ),
 
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }

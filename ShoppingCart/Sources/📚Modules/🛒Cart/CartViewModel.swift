@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - CartViewModel struct
+
 struct CartViewModel: Identifiable {
     
     var id: Int
@@ -21,6 +23,8 @@ struct CartViewModel: Identifiable {
     var updateHandler: ((Int, Int)) -> Void
 }
 
+// MARK: - CartViewModel + Hashable
+
 extension CartViewModel: Hashable {
     
     func hash(into hasher: inout Hasher) {
@@ -28,12 +32,16 @@ extension CartViewModel: Hashable {
     }
 }
 
+// MARK: - CartViewModel + Equatable
+
 extension CartViewModel: Equatable {
     
     static func == (lhs: CartViewModel, rhs: CartViewModel) -> Bool {
         lhs.id == rhs.id && lhs.count == rhs.count
     }
 }
+
+// MARK: - CartViewModel extension
 
 extension CartViewModel {
     

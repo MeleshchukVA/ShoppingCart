@@ -7,12 +7,15 @@
 
 import UIKit
 
+// MARK: - CartViewController class
+
 final class CartViewController: BaseViewController {
     
+    // MARK: Properties
     private let output: CartViewOutput
-
     lazy var cartView = self.view as? CartView
-
+    
+    // MARK: Init
     init(output: CartViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -21,7 +24,8 @@ final class CartViewController: BaseViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override
     override func loadView() {
         let view = CartView(frame: UIScreen.main.bounds, output: output)
         self.view = view
@@ -32,6 +36,8 @@ final class CartViewController: BaseViewController {
         output.viewDidLoad()
     }
 }
+
+// MARK: - CartViewInput
 
 extension CartViewController: CartViewInput {
     

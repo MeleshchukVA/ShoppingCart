@@ -7,18 +7,31 @@
 
 import UIKit
 
+// MARK: - CartContext struct
+
 struct CartContext {
     
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: CartModuleOutput?
 }
 
+// MARK: - CartContainer class
+
 final class CartContainer {
     
+    // MARK: Properties
     let input: CartModuleInput
     let viewController: UIViewController
     weak var router: CartRouterInput?
-
+    
+    // MARK: Init
+    private init(viewController: UIViewController, input: CartModuleInput, router: CartRouterInput) {
+        self.viewController = viewController
+        self.input = input
+        self.router = router
+    }
+    
+    // MARK: Assemble method
     static func assemble(with context: CartContext) -> CartContainer {
         let router = CartRouter()
         let tableViewAdapter = CartTableViewAdapter()
@@ -52,12 +65,6 @@ final class CartContainer {
             tableViewAdapter.setupTable(tableView: cartView.tableView)
         }
 
-        return CartContainer(view: viewController, input: presenter, router: router)
-    }
-
-    private init(view: UIViewController, input: CartModuleInput, router: CartRouterInput) {
-        self.viewController = view
-        self.input = input
-        self.router = router
+        return CartContainer(viewController: viewController, input: presenter, router: router)
     }
 }

@@ -7,8 +7,11 @@
 
 import Foundation
 
+// MARK: - CartPresenter class
+
 final class CartPresenter {
     
+    // MARK: Properties
     weak var view: CartViewInput?
     weak var moduleOutput: CartModuleOutput?
 
@@ -16,7 +19,8 @@ final class CartPresenter {
     let interactor: CartInteractorInput
     private let tableViewAdapter: CartTableViewAdapterProtocol
     private var products: [CartViewModel] = []
-
+    
+    // MARK: Init
     init(
         router: CartRouterInput,
         interactor: CartInteractorInput,
@@ -29,9 +33,11 @@ final class CartPresenter {
 }
 
 // MARK: - CartModuleInput
+
 extension CartPresenter: CartModuleInput {}
 
 // MARK: - CartViewOutput
+
 extension CartPresenter: CartViewOutput {
     
     func checkoutButtonTapped() {
@@ -47,8 +53,10 @@ extension CartPresenter: CartViewOutput {
 }
 
 // MARK: - CartInteractorOutput
+
 extension CartPresenter: CartInteractorOutput {
     
+    // MARK: Public methods
     func didObtainCartProducts(products: [ProductCDModel]) {
         let viewModels = products.map { product in
             let procent = (Double(1) + Double(Int(product.discountPercentage)) / Double(100))
@@ -77,6 +85,7 @@ extension CartPresenter: CartInteractorOutput {
                 self?.updateCountOfProduct(id: value.0, count: value.1)
             }
         }
+        
         DispatchQueue.main.async {
             if !viewModels.isEmpty {
                 self.products = viewModels
@@ -90,7 +99,7 @@ extension CartPresenter: CartInteractorOutput {
             }
         }
     }
-
+    
     func didObtainCartProduct(product: ProductCDModel) {
         DispatchQueue.main.async {
             for (index, model) in self.products.enumerated() where model.id == product.id {
@@ -99,13 +108,15 @@ extension CartPresenter: CartInteractorOutput {
             }
         }
     }
-
+    
+    // MARK: Private methods
     private func updateCountOfProduct(id: Int, count: Int) {
         self.interactor.updateCountOfProduct(id: id, count: count)
     }
 }
 
 // MARK: - CartTableViewAdapterDelegate
+
 extension CartPresenter: CartTableViewAdapterDelegate {
     
     func deteleItem(viewModel: CartViewModel) {

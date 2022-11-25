@@ -7,10 +7,14 @@
 
 import Foundation
 
+// MARK: - CartInteractor class
+
 final class CartInteractor: BaseInteractor {
     
     weak var output: CartInteractorOutput?
 }
+
+// MARK: - CartInteractorInput
 
 extension CartInteractor: CartInteractorInput {
     
