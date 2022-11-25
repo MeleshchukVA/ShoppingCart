@@ -41,7 +41,7 @@ enum URLFactory {
             URLQueryItem(name: "skip", value: "\(skip)")
         ]
         urlComponents?.queryItems?.append(contentsOf: paramsQueryItem)
-        return baseURL?
+        return urlComponents?.url?
             .appendingPathComponent(API.TypeOf.productsSearch)
             .absoluteString ?? ""
     }
