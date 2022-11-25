@@ -7,8 +7,11 @@
 
 import CoreData
 
+// MARK: PersistentProvider + PersistentProviderProtocol
+
 extension PersistentProvider: PersistentProviderProtocol {
     
+    // MARK: Public methods
     func update(
         models: [Product],
         action: PersistentState,
@@ -73,7 +76,8 @@ extension PersistentProvider: PersistentProviderProtocol {
     }
 }
 
-// MARK: - FetchRequest with id CD Model Product and extension ProductCDModel
+// MARK: - PersistentProvider private methods
+
 private extension PersistentProvider {
     
     func fetchRequest(for product: Product) -> NSFetchRequest<ProductCDModel> {
@@ -90,8 +94,10 @@ private extension PersistentProvider {
 }
 
 // MARK: - ProductCDModel
-fileprivate extension ProductCDModel {
+
+private extension ProductCDModel {
     
+    // MARK: Private methods
     func update(with product: Product) {
         count = Int64(1)
         title = product.title.capitalized
