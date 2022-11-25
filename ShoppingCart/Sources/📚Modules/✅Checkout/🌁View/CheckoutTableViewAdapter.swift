@@ -7,9 +7,13 @@
 
 import UIKit
 
+// MARK: - CheckoutTableViewAdapterProtocol
+
 protocol CheckoutTableViewAdapterProtocol {
     func setupTable(tableView: UITableView)
 }
+
+// MARK: - CheckoutTableViewAdapter class
 
 final class CheckoutTableViewAdapter: NSObject {
     
@@ -17,7 +21,8 @@ final class CheckoutTableViewAdapter: NSObject {
     var viewModels = [CartViewModel]()
 }
 
-// MARK: - CheckoutTableViewAdapterProtocol
+// MARK: - CheckoutTableViewAdapter + CheckoutTableViewAdapterProtocol
+
 extension CheckoutTableViewAdapter: CheckoutTableViewAdapterProtocol {
     
     func setupTable(tableView: UITableView) {
@@ -28,9 +33,11 @@ extension CheckoutTableViewAdapter: CheckoutTableViewAdapterProtocol {
 }
 
 // MARK: - UITableViewDelegate
+
 extension CheckoutTableViewAdapter: UITableViewDelegate {}
 
 // MARK: - UITableViewDataSource
+
 extension CheckoutTableViewAdapter: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

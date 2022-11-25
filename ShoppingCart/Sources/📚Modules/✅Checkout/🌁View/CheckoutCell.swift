@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - CheckoutCell + Appearence
+
 extension CheckoutCell {
     
     struct Appearence {
@@ -23,10 +25,13 @@ extension CheckoutCell {
     }
 }
 
+// MARK: - CheckoutCell class
+
 final class CheckoutCell: UITableViewCell {
     
+    // MARK: Properties
     let appearence = Appearence()
-
+    
     private lazy var lineLayer: CALayer = {
         let layer = CALayer()
         layer.frame = CGRect(
@@ -81,7 +86,8 @@ final class CheckoutCell: UITableViewCell {
         )
         return label
     }()
-
+    
+    // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -93,7 +99,8 @@ final class CheckoutCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override methods
     override func prepareForReuse() {
         super.prepareForReuse()
         [productNameLabel, countLabel, priceLabel].forEach { $0.text = "" }
@@ -106,8 +113,11 @@ final class CheckoutCell: UITableViewCell {
     }
 }
 
+// MARK: - CheckoutCell + Extension
+
 extension CheckoutCell {
     
+    // MARK: Private methods
     private func createPrice(
         _ attributedText: inout NSMutableAttributedString,
         _ price: String,
@@ -133,7 +143,8 @@ extension CheckoutCell {
         attributedText.append(attributedString2)
         priceLabel.attributedText = attributedText
     }
-
+    
+    // MARK: Public methods
     func fill(viewModel: CartViewModel) {
         DispatchQueue.main.async {
             let nameLabelText = NSMutableAttributedString(
@@ -166,6 +177,7 @@ extension CheckoutCell {
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
+
 extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
     
     func setupView() {
@@ -181,7 +193,7 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
         countLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        let constraints = [
+        NSLayoutConstraint.activate([
             productNameLabel.leadingAnchor.constraint(
                 equalTo: self.contentView.leadingAnchor,
                 constant: appearence.horizontalInset
@@ -212,7 +224,6 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
             ),
             priceLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: appearence.verticalInset),
             priceLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }

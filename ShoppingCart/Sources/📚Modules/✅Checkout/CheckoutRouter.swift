@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - CheckoutRouter class
+
 final class CheckoutRouter: BaseRouter {}
+
+// MARK: - CheckoutRouterInput
 
 extension CheckoutRouter: CheckoutRouterInput {
     

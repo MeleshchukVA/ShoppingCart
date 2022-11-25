@@ -25,8 +25,8 @@ final class CartContainer {
     weak var router: CartRouterInput?
     
     // MARK: Init
-    private init(viewController: UIViewController, input: CartModuleInput, router: CartRouterInput) {
-        self.viewController = viewController
+    private init(view: UIViewController, input: CartModuleInput, router: CartRouterInput) {
+        self.viewController = view
         self.input = input
         self.router = router
     }
@@ -65,6 +65,6 @@ final class CartContainer {
             tableViewAdapter.setupTable(tableView: cartView.tableView)
         }
 
-        return CartContainer(viewController: viewController, input: presenter, router: router)
+        return CartContainer(view: viewController, input: presenter, router: router)
     }
 }

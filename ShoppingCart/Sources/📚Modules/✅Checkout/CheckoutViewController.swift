@@ -7,12 +7,16 @@
 
 import UIKit
 
+// MARK: - CheckoutViewController class
+
 final class CheckoutViewController: UIViewController {
     
+    // MARK: Properties
     private let output: CheckoutViewOutput
 
     lazy var checkoutView = self.view as? CheckoutView
-
+    
+    // MARK: Init
     init(output: CheckoutViewOutput) {
         self.output = output
 
@@ -22,11 +26,14 @@ final class CheckoutViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override
     override func loadView() {
         let view = CheckoutView(frame: UIScreen.main.bounds, output: output)
         self.view = view
     }
 }
+
+// MARK: - CheckoutViewInput
 
 extension CheckoutViewController: CheckoutViewInput {}

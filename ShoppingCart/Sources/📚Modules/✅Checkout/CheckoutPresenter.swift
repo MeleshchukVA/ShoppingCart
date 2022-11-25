@@ -7,8 +7,11 @@
 
 import Foundation
 
+// MARK: - CheckoutPresenter class
+
 final class CheckoutPresenter {
     
+    // MARK: Properties
     weak var view: CheckoutViewInput?
     weak var moduleOutput: CheckoutModuleOutput?
 
@@ -16,7 +19,8 @@ final class CheckoutPresenter {
     private let interactor: CheckoutInteractorInput
     private let tableViewAdapter: CheckoutTableViewAdapterProtocol
     private let products: [CartViewModel]
-
+    
+    // MARK: Init
     init(router: CheckoutRouterInput,
          interactor: CheckoutInteractorInput,
          products: [CartViewModel],
@@ -28,15 +32,21 @@ final class CheckoutPresenter {
     }
 }
 
+// MARK: - CheckoutModuleInput
+
 extension CheckoutPresenter: CheckoutModuleInput {}
+
+// MARK: - CheckoutViewOutput
 
 extension CheckoutPresenter: CheckoutViewOutput {
     
+    // MARK: Public methods
     func buyButtonTapped() {
         let body = prepareAddCartBody()
         interactor.addCart(body)
     }
-
+    
+    // MARK: Private methods
     private func prepareAddCartBody() -> [String: Any] {
         var body = [String: Any]()
         var productsArray: [Any] = []
@@ -48,6 +58,8 @@ extension CheckoutPresenter: CheckoutViewOutput {
         return body
     }
 }
+
+// MARK: - CheckoutInteractorOutput
 
 extension CheckoutPresenter: CheckoutInteractorOutput {
     

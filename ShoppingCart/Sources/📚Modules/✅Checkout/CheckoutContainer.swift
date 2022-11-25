@@ -7,18 +7,30 @@
 
 import UIKit
 
+// MARK: - CheckoutContext struct
 struct CheckoutContext {
     
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: CheckoutModuleOutput?
 }
 
+// MARK: - CheckoutContainer class
+
 final class CheckoutContainer {
     
+    // MARK: Properties
     weak var router: CheckoutRouterInput?
     let input: CheckoutModuleInput
     let viewController: UIViewController
-
+    
+    // MARK: Init
+    private init(view: UIViewController, input: CheckoutModuleInput, router: CheckoutRouterInput) {
+        self.viewController = view
+        self.input = input
+        self.router = router
+    }
+    
+    // MARK: Assemble method
     static func assemble(with context: CheckoutContext, products: [CartViewModel]) -> CheckoutContainer {
         let router = CheckoutRouter()
         let tableViewAdapter = CheckoutTableViewAdapter()
@@ -54,11 +66,5 @@ final class CheckoutContainer {
         }
 
         return CheckoutContainer(view: viewController, input: presenter, router: router)
-    }
-
-    private init(view: UIViewController, input: CheckoutModuleInput, router: CheckoutRouterInput) {
-        self.viewController = view
-        self.input = input
-        self.router = router
     }
 }

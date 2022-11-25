@@ -7,10 +7,14 @@
 
 import Foundation
 
+// MARK: - CheckoutInteractor class
+
 final class CheckoutInteractor: BaseInteractor {
     
     weak var output: CheckoutInteractorOutput?
 }
+
+// MARK: - CheckoutInteractorInput
 
 extension CheckoutInteractor: CheckoutInteractorInput {
 
