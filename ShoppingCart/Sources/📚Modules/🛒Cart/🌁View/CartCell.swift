@@ -267,8 +267,10 @@ extension CartCell {
         attributedText.append(attributedString2)
         brandLabel.attributedText = attributedText
 
-        if let priceText = CurrencyFormatter.shared.string(from: Double(viewModel.price * UInt(viewModel.count))),
-           let fullPriceText = CurrencyFormatter.shared.string(
+        if let priceText = CurrencyFormatter.shared.convertTostring(
+            from: Double(viewModel.price * UInt(viewModel.count))
+        ),
+           let fullPriceText = CurrencyFormatter.shared.convertTostring(
             from: Double(viewModel.fullPrice * UInt(viewModel.count))
            ) {
             createPrice(&attributedText, priceText, &attributedString2, fullPriceText)
@@ -307,8 +309,8 @@ extension CartCell {
         var attributedString2 = NSMutableAttributedString(string: "", attributes: [.foregroundColor: UIColor.white])
         minusButton.imageView?.tintColor = appearance.purpleColor
         countLabel.text = "\(count)"
-        if let priceText = CurrencyFormatter.shared.string(from: Double(price * UInt(count))),
-           let fullPriceText = CurrencyFormatter.shared.string(from: Double(fullPrice * UInt(count))) {
+        if let priceText = CurrencyFormatter.shared.convertTostring(from: Double(price * UInt(count))),
+           let fullPriceText = CurrencyFormatter.shared.convertTostring(from: Double(fullPrice * UInt(count))) {
             createPrice(&attributedText, priceText, &attributedString2, fullPriceText)
         }
         self.updateHandler?((id, count))
@@ -328,8 +330,8 @@ extension CartCell {
             var attributedString2 = NSMutableAttributedString(string: "", attributes: [.foregroundColor: UIColor.white])
             minusButton.imageView?.tintColor = appearance.purpleColor
             countLabel.text = "\(count - 1)"
-            if let priceText = CurrencyFormatter.shared.string(from: Double(price * UInt(count - 1))),
-               let fullPriceText = CurrencyFormatter.shared.string(from: Double(fullPrice * UInt(count - 1))) {
+            if let priceText = CurrencyFormatter.shared.convertTostring(from: Double(price * UInt(count - 1))),
+               let fullPriceText = CurrencyFormatter.shared.convertTostring(from: Double(fullPrice * UInt(count - 1))) {
                 createPrice(&attributedText, priceText, &attributedString2, fullPriceText)
             }
             if (count - 1) == 1 {

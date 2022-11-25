@@ -7,16 +7,22 @@
 
 import Foundation
 
+// MARK: - Enum
+
 enum CurrencyFormatterLocale: String {
     
     case russia = "ru_RU"
     case usa = "us_US"
 }
 
+// MARK: - CurrencyFormatter Class
+
 final class CurrencyFormatter: NumberFormatter {
     
+    // MARK: Properties
     static let shared = CurrencyFormatter()
 
+    // MARK: Init
     private override init() {
         super.init()
     }
@@ -24,7 +30,12 @@ final class CurrencyFormatter: NumberFormatter {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
+// MARK: - CurrencyFormatter public methods
+
+extension CurrencyFormatter {
+    
     func configurate(
         numberStyle: NumberFormatter.Style = .currency,
         localeType: CurrencyFormatterLocale = .usa
@@ -35,14 +46,7 @@ final class CurrencyFormatter: NumberFormatter {
         self.locale = Locale(identifier: localeType.rawValue)
     }
 
-    func string(from: Double) -> String? {
+    func convertTostring(from: Double) -> String? {
         string(from: NSNumber(value: from))
-    }
-}
-
-extension CurrencyFormatter {
-    
-    override func copy(with zone: NSZone? = nil) -> Any {
-        return self
     }
 }

@@ -158,7 +158,7 @@ extension CheckoutCell {
 
             self.productNameLabel.attributedText = nameLabelText
             self.countLabel.attributedText = countLabelText
-            self.priceLabel.text = CurrencyFormatter.shared.string(
+            self.priceLabel.text = CurrencyFormatter.shared.convertTostring(
                 from: Double(viewModel.price * UInt(viewModel.count))
             )
         }

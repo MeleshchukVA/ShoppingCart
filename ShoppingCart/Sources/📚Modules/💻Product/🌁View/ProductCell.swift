@@ -288,7 +288,7 @@ extension ProductCell {
             height: ratingLabel.frame.height + 7
         )
 
-        priceLabel.text = CurrencyFormatter.shared.string(from: Double(viewModel.price))
+        priceLabel.text = CurrencyFormatter.shared.convertTostring(from: Double(viewModel.price))
         brandLabel.text = viewModel.brand.capitalized
         titleLabel.text = viewModel.title
         stockLabel.text = "In stock - \(viewModel.stock)"
