@@ -22,13 +22,14 @@ protocol CatalogueTableViewAdapterProtocol {
 }
 
 final class CatalogueTableViewAdapter: NSObject {
-
+    
     weak var delegate: CatalogueTableViewAdapterDelegate?
     private weak var tableView: UITableView?
     var viewModels = [CatalogueViewModel]()
 }
 
 // MARK: - CatalogueTableViewAdapterProtocol
+
 extension CatalogueTableViewAdapter: CatalogueTableViewAdapterProtocol {
     
     func setupTable(tableView: UITableView) {
@@ -36,27 +37,29 @@ extension CatalogueTableViewAdapter: CatalogueTableViewAdapterProtocol {
         self.tableView?.delegate = self
         self.tableView?.dataSource = self
     }
-
+    
     func update(viewModels: [CatalogueViewModel]) {
         self.viewModels = viewModels
         tableView?.reloadData()
     }
-
+    
     func setEmptyMessage(message: String) {
         self.tableView?.setEmptyMessage(message: message)
     }
-
+    
     func restore() {
         self.tableView?.restore()
     }
 }
+
 // MARK: - UITableViewDataSource
+
 extension CatalogueTableViewAdapter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModels.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(cellType: CatalogueCell.self, for: indexPath)
         if viewModels.indices.contains(indexPath.row) {
@@ -72,7 +75,7 @@ extension CatalogueTableViewAdapter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         49
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.catalogueTableViewAdapter(self, didSelectComponentAt: indexPath)
     }

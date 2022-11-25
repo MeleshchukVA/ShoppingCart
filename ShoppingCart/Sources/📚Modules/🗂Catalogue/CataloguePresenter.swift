@@ -12,7 +12,7 @@ final class CataloguePresenter {
     
     weak var view: CatalogueViewInput?
     weak var moduleOutput: CatalogueModuleOutput?
-
+    
     private let router: CatalogueRouterInput
     let interactor: CatalogueInteractorInput
     private let tableViewAdapter: CatalogueTableViewAdapterProtocol
@@ -21,7 +21,7 @@ final class CataloguePresenter {
     private var products: [Product] = []
     private var total: Int = 0
     private var query: String = ""
-
+    
     init(
         router: CatalogueRouterInput,
         interactor: CatalogueInteractorInput,
@@ -36,6 +36,7 @@ final class CataloguePresenter {
 }
 
 // MARK: - Private
+
 extension CataloguePresenter {
     
     private func clear() {
@@ -47,20 +48,22 @@ extension CataloguePresenter {
 }
 
 // MARK: - CatalogueModuleInput
+
 extension CataloguePresenter: CatalogueModuleInput {}
 
 // MARK: - CatalogueViewOutput
+
 extension CataloguePresenter: CatalogueViewOutput {
     
     func viewDidLoad() {
         view?.startActivityIndicator()
         interactor.reload()
     }
-
+    
     func viewDidAppear() {
         interactor.obtainCartProducts()
     }
-
+    
     func searchBarTextDidEndEditing(with query: String) {
         self.clear()
         view?.startActivityIndicator()
@@ -68,7 +71,7 @@ extension CataloguePresenter: CatalogueViewOutput {
         self.query = query
         interactor.reload(by: query, skip: 0)
     }
-
+    
     func searchBarCancelButtonClicked() {
         if !products.isEmpty || !query.isEmpty {
             self.clear()
@@ -80,6 +83,7 @@ extension CataloguePresenter: CatalogueViewOutput {
 }
 
 // MARK: - CatalogueInteractorOutput
+
 extension CataloguePresenter: CatalogueInteractorOutput {
     
     func didObtainCategories(categories: Categories) {
@@ -102,13 +106,13 @@ extension CataloguePresenter: CatalogueInteractorOutput {
             }
         }
     }
-
+    
     func didObtainDBProducts(products: [ProductCDModel]) {
         if !products.isEmpty {
             self.view?.updateTabBarItems(badgeCount: products.count)
         }
     }
-
+    
     func didObtainProducts(products: [Products]) {
         guard let product = products.first else { return }
         self.total = product.total
@@ -143,10 +147,10 @@ extension CataloguePresenter: CatalogueInteractorOutput {
                             let productsInCart = self.interactor.obtainCartProductsCount()
                             self.view?.updateTabBarItems(badgeCount: productsInCart + 1)
                         }
-
+                    
                     case .remove:
                         break
-
+                    
                     case .update:
                         break
                     }
@@ -162,6 +166,7 @@ extension CataloguePresenter: CatalogueInteractorOutput {
 }
 
 // MARK: - CatalogueTableViewAdapterDelegate
+
 extension CataloguePresenter: CatalogueTableViewAdapterDelegate {
     
     func catalogueTableViewAdapter(_ adapter: CatalogueTableViewAdapter, didSelectComponentAt indexPath: IndexPath) {
@@ -171,6 +176,7 @@ extension CataloguePresenter: CatalogueTableViewAdapterDelegate {
 }
 
 // MARK: - ProductCollectionViewAdapterDelegate
+
 extension CataloguePresenter: ProductCollectionViewAdapterDelegate {
     
     func willDisplay(at index: Int) {

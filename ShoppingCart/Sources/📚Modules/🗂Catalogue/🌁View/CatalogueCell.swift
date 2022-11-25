@@ -15,7 +15,7 @@ final class CatalogueCell: UITableViewCell {
         label.font = Font.sber(ofSize: Font.Size.fouthteen, weight: .regular)
         return label
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -23,7 +23,7 @@ final class CatalogueCell: UITableViewCell {
         self.setupSubviews()
         self.setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -37,6 +37,7 @@ extension CatalogueCell {
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
+
 extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
     
     func setupView() {
@@ -48,11 +49,11 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
         }
         backgroundColor = Colors.cellColor
     }
-
+    
     func setupSubviews() {
         contentView.addSubview(label)
     }
-
+    
     func setupConstraints() {
         label.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
