@@ -445,12 +445,12 @@
 			children = (
 				3F6E99022906F5D200F25E9B /* Font.swift */,
 				3F5A22BE290ADD8300438114 /* ReuseIdentifier.swift */,
+				3F08A63D292D1A8700F02EDF /* UIApplication + Extension.swift */,
+				3F08A63B292D1A6F00F02EDF /* UICollectionView + Extension.swift */,
 				3F6E99002906F53E00F25E9B /* UIColor + Extension.swift */,
+				3F08A639292D1A4C00F02EDF /* UIImageView + Extension.swift */,
 				3F5A22C0290ADF0E00438114 /* UISearchBar + Extension.swift */,
 				3F08A635292D1A0C00F02EDF /* UITableView + Extension.swift */,
-				3F08A639292D1A4C00F02EDF /* UIImageView + Extension.swift */,
-				3F08A63B292D1A6F00F02EDF /* UICollectionView + Extension.swift */,
-				3F08A63D292D1A8700F02EDF /* UIApplication + Extension.swift */,
 			);
 			path = "😺UIKit";
 			sourceTree = "<group>";
