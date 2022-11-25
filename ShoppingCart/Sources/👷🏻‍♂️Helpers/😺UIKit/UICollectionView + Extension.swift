@@ -9,6 +9,8 @@ import UIKit.UICollectionView
 
 extension UICollectionView {
     
+    // Функция отображает лэйбл с текстом.
+    // Функция используется, когде недоступна сеть.
     func setEmptyMessage(message: String) {
         let messageLabel = UILabel(
             frame: CGRect(
