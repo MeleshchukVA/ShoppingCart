@@ -9,6 +9,7 @@ import UIKit.UIImageView
 
 extension UIImageView {
     
+    // Функция анимирует UIImage.
     func setImage(_ image: UIImage?) {
         UIView.transition(with: self, duration: 0.2, options: .transitionCrossDissolve, animations: {
             self.image = image
