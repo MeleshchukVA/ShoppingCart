@@ -92,8 +92,9 @@ extension CataloguePresenter: CatalogueInteractorOutput {
     
     func didObtainCategories(categories: Categories) {
         let viewModels = categories.map {
-            CatalogueViewModel(id: UUID(), name: $0.capitalized)
-        }
+            CatalogueViewModel(id: UUID(), name: $0.capitalized.replacingOccurrences(of: "-", with: " "))
+        }.sorted { $0.name < $1.name }
+        
         DispatchQueue.main.async {
             if !viewModels.isEmpty {
                 self.view?.hideTableView(isHidden: false)
