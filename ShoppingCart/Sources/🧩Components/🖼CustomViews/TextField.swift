@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - TextField Class
+// MARK: - TextField class
 
 final class TextField: UITextField {
     

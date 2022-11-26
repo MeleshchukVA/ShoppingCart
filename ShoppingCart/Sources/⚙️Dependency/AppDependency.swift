@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - AppDependency Class
+// MARK: - AppDependency class
 
 final class AppDependency {
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - BaseRouter Class
+// MARK: - BaseRouter class
 
 class BaseRouter {
     

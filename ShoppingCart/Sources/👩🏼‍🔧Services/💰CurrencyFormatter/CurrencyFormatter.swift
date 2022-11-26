@@ -15,7 +15,7 @@ enum CurrencyFormatterLocale: String {
     case usa = "us_US"
 }
 
-// MARK: - CurrencyFormatter Class
+// MARK: - CurrencyFormatter class
 
 final class CurrencyFormatter: NumberFormatter {
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - BaseView Class
+// MARK: - BaseView class
 
 class BaseView: UIView {
     

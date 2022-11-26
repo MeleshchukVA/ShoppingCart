@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - AppCoordinator Class
+// MARK: - AppCoordinator class
 
 final class AppCoordinator {
     

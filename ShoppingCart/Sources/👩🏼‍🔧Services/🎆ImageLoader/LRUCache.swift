@@ -47,7 +47,7 @@ public let LRUCacheMemoryWarningNotification: NSNotification.Name =
 
 #endif
 
-// MARK: - LRUCache Class
+// MARK: - LRUCache class
 
 public final class LRUCache<Key: Hashable, Value> {
     

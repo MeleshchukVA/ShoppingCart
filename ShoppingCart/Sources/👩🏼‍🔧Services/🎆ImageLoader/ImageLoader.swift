@@ -13,7 +13,7 @@ protocol ImageLoaderProtocol {
     func loadImage(for stringUrl: String, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void)
 }
 
-// MARK: - ImageLoader Class
+// MARK: - ImageLoader class
 
 final class ImageLoader {
     

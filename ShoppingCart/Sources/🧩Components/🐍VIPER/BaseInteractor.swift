@@ -14,7 +14,7 @@ protocol BaseInteractorInput: AnyObject {
     func obtainCartProductsCount() -> Int
 }
 
-// MARK: - BaseInteractor Class
+// MARK: - BaseInteractor class
 
 class BaseInteractor {
 

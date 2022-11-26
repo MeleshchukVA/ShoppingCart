@@ -7,7 +7,7 @@
 
 import CoreData
 
-// MARK: - PersistentProvider Class
+// MARK: - PersistentProvider class
 
 final class PersistentProvider {
     

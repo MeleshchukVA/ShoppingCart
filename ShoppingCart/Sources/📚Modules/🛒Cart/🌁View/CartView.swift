@@ -24,7 +24,7 @@ extension CartView {
     }
 }
 
-// MARK: - CartView Class
+// MARK: - CartView class
 
 final class CartView: BaseView {
     

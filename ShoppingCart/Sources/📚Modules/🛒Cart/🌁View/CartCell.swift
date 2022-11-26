@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - CartCell Appearance
+// MARK: - CartCell + Appearance
 
 extension CartCell {
     
@@ -30,7 +30,7 @@ extension CartCell {
     }
 }
 
-// MARK: - CartCell Class
+// MARK: - CartCell class
 
 final class CartCell: UITableViewCell {
     

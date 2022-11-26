@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - BaseViewController Class
+// MARK: - BaseViewController class
 
 class BaseViewController: UIViewController {
     
