@@ -104,7 +104,7 @@ extension CataloguePresenter: CatalogueInteractorOutput {
             } else {
                 self.view?.hideTableView(isHidden: false)
                 self.tableViewAdapter.setEmptyMessage(
-                    message: "Не найдено категорий или подключитесь к сети, чтобы загрузить данные"
+                    message: "No categories found or connect to a network to download data"
                 )
                 self.view?.stopActivityIndicator()
             }

@@ -68,7 +68,7 @@ extension ProductView: ProductViewProtocol {
             collectionView.dataSource = dataSource
             collectionView.reloadData()
             collectionView.collectionViewLayout.invalidateLayout()
-            collectionView.setEmptyMessage(message: "Не найдено товаров")
+            collectionView.setEmptyMessage(message: "No products found")
         } else {
             collectionView.restore()
             collectionView.delegate = delegate

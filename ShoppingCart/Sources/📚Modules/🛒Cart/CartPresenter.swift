@@ -93,7 +93,7 @@ extension CartPresenter: CartInteractorOutput {
                 self.tableViewAdapter.update(viewModels: viewModels)
                 self.view?.stopActivityIndicator()
             } else {
-                self.tableViewAdapter.setEmptyMessage(message: "Ваша корзина пустая")
+                self.tableViewAdapter.setEmptyMessage(message: "Your cart is empty")
                 self.tableViewAdapter.update(viewModels: viewModels)
                 self.view?.stopActivityIndicator()
             }
@@ -128,7 +128,7 @@ extension CartPresenter: CartTableViewAdapterDelegate {
         }
         view?.updateTabBarItems(badgeCount: count == 1 ? -1 : count - 1)
         if count == 1 {
-            self.tableViewAdapter.setEmptyMessage(message: "Ваша корзина пустая")
+            self.tableViewAdapter.setEmptyMessage(message: "Your cart is empty")
         }
     }
 
