@@ -4,14 +4,19 @@
 //
 //  Created by Владимир Мелещук on 24.11.2022.
 //
+
 import Foundation
+
+// MARK: - ProfileInteractor class
 
 final class ProfileInteractor {
     
+    // MARK: Properties
     weak var output: ProfileInteractorOutput?
     private let imageLoader: ImageLoaderProtocol
     private let networkService: NetworkServiceProtocol
-
+    
+    // MARK: Init
     init(
         imageLoader: ImageLoaderProtocol,
         networkService: NetworkServiceProtocol
@@ -20,6 +25,8 @@ final class ProfileInteractor {
         self.networkService = networkService
     }
 }
+
+// MARK: - ProfileInteractorInput
 
 extension ProfileInteractor: ProfileInteractorInput {
     

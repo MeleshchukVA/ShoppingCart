@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - ProfileView + Appearance
+
 extension ProfileView {
     
     struct Appearance {
@@ -26,8 +28,11 @@ extension ProfileView {
     }
 }
 
+// MARK: - ProfileView class
+
 final class ProfileView: BaseView {
     
+    // MARK: Properties
     let appearance: Appearance
 
     private lazy var scrollView: UIScrollView = {
@@ -81,7 +86,8 @@ final class ProfileView: BaseView {
     private lazy var passwordField: TextField = {
         makeTextfield(placeholder: "Password", isSecureTextEntry: true)
     }()
-
+    
+    // MARK: Init
     init(
         frame: CGRect,
         appearance: Appearance = Appearance()
@@ -98,8 +104,13 @@ final class ProfileView: BaseView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    private func makeTextfield(
+// MARK: - ProfileView private extension
+
+private extension ProfileView {
+    
+    func makeTextfield(
         placeholder: String,
         keyboardType: UIKeyboardType = .default,
         isSecureTextEntry: Bool = false
@@ -117,7 +128,7 @@ final class ProfileView: BaseView {
         return textfield
     }
 
-    private func makeLabel(text: String) -> UILabel {
+    func makeLabel(text: String) -> UILabel {
         let label = UILabel(frame: .zero)
         label.text = text
         label.textColor = appearance.textCollor
@@ -125,7 +136,8 @@ final class ProfileView: BaseView {
     }
 }
 
-// MARK: - Public
+// MARK: - ProfileView public extension
+
 extension ProfileView {
     
     func fillProfile(_ user: User) {
@@ -155,6 +167,7 @@ extension ProfileView {
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
+
 extension ProfileView: ProgrammaticallyInitializableViewProtocol {
     
     func setupView() {
@@ -180,7 +193,7 @@ extension ProfileView: ProgrammaticallyInitializableViewProtocol {
             $0.translatesAutoresizingMaskIntoConstraints = false
          }
 
-        let constraints = [
+        NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
 
@@ -194,7 +207,10 @@ extension ProfileView: ProgrammaticallyInitializableViewProtocol {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: appearance.sideInset),
             contentView.heightAnchor.constraint(greaterThanOrEqualTo: self.heightAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -(appearance.sideInset * 2)),
+            contentView.widthAnchor.constraint(
+                equalTo: scrollView.widthAnchor,
+                constant: -(appearance.sideInset * 2)
+            ),
 
             avatarView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: appearance.topInset),
             avatarView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -219,7 +235,10 @@ extension ProfileView: ProgrammaticallyInitializableViewProtocol {
             lastnameField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             lastnameField.heightAnchor.constraint(equalToConstant: appearance.textfieldHeight),
 
-            emailLabel.topAnchor.constraint(equalTo: lastnameField.bottomAnchor, constant: appearance.verticalSpacing),
+            emailLabel.topAnchor.constraint(
+                equalTo: lastnameField.bottomAnchor,
+                constant: appearance.verticalSpacing
+            ),
             emailLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             emailLabel.heightAnchor.constraint(equalToConstant: appearance.labelHeight),
 
@@ -228,7 +247,10 @@ extension ProfileView: ProgrammaticallyInitializableViewProtocol {
             emailField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             emailField.heightAnchor.constraint(equalToConstant: appearance.textfieldHeight),
 
-            passwordLabel.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: appearance.verticalSpacing),
+            passwordLabel.topAnchor.constraint(
+                equalTo: emailField.bottomAnchor,
+                constant: appearance.verticalSpacing
+            ),
             passwordLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             passwordLabel.heightAnchor.constraint(equalToConstant: appearance.labelHeight),
 
@@ -236,8 +258,6 @@ extension ProfileView: ProgrammaticallyInitializableViewProtocol {
             passwordField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             passwordField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             passwordField.heightAnchor.constraint(equalToConstant: appearance.textfieldHeight)
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }

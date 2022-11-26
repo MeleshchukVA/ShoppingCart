@@ -7,21 +7,29 @@
 
 import UIKit
 
+// MARK: - ProfilePresenter class
+
 final class ProfilePresenter {
     
+    // MARK: Properties
     weak var view: ProfileViewInput?
     weak var moduleOutput: ProfileModuleOutput?
 
     private let router: ProfileRouterInput
     private let interactor: ProfileInteractorInput
-
+    
+    // MARK: Init
     init(router: ProfileRouterInput, interactor: ProfileInteractorInput) {
         self.router = router
         self.interactor = interactor
     }
 }
 
+// MARK: - ProfileModuleInput
+
 extension ProfilePresenter: ProfileModuleInput {}
+
+// MARK: - ProfileViewOutput
 
 extension ProfilePresenter: ProfileViewOutput {
     
@@ -29,6 +37,8 @@ extension ProfilePresenter: ProfileViewOutput {
         interactor.getUser()
     }
 }
+
+// MARK: - ProfileInteractorOutput
 
 extension ProfilePresenter: ProfileInteractorOutput {
     

@@ -7,7 +7,11 @@
 
 import UIKit
 
+// MARK: - ProfileRouter class
+
 final class ProfileRouter: BaseRouter {}
+
+// MARK: - ProfileRouterInput
 
 extension ProfileRouter: ProfileRouterInput {
     

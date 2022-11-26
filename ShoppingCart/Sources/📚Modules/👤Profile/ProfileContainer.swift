@@ -7,18 +7,32 @@
 
 import UIKit
 
+// MARK: - ProfileContext struct
+
 struct ProfileContext {
     
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: ProfileModuleOutput?
 }
 
+// MARK: - ProfileContainer class
+
 final class ProfileContainer {
+    
+    // MARK: Properties
     
     let input: ProfileModuleInput
     let viewController: UIViewController
     weak var router: ProfileRouterInput?
-
+    
+    // MARK: Init
+    private init(view: UIViewController, input: ProfileModuleInput, router: ProfileRouterInput) {
+        self.viewController = view
+        self.input = input
+        self.router = router
+    }
+    
+    // MARK: Assemble method
     static func assemble(with context: ProfileContext) -> ProfileContainer {
         let router = ProfileRouter()
         let interactor = ProfileInteractor(
@@ -34,11 +48,5 @@ final class ProfileContainer {
         interactor.output = presenter
 
         return ProfileContainer(view: viewController, input: presenter, router: router)
-    }
-
-    private init(view: UIViewController, input: ProfileModuleInput, router: ProfileRouterInput) {
-        self.viewController = view
-        self.input = input
-        self.router = router
     }
 }

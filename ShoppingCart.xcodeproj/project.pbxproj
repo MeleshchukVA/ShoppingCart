@@ -304,13 +304,13 @@
 		3F12B036292F8E8B00338F1D /* 👤Profile */ = {
 			isa = PBXGroup;
 			children = (
+				3F12B043292F908A00338F1D /* ProfileView.swift */,
+				3F12B03B292F8F0100338F1D /* ProfileViewController.swift */,
+				3F12B03F292F8F2400338F1D /* ProfileInteractor.swift */,
 				3F12B037292F8ED100338F1D /* ProfilePresenter.swift */,
 				3F12B039292F8EE600338F1D /* ProfileRouter.swift */,
-				3F12B03B292F8F0100338F1D /* ProfileViewController.swift */,
 				3F12B03D292F8F1200338F1D /* ProfileProtocols.swift */,
-				3F12B03F292F8F2400338F1D /* ProfileInteractor.swift */,
 				3F12B041292F8F3500338F1D /* ProfileContainer.swift */,
-				3F12B043292F908A00338F1D /* ProfileView.swift */,
 			);
 			path = "👤Profile";
 			sourceTree = "<group>";

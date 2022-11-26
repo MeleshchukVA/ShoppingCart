@@ -7,11 +7,15 @@
 
 import UIKit
 
+// MARK: - ProfileViewController class
+
 final class ProfileViewController: UIViewController {
     
+    // MARK: Properties
     private let output: ProfileViewOutput
     lazy var profileView = self.view as? ProfileView
-
+    
+    // MARK: Init
     init(output: ProfileViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -20,7 +24,8 @@ final class ProfileViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override methods
     override func loadView() {
         let view = ProfileView(frame: UIScreen.main.bounds)
         self.view = view
@@ -31,6 +36,8 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
+// MARK: - ProfileViewInput
 
 extension ProfileViewController: ProfileViewInput {
     
