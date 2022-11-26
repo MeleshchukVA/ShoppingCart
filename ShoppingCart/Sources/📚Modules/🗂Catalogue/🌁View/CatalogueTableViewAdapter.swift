@@ -7,12 +7,16 @@
 
 import UIKit
 
+// MARK: - CatalogueTableViewAdapterDelegate
+
 protocol CatalogueTableViewAdapterDelegate: AnyObject {
     func catalogueTableViewAdapter(
         _ adapter: CatalogueTableViewAdapter,
         didSelectComponentAt indexPath: IndexPath
     )
 }
+
+// MARK: - CatalogueTableViewAdapterProtocol
 
 protocol CatalogueTableViewAdapterProtocol {
     func setupTable(tableView: UITableView)
@@ -21,6 +25,8 @@ protocol CatalogueTableViewAdapterProtocol {
     func restore()
 }
 
+// MARK: - CatalogueTableViewAdapter class
+
 final class CatalogueTableViewAdapter: NSObject {
     
     weak var delegate: CatalogueTableViewAdapterDelegate?
@@ -28,7 +34,7 @@ final class CatalogueTableViewAdapter: NSObject {
     var viewModels = [CatalogueViewModel]()
 }
 
-// MARK: - CatalogueTableViewAdapterProtocol
+// MARK: - CatalogueTableViewAdapter + CatalogueTableViewAdapterProtocol
 
 extension CatalogueTableViewAdapter: CatalogueTableViewAdapterProtocol {
     

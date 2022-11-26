@@ -8,8 +8,11 @@
 
 import Foundation
 
+// MARK: - CataloguePresenter
+
 final class CataloguePresenter {
     
+    // MARK: Properties
     weak var view: CatalogueViewInput?
     weak var moduleOutput: CatalogueModuleOutput?
     
@@ -22,6 +25,7 @@ final class CataloguePresenter {
     private var total: Int = 0
     private var query: String = ""
     
+    // MARK: Init
     init(
         router: CatalogueRouterInput,
         interactor: CatalogueInteractorInput,
@@ -35,11 +39,11 @@ final class CataloguePresenter {
     }
 }
 
-// MARK: - Private
+// MARK: - CataloguePresenter private extension
 
-extension CataloguePresenter {
+private extension CataloguePresenter {
     
-    private func clear() {
+    func clear() {
         query = ""
         total = 0
         categories.removeAll()
@@ -157,6 +161,7 @@ extension CataloguePresenter: CatalogueInteractorOutput {
                 }
             }
         }
+        
         DispatchQueue.main.async {
             self.collectionViewAdapter.viewModels = viewModels
             self.view?.updateCollectionViewData(adapter: self.collectionViewAdapter, isEmpty: viewModels.isEmpty)

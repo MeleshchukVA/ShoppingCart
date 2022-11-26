@@ -8,7 +8,11 @@
 
 import UIKit
 
+// MARK: - CatalogueRouter class
+
 final class CatalogueRouter: BaseRouter {}
+
+// MARK: - CatalogueRouterInput
 
 extension CatalogueRouter: CatalogueRouterInput {
     
@@ -19,5 +23,7 @@ extension CatalogueRouter: CatalogueRouterInput {
         navigationController?.pushViewController(container.viewController, animated: true)
     }
 }
+
+// MARK: - ProductModuleOutput
 
 extension CatalogueRouter: ProductModuleOutput {}

@@ -8,18 +8,31 @@
 
 import UIKit
 
+// MARK: - CatalogueContext struct
+
 struct CatalogueContext {
     
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: CatalogueModuleOutput?
 }
 
+// MARK: - CatalogueContainer class
+
 final class CatalogueContainer {
     
+    // MARK: Properties
     weak var router: CatalogueRouterInput?
     let input: CatalogueModuleInput
     let viewController: UIViewController
+    
+    // MARK: Init
+    private init(view: UIViewController, input: CatalogueModuleInput, router: CatalogueRouterInput) {
+        self.viewController = view
+        self.input = input
+        self.router = router
+    }
 
+    // MARK: Assemble method
     static func assemble(with context: CatalogueContext) -> CatalogueContainer {
         let tableViewAdapter = CatalogueTableViewAdapter()
         let collectionViewAdapter = ProductCollectionViewAdapter()
@@ -58,11 +71,5 @@ final class CatalogueContainer {
         }
         
         return CatalogueContainer(view: viewController, input: presenter, router: router)
-    }
-
-    private init(view: UIViewController, input: CatalogueModuleInput, router: CatalogueRouterInput) {
-        self.viewController = view
-        self.input = input
-        self.router = router
     }
 }

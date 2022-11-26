@@ -7,8 +7,11 @@
 
 import UIKit
 
+// MARK: - CatalogueCell class
+
 final class CatalogueCell: UITableViewCell {
     
+    // MARK: Properties
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
@@ -16,6 +19,7 @@ final class CatalogueCell: UITableViewCell {
         return label
     }()
     
+    // MARK: Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -28,6 +32,8 @@ final class CatalogueCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: - CatalogueCell extension
 
 extension CatalogueCell {
     
@@ -42,7 +48,13 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
     
     func setupView() {
         if let image = UIImage(named: "chevron.right") {
-            let accessory = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+            let accessory = UIImageView(
+                frame: CGRect(
+                    x: 0,
+                    y: 0,
+                    width: image.size.width,
+                    height: image.size.height)
+            )
             accessory.image = image
             accessory.tintColor = UIColor.white
             self.accessoryView = accessory
@@ -56,11 +68,11 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
     
     func setupConstraints() {
         label.translatesAutoresizingMaskIntoConstraints = false
-        let constraints = [
+
+        NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             label.topAnchor.constraint(equalTo: self.topAnchor),
             label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }

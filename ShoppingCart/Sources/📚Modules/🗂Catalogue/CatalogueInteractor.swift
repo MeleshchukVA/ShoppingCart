@@ -8,10 +8,14 @@
 
 import Foundation
 
+// MARK: - CatalogueInteractor class
+
 final class CatalogueInteractor: BaseInteractor {
     
     weak var output: CatalogueInteractorOutput?
 }
+
+// MARK: - CatalogueInteractorInput
 
 extension CatalogueInteractor: CatalogueInteractorInput {
     

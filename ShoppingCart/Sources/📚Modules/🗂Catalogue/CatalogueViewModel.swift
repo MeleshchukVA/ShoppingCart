@@ -7,11 +7,15 @@
 
 import Foundation
 
+// MARK: - CatalogueViewModel + Identifiable
+
 struct CatalogueViewModel: Identifiable {
     
     var id: UUID
     var name: String
 }
+
+// MARK: - CatalogueViewModel + Hashable
 
 extension CatalogueViewModel: Hashable {
 

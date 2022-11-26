@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - CatalogueView + Appearance
+
 extension CatalogueView {
     
     struct Appearance {
@@ -16,8 +18,11 @@ extension CatalogueView {
     }
 }
 
+// MARK: - CatalogueView class
+
 final class CatalogueView: BaseView {
     
+    // MARK: Properties
     let appearance: Appearance
     
     lazy var tableView: UITableView = {
@@ -41,6 +46,7 @@ final class CatalogueView: BaseView {
         return collectionView
     }()
     
+    // MARK: Init
     init(
         frame: CGRect = .zero,
         appearance: Appearance = Appearance()
@@ -58,7 +64,7 @@ final class CatalogueView: BaseView {
     }
 }
 
-// MARK: - Public
+// MARK: - CatalogueView extension
 
 extension CatalogueView {
     
@@ -96,8 +102,8 @@ extension CatalogueView: ProgrammaticallyInitializableViewProtocol {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraints = [
+                
+        NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -110,9 +116,7 @@ extension CatalogueView: ProgrammaticallyInitializableViewProtocol {
             
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        ])
     }
 }
 

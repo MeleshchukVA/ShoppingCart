@@ -8,13 +8,17 @@
 
 import UIKit
 
+// MARK: - CatalogueViewController
+
 final class CatalogueViewController: BaseViewController {
     
+    // MARK: Properties
     private let output: CatalogueViewOutput
     private let searchController = UISearchController(searchResultsController: nil)
     
     lazy var catalogueView = self.view as? CatalogueView
-
+    
+    // MARK: Init
     init(output: CatalogueViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
@@ -24,6 +28,7 @@ final class CatalogueViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Override
     override func loadView() {
         let view = CatalogueView(frame: UIScreen.main.bounds)
         self.view = view
@@ -93,7 +98,6 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
         textFieldInsideUISearchBar?.textColor = Colors.lightGray
         textFieldInsideUISearchBar?.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
 
-        // SearchBar placeholder
         let labelInsideUISearchBar = textFieldInsideUISearchBar?.value(forKey: "placeholderLabel") as? UILabel
         labelInsideUISearchBar?.textColor = UIColor.red
         labelInsideUISearchBar?.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
@@ -109,11 +113,13 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
         
         let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        
         if let clearButton = textField?.value(forKey: "clearButton") as? UIButton {
             let templateImage = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
             clearButton.setImage(templateImage, for: .normal)
             clearButton.tintColor = .white
         }
+        
         textField?.attributedPlaceholder = NSAttributedString(
             string: textField?.placeholder ?? "",
             attributes: [.foregroundColor: UIColor.white]
@@ -123,6 +129,7 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
         UITextField.appearance(
             whenContainedInInstancesOf: [UISearchBar.self]
         ).defaultTextAttributes = [.foregroundColor: UIColor.white]
+        
         let glassIconView = textField?.leftView as? UIImageView
         glassIconView?.image = glassIconView?.image?.withRenderingMode(.alwaysTemplate)
         glassIconView?.tintColor = .white
