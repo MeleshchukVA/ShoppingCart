@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - ImageType enum
+
 enum ImageType: String {
     
     case welcome = "hand.wave"
@@ -15,15 +17,13 @@ enum ImageType: String {
     case image = "photo"
 }
 
+// MARK: - PageViewController + Appearence
+
 extension PageViewController {
     
     struct Appearence {
         
-        let imageViewSize: CGFloat = 180
-        let imageViewTopOffset: CGFloat = 120
-        let textLabelTopOffset: CGFloat = 50
-        let textLabelBottomOffset: CGFloat = 20
-
+        let stackViewHeight: CGFloat = 100
         let bold34 = Font.sber(ofSize: Font.Size.thirtyFour, weight: .bold)
         let backgroundColor = Colors.purple
         let foregroundColor = Colors.lightWhite
@@ -31,9 +31,11 @@ extension PageViewController {
     }
 }
 
-// MARK: - доделать (унаследоваться от ProgInit)
+// MARK: - PageViewController class
+
 final class PageViewController: UIViewController {
     
+    // MARK: Properties
     private let appearence = Appearence()
 
     let imageType: ImageType
@@ -56,7 +58,21 @@ final class PageViewController: UIViewController {
         label.textColor = appearence.foregroundColor
         return label
     }()
-
+    
+    private lazy var textLabelEmptyView: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    // MARK: Init
     init(imageType: ImageType, text: String) {
         self.imageType = imageType
         self.text = text
@@ -66,44 +82,53 @@ final class PageViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-    }
-}
-
-// MARK: - Private
-extension PageViewController {
-    
-    private func setupUI() {
-        self.view.backgroundColor = .clear
+        setupView()
         setupSubviews()
         setupConstraints()
     }
+}
 
-    private func setupSubviews() {
-        self.view.addSubview(imageView)
-        self.view.addSubview(textLabel)
+// MARK: - ProgrammaticallyInitializableViewProtocol
+
+extension PageViewController: ProgrammaticallyInitializableViewProtocol {
+    
+    func setupView() {
+        self.view.backgroundColor = .clear
+        
+        textLabel.sizeToFit()
     }
 
-    private func setupConstraints() {
+    func setupSubviews() {
+        view.addSubview(stackView)
+        
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(textLabelEmptyView)
+        
+        textLabelEmptyView.addSubview(textLabel)
+    }
+
+    func setupConstraints() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.sizeToFit()
 
-        let constraints = [
-            imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: appearence.imageViewTopOffset),
-            imageView.widthAnchor.constraint(equalToConstant: appearence.imageViewSize),
-            imageView.heightAnchor.constraint(equalToConstant: appearence.imageViewSize),
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
+            stackView.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor),
+            stackView.heightAnchor.constraint(
+                equalTo: self.view.safeAreaLayoutGuide.heightAnchor,
+                constant: -appearence.stackViewHeight
+            ),
 
-            textLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: appearence.textLabelBottomOffset),
-            textLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            textLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            textLabel.widthAnchor.constraint(equalToConstant: textLabel.frame.width),
-            textLabel.heightAnchor.constraint(equalToConstant: textLabel.frame.height)
-        ]
-        NSLayoutConstraint.activate(constraints)
+            textLabel.centerXAnchor.constraint(equalTo: self.textLabelEmptyView.centerXAnchor),
+            textLabel.centerYAnchor.constraint(equalTo: self.textLabelEmptyView.centerYAnchor),
+            textLabel.widthAnchor.constraint(equalTo: self.textLabelEmptyView.widthAnchor),
+            textLabel.heightAnchor.constraint(equalTo: self.textLabelEmptyView.heightAnchor)
+        ])
     }
 }

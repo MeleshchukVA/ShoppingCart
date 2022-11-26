@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - OnboardingViewController + Appearence
+
 extension OnboardingViewController {
     
     struct Appearence {
@@ -19,10 +21,13 @@ extension OnboardingViewController {
     }
 }
 
+// MARK: - OnboardingViewController class
+
 final class OnboardingViewController: UIPageViewController {
     
+    // MARK: Properties
     var currentPage = 0
-
+    
     private let appearence = Appearence()
     private var pages = [UIViewController]()
     private var onboardingCompletion: (_ success: Bool) -> Void
@@ -35,7 +40,8 @@ final class OnboardingViewController: UIPageViewController {
         button.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         return button
     }()
-
+    
+    // MARK: Init
     init(
         transitionStyle style: UIPageViewController.TransitionStyle,
         navigationOrientation: UIPageViewController.NavigationOrientation,
@@ -48,11 +54,14 @@ final class OnboardingViewController: UIPageViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageController()
-        setupUI()
+        setupView()
+        setupSubviews()
+        setupConstraints()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -61,38 +70,46 @@ final class OnboardingViewController: UIPageViewController {
     }
 }
 
-// MARK: - Private
-extension OnboardingViewController {
-    
-    @objc private func skipButtonTapped() {
-        onboardingCompletion(true)
-    }
+// MARK: - Private extension
 
-    private func setupPageController() {
-        setupPageControll()
+private extension OnboardingViewController {
+    
+    // MARK: Methods
+    func setupPageController() {
+        setupPageControl()
+        
         dataSource = self
         delegate = self
 
-        let page1 = PageViewController(imageType: ImageType.welcome, text: "Welcome \n to my test App!")
-        let page2 = PageViewController(imageType: ImageType.search, text: "Search for products \n and add to cart")
-        let page3 = PageViewController(imageType: ImageType.stored, text: "Products are stored \n in Core Data")
-        let page4 = PageViewController(imageType: ImageType.image, text: "Images are loaded \n and saved in the cache")
-
-        pages.append(page1)
-        pages.append(page2)
-        pages.append(page3)
-        pages.append(page4)
+        let page1 = PageViewController(
+            imageType: ImageType.welcome,
+            text: "Welcome to \n my final project \n for Gazprombank!"
+        )
+        let page2 = PageViewController(
+            imageType: ImageType.search,
+            text: "Search for products \n and add to cart"
+        )
+        let page3 = PageViewController(
+            imageType: ImageType.stored,
+            text: "Products are stored \n in Core Data"
+        )
+        let page4 = PageViewController(
+            imageType: ImageType.image,
+            text: "Images \n are loaded and saved \n in the cache"
+        )
+        
+        [page1, page2, page3, page4].forEach { pages.append($0) }
 
         setViewControllers([pages[currentPage]], direction: .forward, animated: true)
     }
 
-    private func setupPageControll() {
+    func setupPageControl() {
         let pageControllAppesrence = UIPageControl.appearance()
         pageControllAppesrence.currentPageIndicatorTintColor = appearence.foregroundColor
         pageControllAppesrence.pageIndicatorTintColor = appearence.unselectedForegroundColor
     }
 
-    private func startSkipButtonPulseAnimation() {
+    func startSkipButtonPulseAnimation() {
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimation.duration = 0.7
         scaleAnimation.repeatCount = Float.infinity
@@ -101,29 +118,39 @@ extension OnboardingViewController {
         scaleAnimation.toValue = 0.9
         skipButton.layer.add(scaleAnimation, forKey: "scale")
     }
+    
+    // MARK: Actions
+    @objc func skipButtonTapped() {
+        onboardingCompletion(true)
+    }
+}
 
-    private func setupUI() {
+// MARK: - ProgrammaticallyInitializableViewProtocol
+
+extension OnboardingViewController: ProgrammaticallyInitializableViewProtocol {
+    
+    func setupView() {
         self.view.backgroundColor = appearence.backgroundColor
-        setupSubviews()
-        setupConstraints()
     }
 
-    private func setupSubviews() {
+    func setupSubviews() {
         self.view.addSubview(skipButton)
     }
 
-    private func setupConstraints() {
+    func setupConstraints() {
         skipButton.translatesAutoresizingMaskIntoConstraints = false
-        let constraints = [
+        
+        NSLayoutConstraint.activate([
             skipButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            skipButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
-                                               constant: -appearence.bottomMargin)
-        ]
-        NSLayoutConstraint.activate(constraints)
+            skipButton.bottomAnchor.constraint(
+                equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -appearence.bottomMargin)
+        ])
     }
 }
 
 // MARK: - UIPageViewControllerDataSource
+
 extension OnboardingViewController: UIPageViewControllerDataSource {
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
@@ -160,6 +187,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource {
 }
 
 // MARK: - UIPageViewControllerDelegate
+
 extension OnboardingViewController: UIPageViewControllerDelegate {
     
     func pageViewController(
