@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Appearance
+// MARK: - ProductCell + Appearance
 
 extension ProductCell {
 
@@ -18,7 +18,7 @@ extension ProductCell {
     }
 }
 
-// MARK: - Class
+// MARK: - ProductCell class
 
 final class ProductCell: UICollectionViewCell {
 
@@ -193,8 +193,10 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
             imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor,
-                                              constant: -(ProductConstants.Layout.heightProductCard - 17)),
+            imageView.bottomAnchor.constraint(
+                equalTo: self.contentView.bottomAnchor,
+                constant: -(ProductConstants.Layout.heightProductCard - 17)
+            ),
 
             ratingLabel.leadingAnchor.constraint(equalTo: self.imageView.leadingAnchor, constant: 5),
             ratingLabel.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -5),
@@ -229,7 +231,7 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
     }
 }
 
-// MARK: - ProductCell methods and actions
+// MARK: - ProductCell extension
 
 extension ProductCell {
 

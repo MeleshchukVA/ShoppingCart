@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - ProductCollectionViewAdapterDelegate
+// MARK: - ProductCollectionViewAdapterDelegate protocol
 
 protocol ProductCollectionViewAdapterDelegate: AnyObject {
     func productCollectionViewAdapter(
@@ -16,6 +16,8 @@ protocol ProductCollectionViewAdapterDelegate: AnyObject {
     )
     func willDisplay(at index: Int)
 }
+
+// MARK: - ProductCollectionViewAdapterDelegate extension
 
 extension ProductCollectionViewAdapterDelegate {
 
@@ -27,7 +29,7 @@ extension ProductCollectionViewAdapterDelegate {
     func willDisplay(at index: Int) {}
 }
 
-// MARK: - Class
+// MARK: - ProductCollectionViewAdapter class
 
 final class ProductCollectionViewAdapter: NSObject {
 

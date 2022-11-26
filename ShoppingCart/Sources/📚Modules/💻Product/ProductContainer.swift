@@ -8,18 +8,31 @@
 
 import UIKit
 
+// MARK: - ProductContext struct
+
 struct ProductContext {
     
     let moduleDependencies: ModuleDependencies
     weak var moduleOutput: ProductModuleOutput?
 }
 
+// MARK: - ProductContainer class
+
 final class ProductContainer {
     
+    // MARK: Properties
     let input: ProductModuleInput
     let viewController: UIViewController
     weak var router: ProductRouterInput?
-
+    
+    // MARK: Init
+    private init(view: UIViewController, input: ProductModuleInput, router: ProductRouterInput) {
+        self.viewController = view
+        self.input = input
+        self.router = router
+    }
+    
+    // MARK: Assemble method
     static func assemble(with context: ProductContext, viewModel: CatalogueViewModel) -> ProductContainer {
         let collectionViewAdapter = ProductCollectionViewAdapter()
         let router = ProductRouter()
@@ -52,11 +65,5 @@ final class ProductContainer {
         router.moduleDependencies = context.moduleDependencies
 
         return ProductContainer(view: viewController, input: presenter, router: router)
-    }
-
-    private init(view: UIViewController, input: ProductModuleInput, router: ProductRouterInput) {
-        self.viewController = view
-        self.input = input
-        self.router = router
     }
 }

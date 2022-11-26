@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Appearance
+// MARK: - ProductView + Appearance
 
 extension ProductView {
 
@@ -18,7 +18,7 @@ extension ProductView {
     }
 }
 
-// MARK: - Class
+// MARK: - ProductView class
 
 final class ProductView: BaseView {
 
@@ -54,7 +54,7 @@ final class ProductView: BaseView {
     }
 }
 
-// MARK: - ProductViewProtocol
+// MARK: - ProductView + ProductViewProtocol
 
 extension ProductView: ProductViewProtocol {
 

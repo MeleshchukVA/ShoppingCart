@@ -8,10 +8,10 @@
 
 import UIKit
 
-// MARK: - Router
+// MARK: - ProductRouter
 
 final class ProductRouter: BaseRouter {}
 
-// MARK: - RouterInput
+// MARK: - ProductRouterInput
 
 extension ProductRouter: ProductRouterInput {}

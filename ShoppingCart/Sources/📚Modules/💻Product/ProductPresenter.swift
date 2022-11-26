@@ -8,8 +8,11 @@
 
 import Foundation
 
+// MARK: - ProductPresenter class
+
 final class ProductPresenter {
     
+    // MARK: Properties
     weak var view: ProductViewInput?
     weak var moduleOutput: ProductModuleOutput?
 
@@ -18,7 +21,8 @@ final class ProductPresenter {
     private var collectionViewAdapter: ProductCollectionViewAdapter
     private let viewModel: CatalogueViewModel
     private var products: [Product] = []
-
+    
+    // MARK: Init
     init(
         router: ProductRouterInput,
         interactor: ProductInteractorInput,
@@ -33,9 +37,11 @@ final class ProductPresenter {
 }
 
 // MARK: - ProductModuleInput
+
 extension ProductPresenter: ProductModuleInput {}
 
 // MARK: - ProductViewOutput
+
 extension ProductPresenter: ProductViewOutput {
     
     func viewDidLoad() {
@@ -45,6 +51,7 @@ extension ProductPresenter: ProductViewOutput {
 }
 
 // MARK: - ProductInteractorOutput
+
 extension ProductPresenter: ProductInteractorOutput {
     
     func didObtainProducts(products: [Products]) {
@@ -96,6 +103,7 @@ extension ProductPresenter: ProductInteractorOutput {
 }
 
 // MARK: - ProductCollectionViewAdapterDelegate
+
 extension ProductPresenter: ProductCollectionViewAdapterDelegate {
     
     func productCollectionViewAdapter(

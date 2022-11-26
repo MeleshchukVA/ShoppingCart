@@ -16,7 +16,7 @@ final class ProductInteractor: BaseInteractor {
     weak var output: ProductInteractorOutput?
 }
 
-// MARK: - InteractorInput
+// MARK: - ProductInteractorInput
 
 extension ProductInteractor: ProductInteractorInput {
 

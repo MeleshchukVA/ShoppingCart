@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - ProductViewModel struct
+
 struct ProductViewModel: Identifiable {
     
     var id: Int

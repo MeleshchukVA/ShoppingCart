@@ -8,12 +8,16 @@
 
 import UIKit
 
+// MARK: - ProductViewController class
+
 final class ProductViewController: BaseViewController {
     
+    // MARK: Properties
     private let output: ProductViewOutput
     private let viewModel: CatalogueViewModel
     lazy var productView = self.view as? ProductView
-
+    
+    // MARK: Init
     init(
         output: ProductViewOutput,
         viewModel: CatalogueViewModel
@@ -26,7 +30,8 @@ final class ProductViewController: BaseViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: Override methods
     override func loadView() {
         let view = ProductView(frame: UIScreen.main.bounds)
         self.view = view
@@ -37,8 +42,13 @@ final class ProductViewController: BaseViewController {
         setupNavigationBar()
         output.viewDidLoad()
     }
+}
 
-    private func setupNavigationBar() {
+// MARK: - ProductViewController private extension
+
+private extension ProductViewController {
+    
+    func setupNavigationBar() {
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(
             title: "",
             style: .plain,
@@ -49,6 +59,8 @@ final class ProductViewController: BaseViewController {
         title = viewModel.name
     }
 }
+
+// MARK: - ProductViewInput
 
 extension ProductViewController: ProductViewInput {
     
