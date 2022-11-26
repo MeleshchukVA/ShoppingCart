@@ -152,7 +152,7 @@ final class ProductCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Lifecycle
+    // MARK: Override methods
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
