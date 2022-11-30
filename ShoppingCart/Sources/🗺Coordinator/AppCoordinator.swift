@@ -156,7 +156,9 @@ private extension AppCoordinator {
         ]
         navigationBarAppearance.tintColor = .white
         navigationBarAppearance.isTranslucent = false
-        navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
+        if #available(iOS 13, *) {
+            navigationBarAppearance.setBackgroundImage(UIImage(), for: .default)
+        }
         navigationBarAppearance.shadowImage = UIImage()
     }
 
