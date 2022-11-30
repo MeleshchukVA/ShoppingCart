@@ -29,7 +29,9 @@ final class CatalogueView: BaseView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.keyboardDismissMode = .onDrag
         tableView.indicatorStyle = .white
-        tableView.contentInset.top = appearance.tableViewContentInsetTop
+        if #available(iOS 13.0, *) {
+            tableView.contentInset.top = appearance.tableViewContentInsetTop
+        }
         tableView.register(CatalogueCell.self)
         return tableView
     }()
