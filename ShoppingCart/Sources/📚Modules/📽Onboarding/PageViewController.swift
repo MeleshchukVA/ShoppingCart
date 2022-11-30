@@ -14,7 +14,7 @@ enum ImageType: String {
     case welcome = "hand.wave"
     case search = "magnifyingglass"
     case stored = "tray.2"
-    case image = "photo"
+    case image = "photo.on.rectangle.angled"
 }
 
 // MARK: - PageViewController + Appearence
@@ -44,7 +44,7 @@ final class PageViewController: UIViewController {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.image = UIImage(named: imageType.rawValue)
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.tintColor = appearence.foregroundColor
         return imageView
     }()

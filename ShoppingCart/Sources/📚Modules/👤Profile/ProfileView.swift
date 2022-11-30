@@ -149,7 +149,7 @@ extension ProfileView {
 
     func setupAvatar(image: UIImage?) {
         if image == nil {
-            self.avatarView.image = UIImage(named: "photo")
+            self.avatarView.image = UIImage(named: "placeholder")
         } else {
             self.avatarView.setImage(image)
         }

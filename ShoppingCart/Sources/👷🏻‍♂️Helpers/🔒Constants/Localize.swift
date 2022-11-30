@@ -15,14 +15,20 @@ enum Localize {
 
     enum Images {
         
+        // MARK: TabBar
         static let cartIcon: UIImage? = UIImage(named: "cart")
-        static let cartMinusIcon: UIImage? = UIImage(named: "cart.badge.minus")
-        static let cartPlusIcon: UIImage? = UIImage(named: "cart.badge.plus")
-        static let catalogueIcon: UIImage? = UIImage(named: "magnifyingglass")
-        static let ellipsisIcon: UIImage? = UIImage(named: "ellipsis")
-        static let minusIcon: UIImage? = UIImage(named: "minus.square.fill")
-        static let photo: UIImage? = UIImage(named: "photo")
-        static let plusIcon: UIImage? = UIImage(named: "plus.square.fill")
+        static let catalogueIcon: UIImage? = UIImage(named: "search")
         static let profileIcon: UIImage? = UIImage(named: "person")
+
+        // MARK: Product
+        static let cartPlusIcon: UIImage? = UIImage(named: "cart.badge.plus")
+        static let cartMinusIcon: UIImage? = UIImage(named: "cart.badge.minus")
+        
+        // MARK: Cart
+        static let ellipsisIcon: UIImage? = UIImage(named: "ellipsis")
+        static let minusIconGray: UIImage? = UIImage(named: "minus.square.fill")
+        static let minusIconPurple: UIImage? = UIImage(named: "minus.square.fill.purple")
+        static let plusIcon: UIImage? = UIImage(named: "plus.square.fill")
+        static let placeholderIcon: UIImage? = UIImage(named: "placeholder")
     }
 }

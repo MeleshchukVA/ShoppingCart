@@ -309,7 +309,7 @@ extension ProductCell {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.imageView.image = UIImage(named: "photo")
+                    self.imageView.image = UIImage(named: "placeholder")
                     print(error)
                 }
             }

@@ -21,8 +21,9 @@ extension CartCell {
         let whiteColor = Colors.lightWhite
         let purpleColor = Colors.purple2
 
-        let photoIcon = Localize.Images.photo
-        let minusIconGray = Localize.Images.minusIcon
+        let placeholderIcon = Localize.Images.placeholderIcon
+        let minusIconGray = Localize.Images.minusIconGray
+        let minusIconPurple = Localize.Images.minusIconPurple
         let plusIcon = Localize.Images.plusIcon
         let elipsisIcon = Localize.Images.ellipsisIcon
         let cardButtonImagePlus = Localize.Images.cartPlusIcon
@@ -221,7 +222,10 @@ extension CartCell {
         _ attributedString2: inout NSMutableAttributedString,
         _ fullPrice: String
     ) {
-        attributedText = NSMutableAttributedString(string: "\(price) ", attributes: [.foregroundColor: UIColor.white])
+        attributedText = NSMutableAttributedString(
+            string: "\(price) ",
+            attributes: [.foregroundColor: UIColor.white]
+        )
         attributedString2 = NSMutableAttributedString(string: fullPrice)
         attributedString2.addAttribute(
             .strikethroughStyle,
@@ -304,7 +308,7 @@ extension CartCell {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.productImageView.image = self.appearance.photoIcon
+                    self.productImageView.setImage(self.appearance.placeholderIcon)
                     print(error)
                 }
             }
@@ -324,7 +328,7 @@ extension CartCell {
         count += 1
         var attributedText = NSMutableAttributedString(string: "", attributes: [.foregroundColor: UIColor.gray])
         var attributedString2 = NSMutableAttributedString(string: "", attributes: [.foregroundColor: UIColor.white])
-        minusButton.imageView?.tintColor = appearance.purpleColor
+        minusButton.setImage(appearance.minusIconPurple, for: .normal)
         countLabel.text = "\(count)"
         if let priceText = CurrencyFormatter.shared.convertTostring(from: Double(price * UInt(count))),
            let fullPriceText = CurrencyFormatter.shared.convertTostring(from: Double(fullPrice * UInt(count))) {
@@ -345,14 +349,14 @@ extension CartCell {
         if count > 1 {
             var attributedText = NSMutableAttributedString(string: "", attributes: [.foregroundColor: UIColor.gray])
             var attributedString2 = NSMutableAttributedString(string: "", attributes: [.foregroundColor: UIColor.white])
-            minusButton.imageView?.tintColor = appearance.purpleColor
+            minusButton.setImage(appearance.minusIconPurple, for: .normal)
             countLabel.text = "\(count - 1)"
             if let priceText = CurrencyFormatter.shared.convertTostring(from: Double(price * UInt(count - 1))),
                let fullPriceText = CurrencyFormatter.shared.convertTostring(from: Double(fullPrice * UInt(count - 1))) {
                 createPrice(&attributedText, priceText, &attributedString2, fullPriceText)
             }
             if (count - 1) == 1 {
-                minusButton.imageView?.tintColor = appearance.whiteColor
+                minusButton.setImage(appearance.minusIconGray, for: .normal)
             }
             self.updateHandler?((id, count - 1))
         } else {
