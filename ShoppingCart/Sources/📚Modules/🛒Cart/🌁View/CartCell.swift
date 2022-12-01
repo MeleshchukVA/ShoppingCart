@@ -73,7 +73,7 @@ final class CartCell: UITableViewCell {
         paragraphStyle.lineBreakMode = .byTruncatingTail
         paragraphStyle.lineHeightMultiple = 0.99
         label.attributedText = NSMutableAttributedString(
-            string: "mackbook pro",
+            string: "macbook pro",
             attributes: [
                 .kern: 0.07,
                 .paragraphStyle: paragraphStyle
