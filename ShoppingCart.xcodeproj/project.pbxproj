@@ -69,7 +69,6 @@
 		3F5A22B829099E8600438114 /* SBSansDisplay-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F5A22B629099E8600438114 /* SBSansDisplay-SemiBold.ttf */; };
 		3F5A22BC290ADC2700438114 /* ProgrammaticallyInitializableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A22BB290ADC2700438114 /* ProgrammaticallyInitializableViewProtocol.swift */; };
 		3F5A22BF290ADD8300438114 /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A22BE290ADD8300438114 /* ReuseIdentifier.swift */; };
-		3F5A22C1290ADF0E00438114 /* UISearchBar + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A22C0290ADF0E00438114 /* UISearchBar + Extension.swift */; };
 		3F5A22CA290AE68B00438114 /* CatalogueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A22C9290AE68B00438114 /* CatalogueViewModel.swift */; };
 		3F5A22CE290AE6FE00438114 /* CatalogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A22CD290AE6FE00438114 /* CatalogueCell.swift */; };
 		3F6E98FB2906F4A200F25E9B /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E98FA2906F4A200F25E9B /* Localize.swift */; };
@@ -175,7 +174,6 @@
 		3F5A22B629099E8600438114 /* SBSansDisplay-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SBSansDisplay-SemiBold.ttf"; sourceTree = "<group>"; };
 		3F5A22BB290ADC2700438114 /* ProgrammaticallyInitializableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticallyInitializableViewProtocol.swift; sourceTree = "<group>"; };
 		3F5A22BE290ADD8300438114 /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
-		3F5A22C0290ADF0E00438114 /* UISearchBar + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar + Extension.swift"; sourceTree = "<group>"; };
 		3F5A22C9290AE68B00438114 /* CatalogueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewModel.swift; sourceTree = "<group>"; };
 		3F5A22CD290AE6FE00438114 /* CatalogueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueCell.swift; sourceTree = "<group>"; };
 		3F6E98ED2906E65500F25E9B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -449,7 +447,6 @@
 				3F08A63B292D1A6F00F02EDF /* UICollectionView + Extension.swift */,
 				3F6E99002906F53E00F25E9B /* UIColor + Extension.swift */,
 				3F08A639292D1A4C00F02EDF /* UIImageView + Extension.swift */,
-				3F5A22C0290ADF0E00438114 /* UISearchBar + Extension.swift */,
 				3F08A635292D1A0C00F02EDF /* UITableView + Extension.swift */,
 			);
 			path = "😺UIKit";
@@ -757,7 +754,6 @@
 				3F91E42E292D31BC0000A994 /* ShoppingCartModel.xcdatamodeld in Sources */,
 				3F12B040292F8F2400338F1D /* ProfileInteractor.swift in Sources */,
 				3F81A70C292FC99500D41DCF /* IndicatorProtocol.swift in Sources */,
-				3F5A22C1290ADF0E00438114 /* UISearchBar + Extension.swift in Sources */,
 				3F91E436292D34110000A994 /* PersistentConstants.swift in Sources */,
 				3F08A6082927C91000F02EDF /* ProductView.swift in Sources */,
 				3F91E433292D338E0000A994 /* ProductCDModel+CoreDataProperties.swift in Sources */,
