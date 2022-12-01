@@ -37,7 +37,7 @@ final class CatalogueViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.statusBarUIView?.backgroundColor = Colors.purple
-
+        
         output.viewDidLoad()
         setupSearchController()
     }
@@ -92,13 +92,22 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search"
+        searchController.obscuresBackgroundDuringPresentation = false
         
         if #available(iOS 13.0, *) {
-            searchController.searchBar.compatibleSearchTextField.textColor = .white
-            searchController.searchBar.compatibleSearchTextField.backgroundColor = Colors.searchBarBackground
+            searchController.searchBar.searchTextField.textColor = .white
+            searchController.searchBar.searchTextField.backgroundColor = UIColor.black
         } else {
             searchController.searchBar.tintColor = .white
             searchController.searchBar.backgroundColor = Colors.purple
+            
+            if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+                let backgroundView = textField.subviews.first
+                backgroundView?.backgroundColor = UIColor.black
+                backgroundView?.subviews.forEach({ $0.removeFromSuperview() })
+                backgroundView?.layer.cornerRadius = 10.5
+                backgroundView?.layer.masksToBounds = true
+            }
         }
         
         let textFieldInsideUISearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
@@ -108,28 +117,33 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
         let labelInsideUISearchBar = textFieldInsideUISearchBar?.value(forKey: "placeholderLabel") as? UILabel
         labelInsideUISearchBar?.textColor = UIColor.red
         labelInsideUISearchBar?.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
-        searchController.obscuresBackgroundDuringPresentation = false
         
         let attributes: [NSAttributedString.Key: Any] = [
             .font: Font.sber(ofSize: Font.Size.seventeen, weight: .regular) as Any
         ]
+        
         UIBarButtonItem.appearance(
             whenContainedInInstancesOf: [UISearchBar.self]
         ).setTitleTextAttributes(attributes, for: .normal)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "Cancel"
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
+        UIBarButtonItem.appearance(
+            whenContainedInInstancesOf: [UISearchBar.self]
+        ).title = "Cancel"
+        UIBarButtonItem.appearance(
+            whenContainedInInstancesOf: [UISearchBar.self]
+        ).tintColor = .white
         
         let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
-        if let clearButton = textField?.value(forKey: "clearButton") as? UIButton {
-            let templateImage = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
-            clearButton.setImage(templateImage, for: .normal)
-            clearButton.tintColor = .white
-        }
         textField?.attributedPlaceholder = NSAttributedString(
             string: textField?.placeholder ?? "",
             attributes: [.foregroundColor: UIColor.white]
         )
         textField?.textColor = .white
+        
+        if let clearButton = textField?.value(forKey: "clearButton") as? UIButton {
+            let templateImage = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+            clearButton.setImage(templateImage, for: .normal)
+            clearButton.tintColor = .white
+        }
         
         UITextField.appearance().keyboardAppearance = UIKeyboardAppearance.dark
         UITextField.appearance(
