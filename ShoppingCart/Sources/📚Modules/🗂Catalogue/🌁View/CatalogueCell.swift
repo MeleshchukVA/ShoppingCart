@@ -70,7 +70,7 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             label.topAnchor.constraint(equalTo: self.topAnchor),
             label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
