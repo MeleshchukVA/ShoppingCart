@@ -279,11 +279,11 @@
 			isa = PBXGroup;
 			children = (
 				3F12B023292F899100338F1D /* 🌁View */,
+				3F12B02E292F8A4400338F1D /* CheckoutViewController.swift */,
+				3F12B032292F8A7100338F1D /* CheckoutInteractor.swift */,
 				3F12B02A292F8A0900338F1D /* CheckoutPresenter.swift */,
 				3F12B02C292F8A2700338F1D /* CheckoutRouter.swift */,
-				3F12B02E292F8A4400338F1D /* CheckoutViewController.swift */,
 				3F12B030292F8A5A00338F1D /* CheckoutProtocols.swift */,
-				3F12B032292F8A7100338F1D /* CheckoutInteractor.swift */,
 				3F12B034292F8A8B00338F1D /* CheckoutContainer.swift */,
 			);
 			path = "✅Checkout";
