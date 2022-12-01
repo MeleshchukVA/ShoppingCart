@@ -38,4 +38,8 @@ extension CheckoutRouter: CheckoutRouterInput {
         alertController.addAction(cancelAction)
         self.viewController?.present(alertController, animated: true)
     }
+    
+    func dismissModalView() {
+        self.viewController?.dismiss(animated: true)
+    }
 }

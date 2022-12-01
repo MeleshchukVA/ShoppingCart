@@ -25,6 +25,7 @@ protocol CheckoutViewInput: AnyObject {}
 
 protocol CheckoutViewOutput: AnyObject {
     func buyButtonTapped()
+    func dismissButtonTapped()
 }
 
 // MARK: - CheckoutInteractorInput
@@ -44,4 +45,5 @@ protocol CheckoutInteractorOutput: AnyObject {
 protocol CheckoutRouterInput: AnyObject {
     func showSuccessAddCartAlert()
     func showErrorAddCartAlert()
+    func dismissModalView()
 }

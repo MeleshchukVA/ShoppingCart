@@ -21,6 +21,7 @@ extension CheckoutView {
         let checkoutButtonVerticalInset: CGFloat = 10.0
         let checkoutButtonSideInset: CGFloat = 10.0
         let checkoutButtonCornerRadius: CGFloat = 10.0
+        let closeButton = Localize.Images.xmarkIcon
     }
 }
 
@@ -49,6 +50,14 @@ final class CheckoutView: BaseView {
         button.layer.cornerRadius = appearance.checkoutButtonCornerRadius
         button.backgroundColor = appearance.purpleColor
         button.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var dismissButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setImage(appearance.closeButton, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(dismissButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -93,6 +102,10 @@ extension CheckoutView {
     @objc private func buyButtonTapped() {
         output.buyButtonTapped()
     }
+    
+    @objc private func dismissButtonTapped() {
+        output.dismissButtonTapped()
+    }
 }
 
 // MARK: - ProgrammaticallyInitializableViewProtocol
@@ -105,18 +118,24 @@ extension CheckoutView: ProgrammaticallyInitializableViewProtocol {
     }
 
     func setupSubviews() {
-        [tableView, activityIndicator, buyButton].forEach { addSubview($0) }
+        [dismissButton, tableView, activityIndicator, buyButton].forEach { addSubview($0) }
     }
 
     func setupConstraints() {
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         buyButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            dismissButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            dismissButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            dismissButton.widthAnchor.constraint(equalToConstant: 40),
+            dismissButton.heightAnchor.constraint(equalToConstant: 40),
+
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            tableView.topAnchor.constraint(equalTo: self.dismissButton.bottomAnchor),
             tableView.bottomAnchor.constraint(
                 equalTo: self.safeAreaLayoutGuide.bottomAnchor,
                 constant: -(appearance.checkoutButtonHeight + appearance.checkoutButtonVerticalInset)

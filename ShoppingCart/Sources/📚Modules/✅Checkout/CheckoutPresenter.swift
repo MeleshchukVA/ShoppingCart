@@ -46,6 +46,10 @@ extension CheckoutPresenter: CheckoutViewOutput {
         interactor.addCart(body)
     }
     
+    func dismissButtonTapped() {
+        router.dismissModalView()
+    }
+    
     // MARK: Private methods
     private func prepareAddCartBody() -> [String: Any] {
         var body = [String: Any]()
