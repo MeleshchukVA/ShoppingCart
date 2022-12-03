@@ -67,8 +67,7 @@ extension CheckoutTableViewAdapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = UIColor.white
-        header.textLabel?.font = Font.sber(ofSize: Font.Size.twentyEight, weight: .regular)
-        header.textLabel?.frame = header.bounds
+        header.textLabel?.font = Font.sber(ofSize: Font.Size.twentyEight, weight: .bold)
         header.textLabel?.textAlignment = .center
     }
 }
