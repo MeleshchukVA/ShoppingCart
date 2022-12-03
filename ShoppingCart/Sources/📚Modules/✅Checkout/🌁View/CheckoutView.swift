@@ -129,7 +129,10 @@ extension CheckoutView: ProgrammaticallyInitializableViewProtocol {
 
         NSLayoutConstraint.activate([
             dismissButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            dismissButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            dismissButton.trailingAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.trailingAnchor,
+                constant: -10
+            ),
             dismissButton.widthAnchor.constraint(equalToConstant: 40),
             dismissButton.heightAnchor.constraint(equalToConstant: 40),
 
