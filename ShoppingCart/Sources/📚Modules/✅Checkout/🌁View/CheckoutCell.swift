@@ -17,6 +17,7 @@ extension CheckoutCell {
         let labelFont = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
         let priceFont = Font.sber(ofSize: Font.Size.seventeen, weight: .bold)
         let priceLabelHeight: CGFloat = 50
+        let priceLabelWidth: CGFloat = 60
         let textCollor = UIColor.white
         let secondaryTextCollor = UIColor.gray
         let verticalInset: CGFloat = 15
@@ -222,8 +223,12 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
                 equalTo: self.contentView.trailingAnchor,
                 constant: -appearence.horizontalInset
             ),
-            priceLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: appearence.verticalInset),
-            priceLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight)
+            priceLabel.topAnchor.constraint(
+                equalTo: self.contentView.topAnchor,
+                constant: appearence.verticalInset
+            ),
+            priceLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight),
+            priceLabel.widthAnchor.constraint(equalToConstant: appearence.priceLabelWidth)
         ])
     }
 }
