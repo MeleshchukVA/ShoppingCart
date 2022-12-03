@@ -36,7 +36,11 @@ final class CartView: BaseView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .none
         tableView.indicatorStyle = .white
-        tableView.contentInset.top = appearance.tableViewContentInsetTop
+        if #available(iOS 13.0, *) {
+            tableView.contentInset.top = appearance.tableViewContentInsetTop
+        } else {
+            tableView.contentInset = UIEdgeInsets.zero
+        }
         tableView.register(CartCell.self)
         return tableView
     }()
@@ -101,7 +105,7 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(
                 equalTo: self.safeAreaLayoutGuide.bottomAnchor,
                 constant: -(appearance.checkoutButtonHeight + appearance.checkoutButtonVerticalInset)
