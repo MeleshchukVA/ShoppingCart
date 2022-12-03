@@ -45,6 +45,18 @@ final class CatalogueViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         output.viewDidAppear()
+        
+        if #available(iOS 12.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = true
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if #available(iOS 12.0, *) {
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
     }
 }
 
