@@ -18,20 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Public methods
     func application(
         _ application: UIApplication,
-        willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         
         appCoordinator = AppCoordinator(window: window, appDependency: appDependency)
         appCoordinator?.start()
-        return true
-    }
-    
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
         self.window?.makeKeyAndVisible()
         return true
     }
