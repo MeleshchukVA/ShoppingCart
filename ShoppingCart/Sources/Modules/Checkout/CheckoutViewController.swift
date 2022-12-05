@@ -27,7 +27,7 @@ final class CheckoutViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Override
+    // MARK: Override methods
     override func loadView() {
         let view = CheckoutView(frame: UIScreen.main.bounds, output: output)
         self.view = view

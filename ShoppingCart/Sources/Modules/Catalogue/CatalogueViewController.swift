@@ -28,7 +28,7 @@ final class CatalogueViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Override
+    // MARK: Override methods
     override func loadView() {
         let view = CatalogueView(frame: UIScreen.main.bounds)
         self.view = view
