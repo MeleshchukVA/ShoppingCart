@@ -48,7 +48,7 @@ extension ImageLoader: ImageLoaderProtocol {
     private func downloadImage(from url: URL, completion: @escaping (Result<UIImage, ImageLoaderError>) -> Void) {
         if let data = try? Data(contentsOf: url) {
             decodeImage(from: data) { [weak self] result in
-                guard let self else { return }
+                guard let self = self else { return }
                 switch result {
                 case .success(let image):
                     self.cache[url] = data

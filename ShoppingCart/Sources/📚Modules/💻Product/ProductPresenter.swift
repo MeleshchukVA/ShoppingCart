@@ -71,12 +71,12 @@ extension ProductPresenter: ProductInteractorOutput {
                 thumbnail: product.thumbnail,
                 images: product.images
             ) { [weak self] id in
-                guard let `self` = self,
+                guard let self = self,
                       let product = self.products.first(where: { $0.id == id }) else {
                     return
                 }
                 self.interactor.addToCart(products: [product]) { [weak self] state in
-                    guard let `self` = self else { return }
+                    guard let self = self else { return }
                     switch state {
                     case .add:
                         DispatchQueue.main.async {

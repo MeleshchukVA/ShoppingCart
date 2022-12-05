@@ -297,7 +297,7 @@ extension CartCell {
         activityIndicator.startAnimating()
         
         imageLoader.loadImage(for: viewModel.thumbnail) { [weak self] result in
-            guard let `self` else { return }
+            guard let self = self else { return }
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {

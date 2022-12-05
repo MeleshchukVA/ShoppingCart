@@ -69,13 +69,13 @@ extension CartPresenter: CartInteractorOutput {
                 price: UInt(product.price),
                 fullPrice: UInt(Double(round(100 * fullPrice) / 100)),
                 count: UInt(product.count)) { [weak self] id in
-                guard let `self` = self,
+                guard let self = self,
                       let viewModel = self.products.first(where: { $0.id == id }) else {
                     return
                 }
                 self.router.showAlertController(viewModel: viewModel)
             } deleteHandler: { [weak self] id in
-                guard let `self` = self,
+                guard let self = self,
                       let viewModel = self.products.first(where: { $0.id == id }) else {
                     return
                 }

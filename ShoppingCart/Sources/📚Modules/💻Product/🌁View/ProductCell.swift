@@ -252,7 +252,7 @@ extension ProductCell {
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.cardButton.setImage(self.appearance.cardButtonImagePlus, for: .normal)
                 UIView.animate(
                     withDuration: 1,
@@ -298,7 +298,7 @@ extension ProductCell {
         activityIndicator.startAnimating()
 
         imageLoader.loadImage(for: viewModel.thumbnail) { [weak self] result in
-            guard let self else { return }
+            guard let self = self else { return }
             switch result {
             case .success(let image):
                 DispatchQueue.main.async {
