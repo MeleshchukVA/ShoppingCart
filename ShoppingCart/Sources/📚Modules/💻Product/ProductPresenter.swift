@@ -56,8 +56,8 @@ extension ProductPresenter: ProductInteractorOutput {
     
     func didObtainProducts(products: [Products]) {
         guard let product = products.first else { return }
-        self.products = product.results
-        let viewModels = product.results.map { product in
+        self.products = product.products
+        let viewModels = product.products.map { product in
             ProductViewModel(
                 id: product.id,
                 title: product.title,

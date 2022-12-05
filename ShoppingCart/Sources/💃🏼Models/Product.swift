@@ -9,14 +9,10 @@ import Foundation
 
 struct Products: Decodable {
     
-    let results: [Product]
-    let total, skip, limit: Int
-
-    enum CodingKeys: String, CodingKey {
-        
-        case results = "products"
-        case total, skip, limit
-    }
+    let products: [Product]
+    let total: Int
+    let skip: Int
+    let limit: Int
 }
 
 struct Product: Decodable {

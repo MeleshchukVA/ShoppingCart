@@ -122,9 +122,9 @@ extension CataloguePresenter: CatalogueInteractorOutput {
         guard let product = products.first else { return }
         self.total = product.total
         if self.products.isEmpty {
-            self.products = product.results
+            self.products = product.products
         } else {
-            self.products.append(contentsOf: product.results)
+            self.products.append(contentsOf: product.products)
         }
         let viewModels = self.products.map { product in
             ProductViewModel(
