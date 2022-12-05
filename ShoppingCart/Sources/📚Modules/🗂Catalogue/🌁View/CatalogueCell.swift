@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Appearance
+// MARK: - CatalogueCell + Appearance
 
 extension CatalogueCell {
     

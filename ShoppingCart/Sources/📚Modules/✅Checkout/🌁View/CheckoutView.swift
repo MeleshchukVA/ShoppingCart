@@ -35,7 +35,7 @@ final class CheckoutView: BaseView {
     // MARK: Properties
     let appearance: Appearance
     let output: CheckoutViewOutput
-
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CheckoutCell.self)
@@ -45,7 +45,7 @@ final class CheckoutView: BaseView {
         tableView.separatorColor = Colors.borderLightGray
         return tableView
     }()
-
+    
     private lazy var buyButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = appearance.textCollor
@@ -77,7 +77,7 @@ final class CheckoutView: BaseView {
         self.setupSubviews()
         self.setupConstraints()
     }
-
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -90,13 +90,13 @@ extension CheckoutView {
     
     // MARK: Public methods
     func hideTableView(isHidden: Bool) {}
-
+    
     func hideCollectionView(isHidden: Bool) {}
-
+    
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
     }
-
+    
     func startActivityIndicator() {
         activityIndicator.startAnimating()
     }
@@ -119,17 +119,16 @@ extension CheckoutView: ProgrammaticallyInitializableViewProtocol {
         self.backgroundColor = .black
         self.tableView.backgroundColor = .clear
     }
-
+    
     func setupSubviews() {
         [dismissButton, tableView, activityIndicator, buyButton].forEach { addSubview($0) }
     }
-
+    
     func setupConstraints() {
-        dismissButton.translatesAutoresizingMaskIntoConstraints = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        buyButton.translatesAutoresizingMaskIntoConstraints = false
-
+        [dismissButton, tableView, activityIndicator, buyButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
         NSLayoutConstraint.activate([
             dismissButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             dismissButton.trailingAnchor.constraint(
@@ -146,7 +145,7 @@ extension CheckoutView: ProgrammaticallyInitializableViewProtocol {
                 equalTo: self.safeAreaLayoutGuide.bottomAnchor,
                 constant: -(appearance.checkoutButtonHeight + appearance.checkoutButtonVerticalInset)
             ),
-
+            
             buyButton.leadingAnchor.constraint(
                 equalTo: self.leadingAnchor,
                 constant: appearance.checkoutButtonSideInset
@@ -160,7 +159,7 @@ extension CheckoutView: ProgrammaticallyInitializableViewProtocol {
                 constant: -appearance.checkoutButtonVerticalInset
             ),
             buyButton.heightAnchor.constraint(equalToConstant: appearance.checkoutButtonHeight),
-
+            
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])

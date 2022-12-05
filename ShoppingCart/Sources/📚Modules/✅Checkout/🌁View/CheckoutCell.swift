@@ -45,7 +45,7 @@ final class CheckoutCell: UITableViewCell {
         layer.borderColor = appearence.borderBackgroundColor
         return layer
     }()
-
+    
     private lazy var productNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -62,7 +62,7 @@ final class CheckoutCell: UITableViewCell {
         )
         return label
     }()
-
+    
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.text = "100$"
@@ -71,7 +71,7 @@ final class CheckoutCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
-
+    
     private lazy var countLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -96,7 +96,7 @@ final class CheckoutCell: UITableViewCell {
         self.setupSubviews()
         self.setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -106,7 +106,7 @@ final class CheckoutCell: UITableViewCell {
         super.prepareForReuse()
         [productNameLabel, countLabel, priceLabel].forEach { $0.text = "" }
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         lineLayer.removeFromSuperlayer()
@@ -157,7 +157,7 @@ extension CheckoutCell {
                 attributes: [.foregroundColor: self.appearence.textCollor]
             )
             nameLabelText.append(productText)
-
+            
             let countLabelText = NSMutableAttributedString(
                 string: "Count: ",
                 attributes: [.foregroundColor: self.appearence.secondaryTextCollor]
@@ -167,7 +167,7 @@ extension CheckoutCell {
                 attributes: [.foregroundColor: self.appearence.textCollor]
             )
             countLabelText.append(productCount)
-
+            
             self.productNameLabel.attributedText = nameLabelText
             self.countLabel.attributedText = countLabelText
             self.priceLabel.text = CurrencyFormatter.shared.convertTostring(
@@ -184,16 +184,16 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
     func setupView() {
         backgroundColor = Colors.cellColor
     }
-
+    
     func setupSubviews() {
         [productNameLabel, priceLabel, countLabel].forEach { contentView.addSubview($0) }
     }
-
+    
     func setupConstraints() {
-        productNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        countLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        [productNameLabel, priceLabel, countLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
         NSLayoutConstraint.activate([
             productNameLabel.topAnchor.constraint(
                 equalTo: self.contentView.topAnchor,
@@ -218,7 +218,7 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
                 constant: appearence.horizontalInset
             ),
             countLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight / 2),
-
+            
             priceLabel.topAnchor.constraint(
                 equalTo: self.contentView.topAnchor,
                 constant: appearence.verticalInset

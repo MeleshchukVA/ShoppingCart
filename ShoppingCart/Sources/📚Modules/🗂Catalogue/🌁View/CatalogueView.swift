@@ -101,9 +101,9 @@ extension CatalogueView: ProgrammaticallyInitializableViewProtocol {
     }
     
     func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        [tableView, collectionView, activityIndicator].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
                 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.topAnchor),

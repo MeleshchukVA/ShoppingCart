@@ -416,16 +416,11 @@ extension CartCell: ProgrammaticallyInitializableViewProtocol {
     }
 
     func setupConstraints() {
-        productImageView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        idLabel.translatesAutoresizingMaskIntoConstraints = false
-        brandLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        minusButton.translatesAutoresizingMaskIntoConstraints = false
-        countLabel.translatesAutoresizingMaskIntoConstraints = false
-        plusButton.translatesAutoresizingMaskIntoConstraints = false
-        editButton.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        [productImageView, nameLabel, idLabel, brandLabel,
+         priceLabel, minusButton, plusButton, countLabel,
+         editButton, activityIndicator].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+         }
 
         NSLayoutConstraint.activate([
             productImageView.topAnchor.constraint(

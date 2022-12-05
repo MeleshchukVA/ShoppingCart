@@ -97,8 +97,9 @@ extension ProductView: ProgrammaticallyInitializableViewProtocol {
     }
 
     func setupConstraints() {
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+       [collectionView, activityIndicator].forEach {
+           $0.translatesAutoresizingMaskIntoConstraints = false
+       }
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),

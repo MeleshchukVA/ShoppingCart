@@ -98,9 +98,9 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
     }
 
     func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        checkoutButton.translatesAutoresizingMaskIntoConstraints = false
+        [tableView, activityIndicator, checkoutButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+         }
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),

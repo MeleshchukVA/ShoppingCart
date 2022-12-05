@@ -189,15 +189,10 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
     }
 
     func setupConstraints() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        cardButton.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        discountLabel.translatesAutoresizingMaskIntoConstraints = false
-        ratingLabel.translatesAutoresizingMaskIntoConstraints = false
-        brandLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        stockLabel.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        [imageView, cardButton, priceLabel, discountLabel,
+         brandLabel, titleLabel, stockLabel, activityIndicator, ratingLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
 
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
