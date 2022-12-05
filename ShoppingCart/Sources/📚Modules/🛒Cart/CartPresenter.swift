@@ -132,7 +132,5 @@ extension CartPresenter: CartTableViewAdapterDelegate {
         }
     }
 
-    func cartTableViewAdapter(_ adapter: CartTableViewAdapter, didSelectComponentAt indexPath: IndexPath) {
-        print(#function)
-    }
+    func cartTableViewAdapter(_ adapter: CartTableViewAdapter, didSelectComponentAt indexPath: IndexPath) {}
 }

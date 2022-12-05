@@ -109,7 +109,5 @@ extension ProductPresenter: ProductCollectionViewAdapterDelegate {
     func productCollectionViewAdapter(
         _ adapter: ProductCollectionViewAdapter,
         didSelectComponentAt indexPath: IndexPath
-    ) {
-        print(#function)
-    }
+    ) {}
 }

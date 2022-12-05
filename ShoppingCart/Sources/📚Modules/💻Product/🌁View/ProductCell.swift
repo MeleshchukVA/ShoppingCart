@@ -323,11 +323,10 @@ extension ProductCell {
                     self.imageView.image = image
                 }
 
-            case .failure(let error):
+            case .failure:
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.imageView.image = self.appearance.placeholderImage
-                    print(error)
                 }
             }
         }

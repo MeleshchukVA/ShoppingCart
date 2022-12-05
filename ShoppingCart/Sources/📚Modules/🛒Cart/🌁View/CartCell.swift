@@ -333,11 +333,10 @@ extension CartCell {
                     self.productImageView.setImage(image)
                 }
 
-            case .failure(let error):
+            case .failure:
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.productImageView.setImage(self.appearance.placeholderIcon)
-                    print(error)
                 }
             }
         }
