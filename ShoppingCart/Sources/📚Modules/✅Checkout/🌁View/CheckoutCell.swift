@@ -195,6 +195,10 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            productNameLabel.topAnchor.constraint(
+                equalTo: self.contentView.topAnchor,
+                constant: appearence.verticalInset
+            ),
             productNameLabel.leadingAnchor.constraint(
                 equalTo: self.contentView.leadingAnchor,
                 constant: appearence.horizontalInset
@@ -203,32 +207,28 @@ extension CheckoutCell: ProgrammaticallyInitializableViewProtocol {
                 equalTo: priceLabel.leadingAnchor,
                 constant: -appearence.horizontalInset / 3
             ),
-            productNameLabel.topAnchor.constraint(
-                equalTo: self.contentView.topAnchor,
-                constant: appearence.verticalInset
-            ),
             productNameLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight / 2),
-
-            countLabel.leadingAnchor.constraint(
-                equalTo: self.contentView.leadingAnchor,
-                constant: appearence.horizontalInset
-            ),
+            
             countLabel.topAnchor.constraint(
                 equalTo: self.productNameLabel.bottomAnchor,
                 constant: appearence.verticalInset / 2
             ),
+            countLabel.leadingAnchor.constraint(
+                equalTo: self.contentView.leadingAnchor,
+                constant: appearence.horizontalInset
+            ),
             countLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight / 2),
 
-            priceLabel.trailingAnchor.constraint(
-                equalTo: self.contentView.trailingAnchor,
-                constant: -appearence.horizontalInset
-            ),
             priceLabel.topAnchor.constraint(
                 equalTo: self.contentView.topAnchor,
                 constant: appearence.verticalInset
             ),
-            priceLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight),
-            priceLabel.widthAnchor.constraint(equalToConstant: appearence.priceLabelWidth)
+            priceLabel.trailingAnchor.constraint(
+                equalTo: self.contentView.trailingAnchor,
+                constant: -appearence.horizontalInset
+            ),
+            priceLabel.widthAnchor.constraint(equalToConstant: appearence.priceLabelWidth),
+            priceLabel.heightAnchor.constraint(equalToConstant: appearence.priceLabelHeight)
         ])
     }
 }

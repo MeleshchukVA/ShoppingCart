@@ -28,6 +28,34 @@ extension CartCell {
         let elipsisIcon = Localize.Images.ellipsisIcon
         let cardButtonImagePlus = Localize.Images.cartPlusIcon
         let cardButtonImageMinus = Localize.Images.cartMinusIcon
+        
+        let productImageTopInset: CGFloat = 17
+        let productImageLeadingInset: CGFloat = 13
+        let productImageWidth: CGFloat = 87
+        let productImageHeight: CGFloat = 113
+        let nameLabelTopInset: CGFloat = 20
+        let nameLabelLeadingInset: CGFloat = 13
+        let nameLabelTrailingInset: CGFloat = 3
+        let idLabelTopInset: CGFloat = 3
+        let idLabelLeadingInset: CGFloat = 13
+        let idLabelTrailingInset: CGFloat = 50
+        let brandLabelTopInset: CGFloat = 5
+        let brandLabelLeadingInset: CGFloat = 13
+        let brandLabelTrailingInset: CGFloat = 50
+        let priceLabelTopInset: CGFloat = 30
+        let priceLabelTrailingInset: CGFloat = -13
+        let minusButtonLeadingInset: CGFloat = 13
+        let minusButtonWidth: CGFloat = 40
+        let minusButtonHeight: CGFloat = 40
+        let countLabelLeadingInset: CGFloat = 5
+        let countLabelWidth: CGFloat = 40
+        let countLabelHeight: CGFloat = 40
+        let plusButtonLeadingInset: CGFloat = 5
+        let plusButtonWidth: CGFloat = 40
+        let plusButtonHeight: CGFloat = 40
+        let editButtonTrailingInset: CGFloat = -10
+        let editButtonWidth: CGFloat = 30
+        let editButtonHeight: CGFloat = 30
     }
 }
 
@@ -400,46 +428,97 @@ extension CartCell: ProgrammaticallyInitializableViewProtocol {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            productImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 17),
-            productImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 13),
-            productImageView.widthAnchor.constraint(equalToConstant: 87),
-            productImageView.heightAnchor.constraint(equalToConstant: 113),
-
-            nameLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 13),
-            nameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 3),
-            nameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20),
-
-            idLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 13),
-            idLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 3),
-            idLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 50),
-
-            brandLabel.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 13),
-            brandLabel.topAnchor.constraint(equalTo: idLabel.bottomAnchor, constant: 5),
-            brandLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 50),
-
+            productImageView.topAnchor.constraint(
+                equalTo: self.contentView.topAnchor,
+                constant: appearance.productImageTopInset
+            ),
+            productImageView.leadingAnchor.constraint(
+                equalTo: self.contentView.leadingAnchor,
+                constant: appearance.productImageLeadingInset
+            ),
+            productImageView.widthAnchor.constraint(equalToConstant: appearance.productImageWidth),
+            productImageView.heightAnchor.constraint(equalToConstant: appearance.productImageHeight),
+            
+            nameLabel.topAnchor.constraint(
+                equalTo: self.contentView.topAnchor,
+                constant: appearance.nameLabelTopInset
+            ),
+            nameLabel.leadingAnchor.constraint(
+                equalTo: productImageView.trailingAnchor,
+                constant: appearance.nameLabelLeadingInset
+            ),
+            nameLabel.trailingAnchor.constraint(
+                equalTo: self.contentView.trailingAnchor,
+                constant: appearance.nameLabelTrailingInset
+            ),
+            
+            idLabel.topAnchor.constraint(
+                equalTo: nameLabel.bottomAnchor,
+                constant: appearance.idLabelTopInset
+            ),
+            idLabel.leadingAnchor.constraint(
+                equalTo: productImageView.trailingAnchor,
+                constant: appearance.idLabelLeadingInset
+            ),
+            idLabel.trailingAnchor.constraint(
+                equalTo: self.contentView.trailingAnchor,
+                constant: appearance.idLabelTrailingInset
+            ),
+            
+            brandLabel.topAnchor.constraint(
+                equalTo: idLabel.bottomAnchor,
+                constant: appearance.brandLabelTopInset
+            ),
+            brandLabel.leadingAnchor.constraint(
+                equalTo: productImageView.trailingAnchor,
+                constant: appearance.brandLabelLeadingInset
+            ),
+            brandLabel.trailingAnchor.constraint(
+                equalTo: self.contentView.trailingAnchor,
+                constant: appearance.brandLabelTrailingInset
+            ),
+            
+            priceLabel.topAnchor.constraint(
+                equalTo: productImageView.bottomAnchor,
+                constant: appearance.priceLabelTopInset
+            ),
             priceLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor),
-            priceLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -13),
-            priceLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 30),
+            priceLabel.trailingAnchor.constraint(
+                equalTo: self.contentView.trailingAnchor,
+                constant: appearance.priceLabelTrailingInset
+            ),
 
-            minusButton.leadingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: 13),
+            minusButton.leadingAnchor.constraint(
+                equalTo: productImageView.trailingAnchor,
+                constant: appearance.minusButtonLeadingInset
+            ),
             minusButton.bottomAnchor.constraint(equalTo: productImageView.bottomAnchor),
-            minusButton.heightAnchor.constraint(equalToConstant: 30),
-            minusButton.widthAnchor.constraint(equalToConstant: 30),
+            minusButton.widthAnchor.constraint(equalToConstant: appearance.minusButtonWidth),
+            minusButton.heightAnchor.constraint(equalToConstant: appearance.minusButtonHeight),
 
-            countLabel.leadingAnchor.constraint(equalTo: minusButton.trailingAnchor, constant: 5),
+            countLabel.leadingAnchor.constraint(
+                equalTo: minusButton.trailingAnchor,
+                constant: appearance.countLabelLeadingInset
+            ),
             countLabel.bottomAnchor.constraint(equalTo: minusButton.bottomAnchor),
-            countLabel.heightAnchor.constraint(equalToConstant: 30),
-            countLabel.widthAnchor.constraint(equalToConstant: 30),
+            countLabel.widthAnchor.constraint(equalToConstant: appearance.countLabelWidth),
+            countLabel.heightAnchor.constraint(equalToConstant: appearance.countLabelHeight),
 
-            plusButton.leadingAnchor.constraint(equalTo: countLabel.trailingAnchor, constant: 5),
+            plusButton.leadingAnchor.constraint(
+                equalTo: countLabel.trailingAnchor,
+                constant: appearance.plusButtonLeadingInset
+            ),
             plusButton.bottomAnchor.constraint(equalTo: countLabel.bottomAnchor),
-            plusButton.heightAnchor.constraint(equalToConstant: 30),
-            plusButton.widthAnchor.constraint(equalToConstant: 30),
+            plusButton.widthAnchor.constraint(equalToConstant: appearance.plusButtonWidth),
+            plusButton.heightAnchor.constraint(equalToConstant: appearance.plusButtonHeight),
 
             editButton.topAnchor.constraint(equalTo: nameLabel.topAnchor),
-            editButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
-            editButton.heightAnchor.constraint(equalToConstant: 30),
-            editButton.widthAnchor.constraint(equalToConstant: 30),
+            editButton.trailingAnchor.constraint(
+                equalTo: self.contentView.trailingAnchor,
+                constant: appearance.editButtonTrailingInset
+            ),
+            editButton.widthAnchor.constraint(equalToConstant: appearance.editButtonWidth),
+            editButton.heightAnchor.constraint(equalToConstant: appearance.editButtonHeight),
 
             activityIndicator.centerXAnchor.constraint(equalTo: self.productImageView.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.productImageView.centerYAnchor)

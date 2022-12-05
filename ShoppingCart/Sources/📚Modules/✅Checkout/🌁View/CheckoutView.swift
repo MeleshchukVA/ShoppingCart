@@ -17,6 +17,9 @@ extension CheckoutView {
         let purpleColor = Colors.purple
         let textCollor = Colors.lightWhite
         let tableViewContentInsetTop: CGFloat = 30.0
+        let dismissButtonTrailingInset: CGFloat = -10
+        let dismissButtonWidth: CGFloat = 40
+        let dismissButtonHeight: CGFloat = 40
         let checkoutButtonHeight: CGFloat = 50.0
         let checkoutButtonVerticalInset: CGFloat = 10.0
         let checkoutButtonSideInset: CGFloat = 10.0
@@ -131,24 +134,19 @@ extension CheckoutView: ProgrammaticallyInitializableViewProtocol {
             dismissButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             dismissButton.trailingAnchor.constraint(
                 equalTo: self.safeAreaLayoutGuide.trailingAnchor,
-                constant: -10
+                constant: appearance.dismissButtonTrailingInset
             ),
-            dismissButton.widthAnchor.constraint(equalToConstant: 40),
-            dismissButton.heightAnchor.constraint(equalToConstant: 40),
-
+            dismissButton.widthAnchor.constraint(equalToConstant: appearance.dismissButtonWidth),
+            dismissButton.heightAnchor.constraint(equalToConstant: appearance.checkoutButtonHeight),
+            
+            tableView.topAnchor.constraint(equalTo: self.dismissButton.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: self.dismissButton.bottomAnchor),
             tableView.bottomAnchor.constraint(
                 equalTo: self.safeAreaLayoutGuide.bottomAnchor,
                 constant: -(appearance.checkoutButtonHeight + appearance.checkoutButtonVerticalInset)
             ),
 
-            buyButton.bottomAnchor.constraint(
-                equalTo: self.safeAreaLayoutGuide.bottomAnchor,
-                constant: -appearance.checkoutButtonVerticalInset
-            ),
-            buyButton.heightAnchor.constraint(equalToConstant: appearance.checkoutButtonHeight),
             buyButton.leadingAnchor.constraint(
                 equalTo: self.leadingAnchor,
                 constant: appearance.checkoutButtonSideInset
@@ -157,6 +155,11 @@ extension CheckoutView: ProgrammaticallyInitializableViewProtocol {
                 equalTo: self.trailingAnchor,
                 constant: -appearance.checkoutButtonSideInset
             ),
+            buyButton.bottomAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.bottomAnchor,
+                constant: -appearance.checkoutButtonVerticalInset
+            ),
+            buyButton.heightAnchor.constraint(equalToConstant: appearance.checkoutButtonHeight),
 
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)

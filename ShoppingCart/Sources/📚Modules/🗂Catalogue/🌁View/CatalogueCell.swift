@@ -15,6 +15,7 @@ extension CatalogueCell {
         
         let chevronImage = Localize.Images.chevronImage
         let cellColor = Colors.cellColor
+        let labelLeadingInset: CGFloat = 20
     }
 }
 
@@ -83,7 +84,7 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
         label.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: appearance.labelLeadingInset),
             label.topAnchor.constraint(equalTo: self.topAnchor),
             label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])

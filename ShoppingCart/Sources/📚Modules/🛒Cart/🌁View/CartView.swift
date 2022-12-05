@@ -103,21 +103,14 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
         checkoutButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(
                 equalTo: self.safeAreaLayoutGuide.bottomAnchor,
                 constant: -(appearance.checkoutButtonHeight + appearance.checkoutButtonVerticalInset)
             ),
 
-            checkoutButton.bottomAnchor.constraint(
-                equalTo: self.safeAreaLayoutGuide.bottomAnchor,
-                constant: -appearance.checkoutButtonVerticalInset
-            ),
-            checkoutButton.heightAnchor.constraint(
-                equalToConstant: appearance.checkoutButtonHeight
-            ),
             checkoutButton.leadingAnchor.constraint(
                 equalTo: self.leadingAnchor,
                 constant: appearance.checkoutButtonSideInset
@@ -125,6 +118,13 @@ extension CartView: ProgrammaticallyInitializableViewProtocol {
             checkoutButton.trailingAnchor.constraint(
                 equalTo: self.trailingAnchor,
                 constant: -appearance.checkoutButtonSideInset
+            ),
+            checkoutButton.bottomAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.bottomAnchor,
+                constant: -appearance.checkoutButtonVerticalInset
+            ),
+            checkoutButton.heightAnchor.constraint(
+                equalToConstant: appearance.checkoutButtonHeight
             ),
 
             activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),

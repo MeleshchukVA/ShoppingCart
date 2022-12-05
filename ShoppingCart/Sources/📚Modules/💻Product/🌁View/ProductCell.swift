@@ -16,6 +16,15 @@ extension ProductCell {
         let cardButtonImagePlus = Localize.Images.cartPlusIcon
         let cardButtonImageMinus = Localize.Images.cartMinusIcon
         let placeholderImage = Localize.Images.placeholderIcon
+        let ratingLabelLeadingInset: CGFloat = 5
+        let ratingLabelBottomInset: CGFloat = -5
+        let discountLabelTrailingInset: CGFloat = -5
+        let discountLabelBottomInset: CGFloat = -5
+        let cardButtonTopInset: CGFloat = 3
+        let cardButtonWidth: CGFloat = 35
+        let cardButtonHeight: CGFloat = 35
+        let priceLabelTopInset: CGFloat = 3
+        let imageViewBottomInset: CGFloat = 17
     }
 }
 
@@ -196,21 +205,33 @@ extension ProductCell: ProgrammaticallyInitializableViewProtocol {
             imageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(
                 equalTo: self.contentView.bottomAnchor,
-                constant: -(ProductConstants.Layout.heightProductCard - 17)
+                constant: -(ProductConstants.Layout.heightProductCard - appearance.imageViewBottomInset)
             ),
 
-            ratingLabel.leadingAnchor.constraint(equalTo: self.imageView.leadingAnchor, constant: 5),
-            ratingLabel.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -5),
+            ratingLabel.leadingAnchor.constraint(
+                equalTo: self.imageView.leadingAnchor,
+                constant: appearance.ratingLabelLeadingInset
+            ),
+            ratingLabel.bottomAnchor.constraint(
+                equalTo: self.imageView.bottomAnchor,
+                constant: appearance.ratingLabelBottomInset
+            ),
 
-            discountLabel.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor, constant: -5),
-            discountLabel.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -5),
+            discountLabel.trailingAnchor.constraint(
+                equalTo: self.imageView.trailingAnchor,
+                constant: appearance.discountLabelTrailingInset
+            ),
+            discountLabel.bottomAnchor.constraint(
+                equalTo: self.imageView.bottomAnchor,
+                constant: appearance.discountLabelBottomInset
+            ),
 
-            cardButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 3),
+            cardButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: appearance.cardButtonTopInset),
             cardButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            cardButton.heightAnchor.constraint(equalToConstant: 35),
-            cardButton.widthAnchor.constraint(equalToConstant: 35),
+            cardButton.heightAnchor.constraint(equalToConstant: appearance.cardButtonWidth),
+            cardButton.widthAnchor.constraint(equalToConstant: appearance.cardButtonHeight),
 
-            priceLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 3),
+            priceLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: appearance.priceLabelTopInset),
             priceLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             priceLabel.trailingAnchor.constraint(equalTo: cardButton.leadingAnchor),
 
@@ -282,7 +303,7 @@ extension ProductCell {
             height: discountLabel.frame.height + 7
         )
 
-        ratingLabel.text = "⭐️ \(viewModel.rating)"
+        ratingLabel.text = "⭐️ \(viewModel.rating)  "
         ratingLabel.sizeToFit()
         ratingLabel.frame = CGRect(
             x: 8,
