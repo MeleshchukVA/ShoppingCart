@@ -15,6 +15,7 @@ extension ProductCell {
         
         let cardButtonImagePlus = Localize.Images.cartPlusIcon
         let cardButtonImageMinus = Localize.Images.cartMinusIcon
+        let placeholderImage = Localize.Images.placeholderIcon
     }
 }
 
@@ -309,7 +310,7 @@ extension ProductCell {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
-                    self.imageView.image = UIImage(named: "placeholder")
+                    self.imageView.image = self.appearance.placeholderImage
                     print(error)
                 }
             }

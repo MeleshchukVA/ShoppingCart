@@ -25,6 +25,7 @@ extension ProfileView {
         let labelHeight: CGFloat = 25
         let cornerRadius: CGFloat = 10
         let borderWidth: CGFloat = 2
+        let placeholderImage = Localize.Images.placeholderIcon
     }
 }
 
@@ -149,7 +150,7 @@ extension ProfileView {
 
     func setupAvatar(image: UIImage?) {
         if image == nil {
-            self.avatarView.image = UIImage(named: "placeholder")
+            self.avatarView.image = self.appearance.placeholderImage
         } else {
             self.avatarView.setImage(image)
         }
