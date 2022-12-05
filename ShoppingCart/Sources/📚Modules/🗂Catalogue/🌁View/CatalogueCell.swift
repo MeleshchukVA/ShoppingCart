@@ -7,11 +7,24 @@
 
 import UIKit
 
+// MARK: - Appearance
+
+extension CatalogueCell {
+    
+    struct Appearance {
+        
+        let chevronImage = Localize.Images.chevronImage
+        let cellColor = Colors.cellColor
+    }
+}
+
 // MARK: - CatalogueCell class
 
 final class CatalogueCell: UITableViewCell {
     
     // MARK: Properties
+    let appearance = Appearance()
+    
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
@@ -47,7 +60,7 @@ extension CatalogueCell {
 extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
     
     func setupView() {
-        if let image = UIImage(named: "chevron.right") {
+        if let image = appearance.chevronImage {
             let accessory = UIImageView(
                 frame: CGRect(
                     x: 0,
@@ -59,7 +72,7 @@ extension CatalogueCell: ProgrammaticallyInitializableViewProtocol {
             accessory.tintColor = UIColor.white
             self.accessoryView = accessory
         }
-        backgroundColor = Colors.cellColor
+        backgroundColor = appearance.cellColor
     }
     
     func setupSubviews() {
