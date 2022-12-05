@@ -15,6 +15,9 @@ enum Localize {
 
     enum Images {
         
+        // MARK: Commons
+        static let placeholderIcon: UIImage? = UIImage(named: "placeholder")
+        
         // MARK: TabBar
         static let cartIcon: UIImage? = UIImage(named: "cart")
         static let catalogueIcon: UIImage? = UIImage(named: "search")
@@ -29,9 +32,11 @@ enum Localize {
         static let minusIconGray: UIImage? = UIImage(named: "minus.square.fill")
         static let minusIconPurple: UIImage? = UIImage(named: "minus.square.fill.purple")
         static let plusIcon: UIImage? = UIImage(named: "plus.square.fill")
-        static let placeholderIcon: UIImage? = UIImage(named: "placeholder")
         
         // MARK: Checkout
         static let xmarkIcon: UIImage? = UIImage(named: "xmark")
+        
+        // MARK: Catalogue
+        static let chevronImage = UIImage(named: "chevron.right")
     }
 }
