@@ -390,9 +390,9 @@
 		3F6E98F12906F0B200F25E9B /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				3F8A6F342910296700BB8190 /* Base */,
 				3F81A70F292FD0B300D41DCF /* CustomViews */,
 				3F8A6F3729102CC400BB8190 /* Protocols */,
-				3F8A6F342910296700BB8190 /* Base */,
 				3F5A22AF2909988100438114 /* Typealias.swift */,
 			);
 			path = Commons;
