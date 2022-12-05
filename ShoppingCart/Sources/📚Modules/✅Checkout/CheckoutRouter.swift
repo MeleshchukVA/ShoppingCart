@@ -22,7 +22,7 @@ extension CheckoutRouter: CheckoutRouterInput {
                 self.navigationController?.popViewController(animated: true)
             }
         }
-        successAction.setValue(Colors.purple2, forKey: "titleTextColor")
+        successAction.setValue(Colors.purple2, forKey: Keys.titleTextColor)
         
         let alertController = UIAlertController(
             title: "Success",
@@ -36,7 +36,7 @@ extension CheckoutRouter: CheckoutRouterInput {
 
     func showErrorAddCartAlert() {
         let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
-        cancelAction.setValue(Colors.purple2, forKey: "titleTextColor")
+        cancelAction.setValue(Colors.purple2, forKey: Keys.titleTextColor)
         
         let alertController = UIAlertController(
             title: "Fail",

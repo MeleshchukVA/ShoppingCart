@@ -113,7 +113,7 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
             searchController.searchBar.tintColor = .white
             searchController.searchBar.backgroundColor = Colors.purple
             
-            if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            if let textField = searchController.searchBar.value(forKey: Keys.searchField) as? UITextField {
                 let backgroundView = textField.subviews.first
                 backgroundView?.backgroundColor = UIColor.black
                 backgroundView?.subviews.forEach({ $0.removeFromSuperview() })
@@ -122,11 +122,11 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
             }
         }
         
-        let textFieldInsideUISearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        let textFieldInsideUISearchBar = searchController.searchBar.value(forKey: Keys.searchField) as? UITextField
         textFieldInsideUISearchBar?.textColor = Colors.lightGray
         textFieldInsideUISearchBar?.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
         
-        let labelInsideUISearchBar = textFieldInsideUISearchBar?.value(forKey: "placeholderLabel") as? UILabel
+        let labelInsideUISearchBar = textFieldInsideUISearchBar?.value(forKey: Keys.placeholderLabel) as? UILabel
         labelInsideUISearchBar?.textColor = UIColor.red
         labelInsideUISearchBar?.font = Font.sber(ofSize: Font.Size.seventeen, weight: .regular)
         
@@ -144,14 +144,14 @@ extension CatalogueViewController: UISearchBarDelegate, UISearchResultsUpdating 
             whenContainedInInstancesOf: [UISearchBar.self]
         ).tintColor = .white
         
-        let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        let textField = searchController.searchBar.value(forKey: Keys.searchField) as? UITextField
         textField?.attributedPlaceholder = NSAttributedString(
             string: textField?.placeholder ?? "",
             attributes: [.foregroundColor: UIColor.white]
         )
         textField?.textColor = .white
         
-        if let clearButton = textField?.value(forKey: "clearButton") as? UIButton {
+        if let clearButton = textField?.value(forKey: Keys.clearButton) as? UIButton {
             let templateImage = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
             clearButton.setImage(templateImage, for: .normal)
             clearButton.tintColor = .white

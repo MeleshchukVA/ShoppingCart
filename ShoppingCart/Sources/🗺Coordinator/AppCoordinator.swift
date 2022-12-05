@@ -76,12 +76,12 @@ private extension AppCoordinator {
 
     func userHasSeenOnboarding() {
         let defaults = UserDefaults.standard
-        defaults.set(true, forKey: UserDefaultsKeys.isUserHasSeenOnboarding)
+        defaults.set(true, forKey: Keys.isUserHasSeenOnboarding)
     }
 
     func checkIfUserHasSeenOnboarding() {
         let defaults = UserDefaults.standard
-        self.isUserHasSeenOnboarding = defaults.bool(forKey: UserDefaultsKeys.isUserHasSeenOnboarding)
+        self.isUserHasSeenOnboarding = defaults.bool(forKey: Keys.isUserHasSeenOnboarding)
     }
     
     // MARK: makeNavigationControllers

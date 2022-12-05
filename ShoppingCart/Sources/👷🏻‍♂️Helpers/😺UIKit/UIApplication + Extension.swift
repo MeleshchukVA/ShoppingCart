@@ -23,8 +23,8 @@ extension UIApplication {
                 return statusBarView
             }
         } else {
-            if responds(to: Selector(("statusBar"))) {
-                return value(forKey: "statusBar") as? UIView
+            if responds(to: Selector((Keys.statusBar))) {
+                return value(forKey: Keys.statusBar) as? UIView
             }
         }
         return nil

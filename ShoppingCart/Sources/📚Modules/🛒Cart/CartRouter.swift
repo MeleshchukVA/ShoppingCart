@@ -28,13 +28,13 @@ extension CartRouter: CartRouterInput {
     
     func showAlertController(viewModel: CartViewModel) {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        cancelAction.setValue(Colors.purple2, forKey: "titleTextColor")
+        cancelAction.setValue(Colors.purple2, forKey: Keys.titleTextColor)
 
         let shareAction = UIAlertAction(title: "Share", style: .default) { [weak self] _ in
             let shareFiles: [Any] = [viewModel.name]
             self?.openShare(shareFiles: shareFiles)
         }
-        shareAction.setValue(Colors.purple2, forKey: "titleTextColor")
+        shareAction.setValue(Colors.purple2, forKey: Keys.titleTextColor)
 
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             viewModel.deleteHandler(viewModel.id)
