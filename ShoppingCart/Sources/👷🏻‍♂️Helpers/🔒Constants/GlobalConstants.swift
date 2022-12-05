@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct ProductConstants {
+enum ProductConstants {
     
-    struct Network {
+    enum Network {
         
         static let limit = 10
         static let skip = 10
     }
     
-    struct Layout {
+    enum Layout {
         
         static let heightProductCard: CGFloat = 89
         static let itemsInRow: CGFloat = 2
@@ -29,7 +29,12 @@ struct ProductConstants {
     }
 }
 
-struct UserDefaultsKeys {
+enum Keys {
     
     static let isUserHasSeenOnboarding = "isUserHasSeenOnboarding"
+    static let statusBar = "statusBar"
+    static let titleTextColor = "titleTextColor"
+    static let searchField = "searchField"
+    static let placeholderLabel = "placeholderLabel"
+    static let clearButton = "clearButton"
 }
