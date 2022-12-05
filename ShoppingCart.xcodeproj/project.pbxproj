@@ -387,7 +387,7 @@
 			path = "⚙️Dependency";
 			sourceTree = "<group>";
 		};
-		3F6E98F12906F0B200F25E9B /* 🧩Components */ = {
+		3F6E98F12906F0B200F25E9B /* Commons */ = {
 			isa = PBXGroup;
 			children = (
 				3F81A70F292FD0B300D41DCF /* 🖼CustomViews */,
@@ -395,7 +395,7 @@
 				3F8A6F342910296700BB8190 /* 🐍VIPER */,
 				3F5A22AF2909988100438114 /* Typealias.swift */,
 			);
-			path = "🧩Components";
+			path = Commons;
 			sourceTree = "<group>";
 		};
 		3F6E98F22906F0BC00F25E9B /* 💃🏼Models */ = {
@@ -586,7 +586,7 @@
 			isa = PBXGroup;
 			children = (
 				3F93D0422905F0CE003FF558 /* 📱App */,
-				3F6E98F12906F0B200F25E9B /* 🧩Components */,
+				3F6E98F12906F0B200F25E9B /* Commons */,
 				3F6E98EE2906EF6C00F25E9B /* 🗺Coordinator */,
 				3F6E98F02906F08A00F25E9B /* ⚙️Dependency */,
 				3F6E98F42906F12D00F25E9B /* 👷🏻‍♂️Helpers */,
