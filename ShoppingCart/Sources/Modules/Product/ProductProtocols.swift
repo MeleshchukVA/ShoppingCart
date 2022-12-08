@@ -21,7 +21,7 @@ protocol ProductModuleOutput: AnyObject {}
 // MARK: - ProductViewInput
 
 protocol ProductViewInput: ViewInput {
-    func updateCollectionViewData(adapter: ProductCollectionViewAdapter, isEmpty: Bool)
+    func updateCollectionViewData(adapter: ProductCollectionViewAdapterProtocol, isEmpty: Bool)
 }
 
 // MARK: - ProductViewOutput

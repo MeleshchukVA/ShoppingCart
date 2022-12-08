@@ -23,7 +23,7 @@ protocol CatalogueModuleOutput: AnyObject {}
 protocol CatalogueViewInput: ViewInput {
     func hideTableView(isHidden: Bool)
     func hideCollectionView()
-    func updateCollectionViewData(adapter: ProductCollectionViewAdapter, isEmpty: Bool)
+    func updateCollectionViewData(adapter: ProductCollectionViewAdapterProtocol, isEmpty: Bool)
 }
 
 // MARK: - CatalogueViewOutput

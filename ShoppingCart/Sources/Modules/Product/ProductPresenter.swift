@@ -18,7 +18,7 @@ final class ProductPresenter {
 
     private let router: ProductRouterInput
     let interactor: ProductInteractorInput
-    private var collectionViewAdapter: ProductCollectionViewAdapter
+    private var collectionViewAdapter: ProductCollectionViewAdapterProtocol
     private let viewModel: CatalogueViewModel
     private var products: [Product] = []
     
@@ -26,7 +26,7 @@ final class ProductPresenter {
     init(
         router: ProductRouterInput,
         interactor: ProductInteractorInput,
-        collectionViewAdapter: ProductCollectionViewAdapter,
+        collectionViewAdapter: ProductCollectionViewAdapterProtocol,
         viewModel: CatalogueViewModel
     ) {
         self.router = router

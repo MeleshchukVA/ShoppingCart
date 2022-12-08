@@ -29,9 +29,17 @@ extension ProductCollectionViewAdapterDelegate {
     func willDisplay(at index: Int) {}
 }
 
-// MARK: - ProductCollectionViewAdapter class
+// MARK: - ProductCollectionViewAdapterProtocol
 
-final class ProductCollectionViewAdapter: NSObject {
+protocol ProductCollectionViewAdapterProtocol {
+    var delegate: ProductCollectionViewAdapterDelegate? { get set }
+    var viewModels: [ProductViewModel] { get set }
+    var boundsWidth: CGFloat { get set }
+}
+
+// MARK: - ProductCollectionViewAdapter + ProductCollectionViewAdapterProtocol
+
+final class ProductCollectionViewAdapter: NSObject, ProductCollectionViewAdapterProtocol {
 
     // MARK: Properties
     weak var delegate: ProductCollectionViewAdapterDelegate?

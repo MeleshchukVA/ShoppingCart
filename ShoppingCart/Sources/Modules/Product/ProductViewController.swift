@@ -72,12 +72,17 @@ extension ProductViewController: ProductViewInput {
         productView?.activityIndicator.startAnimating()
     }
 
-    func updateCollectionViewData(adapter: ProductCollectionViewAdapter, isEmpty: Bool) {
+    func updateCollectionViewData(adapter: ProductCollectionViewAdapterProtocol, isEmpty: Bool) {
+        var adapter = adapter
+        guard let delegate = adapter as? UICollectionViewDelegate else { return }
+        guard let dataSource = adapter as? UICollectionViewDataSource else { return }
         guard let productView = productView else { return }
+        
         adapter.boundsWidth = productView.bounds.width
+        
         productView.updateCollectionViewData(
-            delegate: adapter,
-            dataSource: adapter,
+            delegate: delegate,
+            dataSource: dataSource,
             isEmptyCollectionData: isEmpty
         )
     }

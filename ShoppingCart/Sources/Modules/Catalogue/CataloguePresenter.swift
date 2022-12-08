@@ -19,18 +19,18 @@ final class CataloguePresenter {
     private let router: CatalogueRouterInput
     let interactor: CatalogueInteractorInput
     private let tableViewAdapter: CatalogueTableViewAdapterProtocol
-    private var collectionViewAdapter: ProductCollectionViewAdapter
+    private var collectionViewAdapter: ProductCollectionViewAdapterProtocol
     private var categories: [CatalogueViewModel] = []
     private var products: [Product] = []
     private var total: Int = 0
-    private var query: String = ""
+    private(set) var query: String = ""
     
     // MARK: Init
     init(
         router: CatalogueRouterInput,
         interactor: CatalogueInteractorInput,
         tableViewAdapter: CatalogueTableViewAdapterProtocol,
-        collectionViewAdapter: ProductCollectionViewAdapter
+        collectionViewAdapter: ProductCollectionViewAdapterProtocol
     ) {
         self.router = router
         self.interactor = interactor
@@ -164,8 +164,12 @@ extension CataloguePresenter: CatalogueInteractorOutput {
         }
         
         DispatchQueue.main.async {
-            self.collectionViewAdapter.viewModels = viewModels
-            self.view?.updateCollectionViewData(adapter: self.collectionViewAdapter, isEmpty: viewModels.isEmpty)
+            guard let adapter = self.collectionViewAdapter as? ProductCollectionViewAdapter else { return }
+            adapter.viewModels = viewModels
+            self.view?.updateCollectionViewData(
+                adapter: adapter,
+                isEmpty: viewModels.isEmpty
+            )
             self.view?.stopActivityIndicator()
         }
     }

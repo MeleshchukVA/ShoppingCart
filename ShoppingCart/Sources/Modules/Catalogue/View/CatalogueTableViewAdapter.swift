@@ -30,7 +30,7 @@ protocol CatalogueTableViewAdapterProtocol {
 final class CatalogueTableViewAdapter: NSObject {
     
     weak var delegate: CatalogueTableViewAdapterDelegate?
-    private weak var tableView: UITableView?
+    private(set) weak var tableView: UITableView?
     var viewModels = [CatalogueViewModel]()
 }
 
