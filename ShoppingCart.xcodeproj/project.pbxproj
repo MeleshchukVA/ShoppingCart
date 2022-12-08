@@ -50,6 +50,28 @@
 		3F12B040292F8F2400338F1D /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B03F292F8F2400338F1D /* ProfileInteractor.swift */; };
 		3F12B042292F8F3500338F1D /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B041292F8F3500338F1D /* ProfileContainer.swift */; };
 		3F12B044292F908A00338F1D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B043292F908A00338F1D /* ProfileView.swift */; };
+		3F12C45E29409D280039EF85 /* CataloguePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C45D29409D280039EF85 /* CataloguePresenterTests.swift */; };
+		3F12C46629409FDD0039EF85 /* CatalogueRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C46529409FDD0039EF85 /* CatalogueRouterMock.swift */; };
+		3F12C4682940A1920039EF85 /* CatalogueInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4672940A1920039EF85 /* CatalogueInteractorMock.swift */; };
+		3F12C46A2940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4692940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift */; };
+		3F12C46E2940E5AD0039EF85 /* CatalogueViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C46D2940E5AD0039EF85 /* CatalogueViewControllerMock.swift */; };
+		3F12C4702940E68F0039EF85 /* CataloguePresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C46F2940E68F0039EF85 /* CataloguePresenterMock.swift */; };
+		3F12C4722940E9870039EF85 /* CatalogueInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4712940E9870039EF85 /* CatalogueInteractorTests.swift */; };
+		3F12C4762940EA520039EF85 /* ServicesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4752940EA520039EF85 /* ServicesMock.swift */; };
+		3F12C47C2940F0790039EF85 /* ProductViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C47B2940F0790039EF85 /* ProductViewControllerMock.swift */; };
+		3F12C47E2940F1900039EF85 /* ProductInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C47D2940F1900039EF85 /* ProductInteractorMock.swift */; };
+		3F12C4802940F2700039EF85 /* ProductPresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C47F2940F2700039EF85 /* ProductPresenterMock.swift */; };
+		3F12C4822940F2FB0039EF85 /* ProductRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4812940F2FB0039EF85 /* ProductRouterMock.swift */; };
+		3F12C4842940F3240039EF85 /* ProductPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4832940F3240039EF85 /* ProductPresenterTests.swift */; };
+		3F12C4862940FDFD0039EF85 /* ProductCollectionViewAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4852940FDFD0039EF85 /* ProductCollectionViewAdapterMock.swift */; };
+		3F12C48C2941DE0B0039EF85 /* CartViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C48B2941DE0B0039EF85 /* CartViewControllerMock.swift */; };
+		3F12C48E2941DE440039EF85 /* CartInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C48D2941DE440039EF85 /* CartInteractorMock.swift */; };
+		3F12C4902941F6E10039EF85 /* CartPresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C48F2941F6E10039EF85 /* CartPresenterMock.swift */; };
+		3F12C4922941F7850039EF85 /* CartRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4912941F7850039EF85 /* CartRouterMock.swift */; };
+		3F12C4942941F7BA0039EF85 /* CartTableViewAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4932941F7BA0039EF85 /* CartTableViewAdapterMock.swift */; };
+		3F12C4962941F82D0039EF85 /* CartInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4952941F82D0039EF85 /* CartInteractorTests.swift */; };
+		3F12C4982941F8C30039EF85 /* CartPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4972941F8C30039EF85 /* CartPresenterTests.swift */; };
+		3F12C49A2941FAD10039EF85 /* ProductInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12C4992941FAD10039EF85 /* ProductInteractorTests.swift */; };
 		3F25169E292695C0008F5820 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25169D292695C0008F5820 /* LRUCache.swift */; };
 		3F2516A029269617008F5820 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25169F29269617008F5820 /* ImageCache.swift */; };
 		3F2516A229269644008F5820 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2516A129269644008F5820 /* ImageLoader.swift */; };
@@ -109,6 +131,16 @@
 		9896D0838BABF26E6FBCAA83 /* Pods_ShoppingCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949AC60969A23CB238DEF102 /* Pods_ShoppingCart.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3F12C45F29409D280039EF85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F93D0232905F072003FF558 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F93D02A2905F072003FF558;
+			remoteInfo = ShoppingCart;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1CE6ADAD1E5B0C5B441E5112 /* Pods-ShoppingCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingCart.release.xcconfig"; path = "Target Support Files/Pods-ShoppingCart/Pods-ShoppingCart.release.xcconfig"; sourceTree = "<group>"; };
 		202DBB3A38CD7C65091D1040 /* Pods-ShoppingCart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingCart.debug.xcconfig"; path = "Target Support Files/Pods-ShoppingCart/Pods-ShoppingCart.debug.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +187,29 @@
 		3F12B03F292F8F2400338F1D /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		3F12B041292F8F3500338F1D /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
 		3F12B043292F908A00338F1D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3F12C45B29409D280039EF85 /* ShoppingCartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShoppingCartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F12C45D29409D280039EF85 /* CataloguePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CataloguePresenterTests.swift; sourceTree = "<group>"; };
+		3F12C46529409FDD0039EF85 /* CatalogueRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRouterMock.swift; sourceTree = "<group>"; };
+		3F12C4672940A1920039EF85 /* CatalogueInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueInteractorMock.swift; sourceTree = "<group>"; };
+		3F12C4692940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueTableViewAdapterMock.swift; sourceTree = "<group>"; };
+		3F12C46D2940E5AD0039EF85 /* CatalogueViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewControllerMock.swift; sourceTree = "<group>"; };
+		3F12C46F2940E68F0039EF85 /* CataloguePresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CataloguePresenterMock.swift; sourceTree = "<group>"; };
+		3F12C4712940E9870039EF85 /* CatalogueInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueInteractorTests.swift; sourceTree = "<group>"; };
+		3F12C4752940EA520039EF85 /* ServicesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesMock.swift; sourceTree = "<group>"; };
+		3F12C47B2940F0790039EF85 /* ProductViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewControllerMock.swift; sourceTree = "<group>"; };
+		3F12C47D2940F1900039EF85 /* ProductInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInteractorMock.swift; sourceTree = "<group>"; };
+		3F12C47F2940F2700039EF85 /* ProductPresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresenterMock.swift; sourceTree = "<group>"; };
+		3F12C4812940F2FB0039EF85 /* ProductRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRouterMock.swift; sourceTree = "<group>"; };
+		3F12C4832940F3240039EF85 /* ProductPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresenterTests.swift; sourceTree = "<group>"; };
+		3F12C4852940FDFD0039EF85 /* ProductCollectionViewAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewAdapterMock.swift; sourceTree = "<group>"; };
+		3F12C48B2941DE0B0039EF85 /* CartViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewControllerMock.swift; sourceTree = "<group>"; };
+		3F12C48D2941DE440039EF85 /* CartInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartInteractorMock.swift; sourceTree = "<group>"; };
+		3F12C48F2941F6E10039EF85 /* CartPresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenterMock.swift; sourceTree = "<group>"; };
+		3F12C4912941F7850039EF85 /* CartRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRouterMock.swift; sourceTree = "<group>"; };
+		3F12C4932941F7BA0039EF85 /* CartTableViewAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewAdapterMock.swift; sourceTree = "<group>"; };
+		3F12C4952941F82D0039EF85 /* CartInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartInteractorTests.swift; sourceTree = "<group>"; };
+		3F12C4972941F8C30039EF85 /* CartPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenterTests.swift; sourceTree = "<group>"; };
+		3F12C4992941FAD10039EF85 /* ProductInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInteractorTests.swift; sourceTree = "<group>"; };
 		3F25169D292695C0008F5820 /* LRUCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
 		3F25169F29269617008F5820 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		3F2516A129269644008F5820 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -218,6 +273,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F12C45829409D280039EF85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F93D0282905F072003FF558 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +373,91 @@
 				3F12B041292F8F3500338F1D /* ProfileContainer.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		3F12C45C29409D280039EF85 /* ShoppingCartTests */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C4892941DC3D0039EF85 /* Cart */,
+				3F12C4732940EA100039EF85 /* Catalogue */,
+				3F12C4792940F00C0039EF85 /* Product */,
+				3F12C4742940EA270039EF85 /* Services */,
+			);
+			path = ShoppingCartTests;
+			sourceTree = "<group>";
+		};
+		3F12C46429409FBA0039EF85 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C46D2940E5AD0039EF85 /* CatalogueViewControllerMock.swift */,
+				3F12C4672940A1920039EF85 /* CatalogueInteractorMock.swift */,
+				3F12C46F2940E68F0039EF85 /* CataloguePresenterMock.swift */,
+				3F12C46529409FDD0039EF85 /* CatalogueRouterMock.swift */,
+				3F12C4692940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		3F12C4732940EA100039EF85 /* Catalogue */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C46429409FBA0039EF85 /* Mocks */,
+				3F12C4712940E9870039EF85 /* CatalogueInteractorTests.swift */,
+				3F12C45D29409D280039EF85 /* CataloguePresenterTests.swift */,
+			);
+			path = Catalogue;
+			sourceTree = "<group>";
+		};
+		3F12C4742940EA270039EF85 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C4752940EA520039EF85 /* ServicesMock.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F12C4792940F00C0039EF85 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C47A2940F0420039EF85 /* Mocks */,
+				3F12C4992941FAD10039EF85 /* ProductInteractorTests.swift */,
+				3F12C4832940F3240039EF85 /* ProductPresenterTests.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		3F12C47A2940F0420039EF85 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C47B2940F0790039EF85 /* ProductViewControllerMock.swift */,
+				3F12C47D2940F1900039EF85 /* ProductInteractorMock.swift */,
+				3F12C47F2940F2700039EF85 /* ProductPresenterMock.swift */,
+				3F12C4812940F2FB0039EF85 /* ProductRouterMock.swift */,
+				3F12C4852940FDFD0039EF85 /* ProductCollectionViewAdapterMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		3F12C4892941DC3D0039EF85 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C48A2941DDF10039EF85 /* Mocks */,
+				3F12C4952941F82D0039EF85 /* CartInteractorTests.swift */,
+				3F12C4972941F8C30039EF85 /* CartPresenterTests.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		3F12C48A2941DDF10039EF85 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C48B2941DE0B0039EF85 /* CartViewControllerMock.swift */,
+				3F12C48D2941DE440039EF85 /* CartInteractorMock.swift */,
+				3F12C48F2941F6E10039EF85 /* CartPresenterMock.swift */,
+				3F12C4912941F7850039EF85 /* CartRouterMock.swift */,
+				3F12C4932941F7BA0039EF85 /* CartTableViewAdapterMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		3F25169C29269570008F5820 /* ImageLoader */ = {
@@ -549,6 +696,7 @@
 			children = (
 				3F6E98ED2906E65500F25E9B /* README.md */,
 				3F93D02D2905F072003FF558 /* ShoppingCart */,
+				3F12C45C29409D280039EF85 /* ShoppingCartTests */,
 				3F93D02C2905F072003FF558 /* Products */,
 				E56B749EA4FDB6ECEFEAC60F /* Pods */,
 				1DBF2E630D16D872219EE44B /* Frameworks */,
@@ -559,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				3F93D02B2905F072003FF558 /* ShoppingCart.app */,
+				3F12C45B29409D280039EF85 /* ShoppingCartTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -623,6 +772,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3F12C45A29409D280039EF85 /* ShoppingCartTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F12C46129409D290039EF85 /* Build configuration list for PBXNativeTarget "ShoppingCartTests" */;
+			buildPhases = (
+				3F12C45729409D280039EF85 /* Sources */,
+				3F12C45829409D280039EF85 /* Frameworks */,
+				3F12C45929409D280039EF85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F12C46029409D280039EF85 /* PBXTargetDependency */,
+			);
+			name = ShoppingCartTests;
+			productName = ShoppingCartTests;
+			productReference = 3F12C45B29409D280039EF85 /* ShoppingCartTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3F93D02A2905F072003FF558 /* ShoppingCart */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F93D03F2905F075003FF558 /* Build configuration list for PBXNativeTarget "ShoppingCart" */;
@@ -649,9 +816,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					3F12C45A29409D280039EF85 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 3F93D02A2905F072003FF558;
+					};
 					3F93D02A2905F072003FF558 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -671,11 +842,19 @@
 			projectRoot = "";
 			targets = (
 				3F93D02A2905F072003FF558 /* ShoppingCart */,
+				3F12C45A29409D280039EF85 /* ShoppingCartTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F12C45929409D280039EF85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F93D0292905F072003FF558 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -734,6 +913,35 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F12C45729409D280039EF85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F12C4762940EA520039EF85 /* ServicesMock.swift in Sources */,
+				3F12C4682940A1920039EF85 /* CatalogueInteractorMock.swift in Sources */,
+				3F12C48E2941DE440039EF85 /* CartInteractorMock.swift in Sources */,
+				3F12C47E2940F1900039EF85 /* ProductInteractorMock.swift in Sources */,
+				3F12C47C2940F0790039EF85 /* ProductViewControllerMock.swift in Sources */,
+				3F12C4802940F2700039EF85 /* ProductPresenterMock.swift in Sources */,
+				3F12C4982941F8C30039EF85 /* CartPresenterTests.swift in Sources */,
+				3F12C4822940F2FB0039EF85 /* ProductRouterMock.swift in Sources */,
+				3F12C46E2940E5AD0039EF85 /* CatalogueViewControllerMock.swift in Sources */,
+				3F12C4942941F7BA0039EF85 /* CartTableViewAdapterMock.swift in Sources */,
+				3F12C49A2941FAD10039EF85 /* ProductInteractorTests.swift in Sources */,
+				3F12C4922941F7850039EF85 /* CartRouterMock.swift in Sources */,
+				3F12C46A2940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift in Sources */,
+				3F12C4722940E9870039EF85 /* CatalogueInteractorTests.swift in Sources */,
+				3F12C46629409FDD0039EF85 /* CatalogueRouterMock.swift in Sources */,
+				3F12C4862940FDFD0039EF85 /* ProductCollectionViewAdapterMock.swift in Sources */,
+				3F12C4702940E68F0039EF85 /* CataloguePresenterMock.swift in Sources */,
+				3F12C4842940F3240039EF85 /* ProductPresenterTests.swift in Sources */,
+				3F12C4962941F82D0039EF85 /* CartInteractorTests.swift in Sources */,
+				3F12C48C2941DE0B0039EF85 /* CartViewControllerMock.swift in Sources */,
+				3F12C45E29409D280039EF85 /* CataloguePresenterTests.swift in Sources */,
+				3F12C4902941F6E10039EF85 /* CartPresenterMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F93D0272905F072003FF558 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -838,6 +1046,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3F12C46029409D280039EF85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F93D02A2905F072003FF558 /* ShoppingCart */;
+			targetProxy = 3F12C45F29409D280039EF85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		3F93D0392905F075003FF558 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -850,6 +1066,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3F12C46229409D290039EF85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F3GPX8Z3U8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.ShoppingCartTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShoppingCart.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ShoppingCart";
+			};
+			name = Debug;
+		};
+		3F12C46329409D290039EF85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F3GPX8Z3U8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.ShoppingCartTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShoppingCart.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ShoppingCart";
+			};
+			name = Release;
+		};
 		3F93D03D2905F075003FF558 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1027,6 +1287,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F12C46129409D290039EF85 /* Build configuration list for PBXNativeTarget "ShoppingCartTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F12C46229409D290039EF85 /* Debug */,
+				3F12C46329409D290039EF85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3F93D0262905F072003FF558 /* Build configuration list for PBXProject "ShoppingCart" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
