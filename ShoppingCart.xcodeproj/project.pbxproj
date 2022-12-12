@@ -369,6 +369,7 @@
 				3F12C4892941DC3D0039EF85 /* Cart */,
 				3F12C4732940EA100039EF85 /* Catalogue */,
 				3F12C4792940F00C0039EF85 /* Product */,
+				3F12C4752940EA520039EF85 /* ServicesMock.swift */,
 			);
 			path = ShoppingCartTests;
 			sourceTree = "<group>";
@@ -670,7 +671,6 @@
 				3F6E98ED2906E65500F25E9B /* README.md */,
 				3F93D02D2905F072003FF558 /* ShoppingCart */,
 				3F12C45C29409D280039EF85 /* ShoppingCartTests */,
-				3F12C4752940EA520039EF85 /* ServicesMock.swift */,
 				3F93D02C2905F072003FF558 /* Products */,
 				E56B749EA4FDB6ECEFEAC60F /* Pods */,
 				1DBF2E630D16D872219EE44B /* Frameworks */,
