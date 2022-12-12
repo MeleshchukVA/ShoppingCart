@@ -35,12 +35,12 @@ extension CheckoutRouter: CheckoutRouterInput {
     }
 
     func showErrorAddCartAlert() {
-        let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel)
         cancelAction.setValue(Colors.purple2, forKey: Keys.titleTextColor)
         
         let alertController = UIAlertController(
-            title: "Fail",
-            message: "Something went wrong...",
+            title: "Something went wrong",
+            message: "Please try again \nor check Internet connection",
             preferredStyle: .alert
         )
         alertController.addAction(cancelAction)
