@@ -46,7 +46,7 @@ extension ProductPresenter: ProductViewOutput {
     
     func viewDidLoad() {
         view?.startActivityIndicator()
-        interactor.reload(category: viewModel.name.lowercased())
+        interactor.fetchProducts(category: viewModel.name.lowercased())
     }
 }
 

@@ -20,7 +20,7 @@ final class ProductInteractor: BaseInteractor {
 
 extension ProductInteractor: ProductInteractorInput {
 
-    func reload(category: String) {
+    func fetchProducts(category: String) {
         self.networkService.fetchProducts(with: category) { [weak self] result in
             switch result {
             case .success(let products):

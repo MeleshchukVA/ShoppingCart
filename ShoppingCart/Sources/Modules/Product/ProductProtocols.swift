@@ -33,7 +33,7 @@ protocol ProductViewOutput: AnyObject {
 // MARK: - ProductInteractorInput
 
 protocol ProductInteractorInput: BaseInteractorInput {
-    func reload(category: String)
+    func fetchProducts(category: String)
 }
 
 // MARK: - ProductInteractorOutput
