@@ -61,7 +61,7 @@ extension CataloguePresenter: CatalogueViewOutput {
     
     func viewDidLoad() {
         view?.startActivityIndicator()
-        interactor.reload()
+        interactor.fetchCategories()
     }
     
     func viewDidAppear() {
@@ -73,7 +73,7 @@ extension CataloguePresenter: CatalogueViewOutput {
         view?.startActivityIndicator()
         view?.hideTableView(isHidden: true)
         self.query = query
-        interactor.reload(by: query, skip: 0)
+        interactor.fetchSearchedProducts(by: query, skip: 0)
     }
     
     func searchBarCancelButtonClicked() {
@@ -81,7 +81,7 @@ extension CataloguePresenter: CatalogueViewOutput {
             self.clear()
             view?.startActivityIndicator()
             view?.hideCollectionView()
-            interactor.reload()
+            interactor.fetchCategories()
         }
     }
 }
@@ -112,7 +112,7 @@ extension CataloguePresenter: CatalogueInteractorOutput {
         }
     }
     
-    func didObtainDBProducts(products: [ProductCDModel]) {
+    func updateTabBarItemsWhenProductsCountIsNotEmpty(products: [ProductCDModel]) {
         if !products.isEmpty {
             self.view?.updateTabBarItems(badgeCount: products.count)
         }
@@ -144,6 +144,7 @@ extension CataloguePresenter: CatalogueInteractorOutput {
                       let product = self.products.first(where: { $0.id == id }) else {
                     return
                 }
+                
                 self.interactor.addToCart(products: [product]) { [weak self] state in
                     guard let self = self else { return }
                     switch state {
@@ -194,7 +195,7 @@ extension CataloguePresenter: ProductCollectionViewAdapterDelegate {
             return
         }
         if !self.query.isEmpty, products.count < total {
-            interactor.reload(by: self.query, skip: index + 1)
+            interactor.fetchSearchedProducts(by: self.query, skip: index + 1)
         }
     }
 }

@@ -19,7 +19,7 @@ final class CatalogueInteractor: BaseInteractor {
 
 extension CatalogueInteractor: CatalogueInteractorInput {
     
-    func reload() {
+    func fetchCategories() {
         networkService.fetchCategories { [weak self] result in
             switch result {
             case .success(let results):
@@ -31,7 +31,7 @@ extension CatalogueInteractor: CatalogueInteractorInput {
         }
     }
     
-    func reload(by query: String, skip: Int) {
+    func fetchSearchedProducts(by query: String, skip: Int) {
         networkService.fetchSearchedProducts(by: query, skip: skip) { [weak self] result in
             switch result {
             case .success(let products):
@@ -45,6 +45,6 @@ extension CatalogueInteractor: CatalogueInteractorInput {
     
     func obtainCartProducts() {
         let products = persistentProvider.fetchProducts()
-        output?.didObtainDBProducts(products: products)
+        output?.updateTabBarItemsWhenProductsCountIsNotEmpty(products: products)
     }
 }

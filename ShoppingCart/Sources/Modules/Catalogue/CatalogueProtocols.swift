@@ -38,8 +38,8 @@ protocol CatalogueViewOutput: AnyObject {
 // MARK: - CatalogueInteractorInput
 
 protocol CatalogueInteractorInput: BaseInteractorInput {
-    func reload()
-    func reload(by query: String, skip: Int)
+    func fetchCategories()
+    func fetchSearchedProducts(by query: String, skip: Int)
     func obtainCartProducts()
     func obtainCartProductsCount() -> Int
 }
@@ -48,7 +48,7 @@ protocol CatalogueInteractorInput: BaseInteractorInput {
 
 protocol CatalogueInteractorOutput: AnyObject {
     func didObtainCategories(categories: Categories)
-    func didObtainDBProducts(products: [ProductCDModel])
+    func updateTabBarItemsWhenProductsCountIsNotEmpty(products: [ProductCDModel])
     func didObtainProducts(products: [Products])
 }
 
