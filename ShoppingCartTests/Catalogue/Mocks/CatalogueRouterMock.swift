@@ -9,7 +9,9 @@
 import Foundation
 @testable import ShoppingCart
 
-final class CatalogueRouterMock: CatalogueRouterInput {
+final class CatalogueRouterMock: CatalogueRouterInput {}
+    
+extension CatalogueRouterMock {
     
     func showDetail(with viewModel: CatalogueViewModel) {
         return

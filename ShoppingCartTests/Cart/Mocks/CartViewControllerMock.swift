@@ -10,12 +10,17 @@ import Foundation
 
 final class CartViewControllerMock: CartViewInput {
     
+    var stubbedIsStartActivityIndicator = false
+}
+
+extension CartViewControllerMock {
+    
     func stopActivityIndicator() {
         return
     }
     
     func startActivityIndicator() {
-        return
+        stubbedIsStartActivityIndicator = true
     }
     
     func updateTabBarItems(badgeCount: Int) {

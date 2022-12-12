@@ -10,8 +10,7 @@ import Foundation
 
 final class CartInteractorMock {
     
-    var stubbedIsObtainCartProducts: Bool = false
-    var stubbedIsDeleteProduct: Bool = false
+    var stubbedIsObtainCartProducts = false
 }
 
 extension CartInteractorMock: CartInteractorInput {
@@ -21,7 +20,6 @@ extension CartInteractorMock: CartInteractorInput {
     }
     
     func deleteProduct(id: Int) {
-        stubbedIsDeleteProduct = true
     }
     
     func updateCountOfProduct(id: Int, count: Int) {

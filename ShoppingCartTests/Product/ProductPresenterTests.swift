@@ -8,7 +8,7 @@
 import XCTest
 @testable import ShoppingCart
 
-final class ProductPresenterTest: XCTestCase {
+final class ProductPresenterTests: XCTestCase {
     
     var sut: ProductPresenter!
     var interactorMock: ProductInteractorMock!
@@ -43,11 +43,31 @@ final class ProductPresenterTest: XCTestCase {
     }
 }
 
-extension ProductPresenterTest {
+extension ProductPresenterTests {
     
-    func testPresenterDidLoad() {
-        XCTAssertFalse(interactorMock.stubbedIsReloadCategories)
-        sut.interactor.reload(category: "Shoes")
-        XCTAssertTrue(interactorMock.stubbedIsReloadCategories)
+    // MARK: ProductModuleInput
+    func test_Presenter_View_Did_Load_With_Success() {
+        sut.viewDidLoad()
+        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == true)
+        XCTAssert(interactorMock.stubbedIsFetchProducts == true)
     }
+    
+    func test_Presenter_View_Did_Load_With_Failure() {
+        sut.viewDidLoad()
+        XCTAssertFalse(viewControllerMock.stubbedIsStartActivityIndicator == false)
+        XCTAssertFalse(interactorMock.stubbedIsFetchProducts == false)
+    }
+    
+//    // MARK: ProductInteractorOutput
+//    func test_Presenter_Did_Obtain_Products() {
+//        sut.didObtainProducts(products: <#T##[Products]#>)
+//    }
+//
+//    // MARK: ProductCollectionViewAdapterDelegate
+//    func test_Presenter_Product_Collection_View_Adapter() {
+//        sut.productCollectionViewAdapter(
+//            <#T##adapter: ProductCollectionViewAdapter##ProductCollectionViewAdapter#>,
+//            didSelectComponentAt: <#T##IndexPath#>
+//        )
+//    }
 }

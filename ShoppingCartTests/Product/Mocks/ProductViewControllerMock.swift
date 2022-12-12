@@ -10,6 +10,11 @@ import Foundation
 
 final class ProductViewControllerMock: ProductViewInput {
     
+    var stubbedIsStartActivityIndicator = false
+}
+ 
+extension ProductViewControllerMock {
+    
     func updateCollectionViewData(adapter: ShoppingCart.ProductCollectionViewAdapterProtocol, isEmpty: Bool) {
         return
     }
@@ -19,7 +24,7 @@ final class ProductViewControllerMock: ProductViewInput {
     }
     
     func startActivityIndicator() {
-        return
+        stubbedIsStartActivityIndicator = true
     }
     
     func updateTabBarItems(badgeCount: Int) {

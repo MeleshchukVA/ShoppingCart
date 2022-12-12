@@ -8,7 +8,9 @@
 import UIKit
 @testable import ShoppingCart
 
-final class CartTableViewAdapterMock: CartTableViewAdapterProtocol {
+final class CartTableViewAdapterMock: CartTableViewAdapterProtocol {}
+
+extension CartTableViewAdapterMock {
     
     func setupTable(tableView: UITableView) {
         return

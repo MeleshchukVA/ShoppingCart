@@ -8,7 +8,7 @@
 import XCTest
 @testable import ShoppingCart
 
-final class CartPresenterTest: XCTestCase {
+final class CartPresenterTests: XCTestCase {
     
     var sut: CartPresenter!
     var interactorMock: CartInteractorMock!
@@ -40,11 +40,44 @@ final class CartPresenterTest: XCTestCase {
     }
 }
 
-extension CartPresenterTest {
+extension CartPresenterTests {
     
-    func testPresenterDidLoad() {
-        XCTAssertFalse(interactorMock.stubbedIsObtainCartProducts)
-        sut.interactor.obtainCartProducts()
-        XCTAssertTrue(interactorMock.stubbedIsObtainCartProducts)
+    // MARK: CartViewOutput
+    func test_Presenter_View_Did_Load_With_Success() {
+        sut.viewDidLoad()
+        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == true)
+        XCTAssert(interactorMock.stubbedIsObtainCartProducts == true)
     }
+    
+    func test_Presenter_View_Did_Load_With_Failure() {
+        sut.viewDidLoad()
+        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == false)
+        XCTAssert(interactorMock.stubbedIsObtainCartProducts == false)
+    }
+    
+//    func test_Presenter_Checkout_Button_Tapped() {
+//        sut.checkoutButtonTapped()
+//        XCTAssert(routerMock.stubbedIsShowCheckoutView == true)
+//    }
+    
+//    // MARK: CartInteractorOutput
+//    func test_Presenter_Did_Obtain_Cart_Products() {
+//        sut.didObtainCartProducts(products: <#T##[ProductCDModel]#>)
+//    }
+//    
+//    func test_Presenter_Did_Obtain_Cart_Product() {
+//        sut.didObtainCartProduct(product: <#T##ProductCDModel#>)
+//    }
+//    
+//    // MARK: CartTableViewAdapterDelegate
+//    func test_Presenter_Detele_Item() {
+//        sut.deteleItem(viewModel: <#T##CartViewModel#>)
+//    }
+//    
+//    func test_Presenter_Cart_Table_View_Adapter() {
+//        sut.cartTableViewAdapter(
+//            <#T##adapter: CartTableViewAdapter##CartTableViewAdapter#>,
+//            didSelectComponentAt: <#T##IndexPath#>
+//        )
+//    }
 }

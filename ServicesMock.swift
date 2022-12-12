@@ -8,8 +8,6 @@
 import Foundation
 @testable import ShoppingCart
 
-// swiftlint:disable line_length
-
 final class NetworkServiceMock: NetworkServiceProtocol {
     
     func fetchCategories(completion: @escaping (Result<ShoppingCart.Categories, Error>) -> Void) {
@@ -20,7 +18,11 @@ final class NetworkServiceMock: NetworkServiceProtocol {
         return
     }
     
-    func fetchSearchedProducts(by query: String, skip: Int, completion: @escaping (Result<ShoppingCart.Products, Error>) -> Void) {
+    func fetchSearchedProducts(
+        by query: String,
+        skip: Int,
+        completion: @escaping (Result<ShoppingCart.Products, Error>
+        ) -> Void) {
         return
     }
     
@@ -35,7 +37,11 @@ final class NetworkServiceMock: NetworkServiceProtocol {
 
 final class PersistentProviderMock: PersistentProviderProtocol {
     
-    func update(models: [ShoppingCart.Product], action: ShoppingCart.PersistentState, completion: @escaping (Result<ShoppingCart.PersistentState, Error>) -> Void) {
+    func update(
+        models: [ShoppingCart.Product],
+        action: ShoppingCart.PersistentState,
+        completion: @escaping (Result<ShoppingCart.PersistentState, Error>
+        ) -> Void) {
         return
     }
     
@@ -55,5 +61,3 @@ final class PersistentProviderMock: PersistentProviderProtocol {
         return
     }
 }
-
-// swiftlint:enable line_length

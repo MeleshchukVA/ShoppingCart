@@ -11,19 +11,20 @@ import Foundation
 
 final class CatalogueInteractorMock: CatalogueInteractorInput {
     
-    var stubbedIsReloadCategories: Bool = false
-    var stubbedIsReloadProductByQuery: Bool = false
-    var stubbedIsObtainCartProducts: Bool = false
+    var stubbedIsFetchCategories = false
+    var stubbedIsObtainCartProducts = false
+    var stubbedIsFetchSearchedProducts = false
 }
 
 extension CatalogueInteractorMock {
     
-    func reload() {
-        stubbedIsReloadCategories = true
+    func fetchCategories() {
+        stubbedIsFetchCategories = true
     }
     
-    func reload(by query: String, skip: Int) {
-        stubbedIsReloadProductByQuery = true
+    func fetchSearchedProducts(by query: String, skip: Int) {
+        stubbedIsFetchSearchedProducts = true
+        return
     }
     
     func obtainCartProducts() {
@@ -31,7 +32,7 @@ extension CatalogueInteractorMock {
     }
     
     func obtainCartProductsCount() -> Int {
-        1
+        return 0
     }
     
     func addToCart(products: [ShoppingCart.Product], completion: @escaping (ShoppingCart.PersistentState) -> Void) {
