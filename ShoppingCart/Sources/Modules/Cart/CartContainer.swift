@@ -42,7 +42,8 @@ final class CartContainer {
         let presenter = CartPresenter(
             router: router,
             interactor: interactor,
-            tableViewAdapter: tableViewAdapter
+            tableViewAdapter: tableViewAdapter,
+            moduleDependencies: context.moduleDependencies
         )
         let viewController = CartViewController(output: presenter)
 

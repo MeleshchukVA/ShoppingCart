@@ -70,7 +70,13 @@ extension CheckoutPresenter: CheckoutInteractorOutput {
     func didAddCart(success: Bool) {
         DispatchQueue.main.async {
             if success {
-                self.router.showSuccessAddCartAlert()
+                self.router.showSuccessAddCartAlert { [weak self] result in
+                    guard let self = self else { return }
+                    if result {
+                        let ids = self.products.map { $0.id }
+                        self.moduleOutput?.clearCart(ids: ids)
+                    }
+                }
             } else {
                 self.router.showErrorAddCartAlert()
             }

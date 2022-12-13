@@ -15,12 +15,14 @@ final class CheckoutRouter: BaseRouter {}
 
 extension CheckoutRouter: CheckoutRouterInput {
     
-    func showSuccessAddCartAlert() {
+    func showSuccessAddCartAlert(completion: @escaping (Bool) -> Void) {
         let successAction = UIAlertAction(title: "Ok", style: .cancel) { _ in
+            // Закрываем экран модуля Checkout.
             DispatchQueue.main.async {
                 self.viewController?.dismiss(animated: true)
                 self.navigationController?.popViewController(animated: true)
             }
+            completion(true)
         }
         successAction.setValue(Colors.purple2, forKey: Keys.titleTextColor)
         

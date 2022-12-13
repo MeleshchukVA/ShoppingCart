@@ -46,5 +46,5 @@ protocol CartInteractorOutput: AnyObject {
 
 protocol CartRouterInput: AnyObject {
     func showAlertController(viewModel: CartViewModel)
-    func showCheckoutView(products: [CartViewModel])
+    func showCheckoutView(products: [CartViewModel], context: CheckoutContext)
 }

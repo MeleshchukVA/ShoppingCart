@@ -23,7 +23,7 @@ final class CataloguePresenter {
     private var categories: [CatalogueViewModel] = []
     private var products: [Product] = []
     private var total: Int = 0
-    private(set) var query: String = ""
+    private var query: String = ""
     
     // MARK: Init
     init(

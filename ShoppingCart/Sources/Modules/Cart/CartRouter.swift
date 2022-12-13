@@ -47,9 +47,7 @@ extension CartRouter: CartRouterInput {
         self.viewController?.present(alertController, animated: true)
     }
 
-    func showCheckoutView(products: [CartViewModel]) {
-        guard let moduleDependencies = moduleDependencies else { return }
-        let context = CheckoutContext(moduleDependencies: moduleDependencies)
+    func showCheckoutView(products: [CartViewModel], context: CheckoutContext) {
         let container = CheckoutContainer.assemble(with: context, products: products)
         navigationController?.present(container.viewController, animated: true)
     }

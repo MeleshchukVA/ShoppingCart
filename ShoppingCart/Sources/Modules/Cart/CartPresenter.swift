@@ -19,16 +19,19 @@ final class CartPresenter {
     let interactor: CartInteractorInput
     private let tableViewAdapter: CartTableViewAdapterProtocol
     private var products: [CartViewModel] = []
+    private let moduleDependencies: ModuleDependencies
     
     // MARK: Init
     init(
         router: CartRouterInput,
         interactor: CartInteractorInput,
-        tableViewAdapter: CartTableViewAdapterProtocol
+        tableViewAdapter: CartTableViewAdapterProtocol,
+        moduleDependencies: ModuleDependencies
     ) {
         self.router = router
         self.interactor = interactor
         self.tableViewAdapter = tableViewAdapter
+        self.moduleDependencies = moduleDependencies
     }
 }
 
@@ -36,13 +39,30 @@ final class CartPresenter {
 
 extension CartPresenter: CartModuleInput {}
 
+// MARK: - CheckoutModuleOutput
+
+extension CartPresenter: CheckoutModuleOutput {
+    
+    func clearCart(ids: [Int]) {
+        ids.forEach { id in
+            interactor.deleteProduct(id: id)
+            updateCountOfProduct(id: id, count: -1)
+            
+            let count = interactor.obtainCartProductsCount()
+            view?.updateTabBarItems(badgeCount: count == 1 ? -1 : count - 1)
+        }
+        viewDidLoad()
+    }
+}
+
 // MARK: - CartViewOutput
 
 extension CartPresenter: CartViewOutput {
     
     func checkoutButtonTapped() {
         if !products.isEmpty {
-            router.showCheckoutView(products: products)
+            let context = CheckoutContext(moduleDependencies: moduleDependencies, moduleOutput: self)
+            router.showCheckoutView(products: products, context: context)
         }
     }
 

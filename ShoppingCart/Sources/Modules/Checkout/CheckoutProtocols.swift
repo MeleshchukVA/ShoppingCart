@@ -15,7 +15,9 @@ protocol CheckoutModuleInput {
 
 // MARK: - CheckoutModuleOutput
 
-protocol CheckoutModuleOutput: AnyObject {}
+protocol CheckoutModuleOutput: AnyObject {
+    func clearCart(ids: [Int])
+}
 
 // MARK: - CheckoutViewInput
 
@@ -43,7 +45,7 @@ protocol CheckoutInteractorOutput: AnyObject {
 // MARK: - CheckoutRouterInput
 
 protocol CheckoutRouterInput: AnyObject {
-    func showSuccessAddCartAlert()
+    func showSuccessAddCartAlert(completion: @escaping (Bool) -> Void)
     func showErrorAddCartAlert()
     func dismissModalView()
 }
