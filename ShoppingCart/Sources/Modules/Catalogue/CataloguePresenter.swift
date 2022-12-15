@@ -164,14 +164,14 @@ extension CataloguePresenter: CatalogueInteractorOutput {
             }
         }
         
-        DispatchQueue.main.async {
-            guard let adapter = self.collectionViewAdapter as? ProductCollectionViewAdapter else { return }
+        DispatchQueue.main.async { [view] in
+            var adapter = self.collectionViewAdapter
             adapter.viewModels = viewModels
-            self.view?.updateCollectionViewData(
+            view?.updateCollectionViewData(
                 adapter: adapter,
                 isEmpty: viewModels.isEmpty
             )
-            self.view?.stopActivityIndicator()
+            view?.stopActivityIndicator()
         }
     }
 }
