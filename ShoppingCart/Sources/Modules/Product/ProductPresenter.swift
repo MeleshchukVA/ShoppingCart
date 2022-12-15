@@ -75,6 +75,7 @@ extension ProductPresenter: ProductInteractorOutput {
                       let product = self.products.first(where: { $0.id == id }) else {
                     return
                 }
+                
                 self.interactor.addToCart(products: [product]) { [weak self] state in
                     guard let self = self else { return }
                     switch state {
