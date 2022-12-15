@@ -15,7 +15,7 @@ class BaseView: UIView {
     // ActitivityIndicator существует для каждого View.
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(style: .whiteLarge)
-        activity.color = Colors.lightGray
+        activity.color = .white
         return activity
     }()
 }
