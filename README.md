@@ -127,35 +127,35 @@
 
 - <details><summary>iOS 12</summary>
 
-  gif
+  https://user-images.githubusercontent.com/45876618/208123699-f1f57891-2c85-4aa9-bf34-9fdf2eb2237e.mov
 
   </details>
   
   
 - <details><summary>iOS 13</summary>
 
-  gif
+  https://user-images.githubusercontent.com/45876618/208123735-6beaddf0-55b2-4504-843f-c0ea38a3102d.mov
 
   </details>
   
   
 - <details><summary>iOS 14</summary>
 
-  gif
+  https://user-images.githubusercontent.com/45876618/208123759-fcf495cb-8d1d-4d0f-8a58-8ab7fd094b88.mov
 
   </details>
   
   
 - <details><summary>iOS 15</summary>
 
-  gif
+  https://user-images.githubusercontent.com/45876618/208123785-85dcb088-8ed8-444e-8e6a-a4319fdd58fd.mov
 
   </details>
   
   
 - <details><summary>iOS 16</summary>
 
-  gif
+  https://user-images.githubusercontent.com/45876618/208123815-3c41a9c0-6d84-400d-951c-8762aefe28c8.mov
 
   </details>
 
