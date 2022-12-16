@@ -1,51 +1,14 @@
 //
-//  LRUCache.swift
-//  LRUCache
+//  ImageCache.swift
+//  ShoppingCart
 //
-//  Version 1.0.2
+//  Created by Владимир Мелещук on 16.12.2022.
 //
-//  Created by Nick Lockwood on 05/08/2021.
-//  Copyright © 2021 Nick Lockwood. All rights reserved.
-//
-//  Distributed under the permissive MIT license
-//  Get the latest version from here:
-//
-//  https://github.com/nicklockwood/LRUCache
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
-//
-import Foundation
 
-#if canImport(UIKit)
 import UIKit
 
-// Notification that cache should be cleared.
 public let LRUCacheMemoryWarningNotification: NSNotification.Name =
     UIApplication.didReceiveMemoryWarningNotification
-
-#else
-
-// Notification that cache should be cleared.
-public let LRUCacheMemoryWarningNotification: NSNotification.Name =
-    .init("LRUCacheMemoryWarningNotification")
-
-#endif
 
 // MARK: - LRUCache class
 
@@ -60,21 +23,22 @@ public final class LRUCache<Key: Hashable, Value> {
     private let notificationCenter: NotificationCenter
     
     // MARK: Public properties
-    // The current total cost of values in the cache.
+    
+    // Текущая общая стоимость значений в кэше.
     public private(set) var totalCost: Int = 0
 
-    // The maximum total cost permitted.
+    // Максимально допустимый общий размер кэша.
     public var totalCostLimit: Int {
         didSet { clean() }
     }
 
-    // The maximum number of values permitted.
+    // Максимально допустимое число элементов в кэше.
     public var countLimit: Int {
         didSet { clean() }
     }
     
     // MARK: Init
-    // Initialize the cache with the specified `totalCostLimit` and `countLimit`.
+    // Инициализируем кэш с указанными `totalCostLimit` и `countLimit`.
     public init(
         totalCostLimit: Int = .max,
         countLimit: Int = .max,
@@ -105,23 +69,25 @@ public final class LRUCache<Key: Hashable, Value> {
 
 public extension LRUCache {
     
-    // The number of values currently stored in the cache.
+    // Количество значений, хранящихся в настоящее время в кэше.
     var count: Int {
         values.count
     }
 
-    // Is the cache empty?
+    // Кэш пуст?
     var isEmpty: Bool {
         values.isEmpty
     }
 
-    // Insert a value into the cache with optional `cost`.
+    // Вставка значения в кэш с опциональным параметром `cost`.
     func setValue(_ value: Value?, forKey key: Key, cost: Int = 0) {
         guard let value = value else {
             removeValue(forKey: key)
             return
         }
+        
         lock.lock()
+        
         if let container = values[key] {
             container.value = value
             totalCost -= container.cost
@@ -142,7 +108,7 @@ public extension LRUCache {
         clean()
     }
 
-    // Remove a value  from the cache and return it.
+    // Remove a value from the cache and return it.
     @discardableResult func removeValue(forKey key: Key) -> Value? {
         lock.lock()
         defer { lock.unlock() }
@@ -154,7 +120,7 @@ public extension LRUCache {
         return container.value
     }
 
-    // Fetch a value from the cache.
+    // Удалить значение из кэша и вернуть его.
     func value(forKey key: Key) -> Value? {
         lock.lock()
         defer { lock.unlock() }
@@ -166,7 +132,7 @@ public extension LRUCache {
         return nil
     }
 
-    // Remove all values from the cache.
+    // Удалить все значения из кэша.
     func removeAllValues() {
         lock.lock()
         values.removeAll()
@@ -196,7 +162,7 @@ private extension LRUCache {
         }
     }
 
-    // Remove container from list.
+    // Удалить контейнер из списка.
     func remove(_ container: Container) {
         if head === container {
             head = container.next
@@ -209,7 +175,7 @@ private extension LRUCache {
         container.next = nil
     }
 
-    // Append container to list.
+    // Добавить контейнер в список.
     func append(_ container: Container) {
         assert(container.next == nil)
         if head == nil {
@@ -219,7 +185,8 @@ private extension LRUCache {
         tail?.next = container
         tail = container
     }
-
+    
+    // Очистить контейнер.
     func clean() {
         lock.lock()
         defer { lock.unlock() }
