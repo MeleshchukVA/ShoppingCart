@@ -11,7 +11,7 @@ import XCTest
 final class CataloguePresenterTests: XCTestCase {
     
     var sut: CataloguePresenter!
-    var interactorMock: CatalogueInteractorMock!
+    var interactorMock: CatalogueInteractorSpy!
     var viewControllerMock: CatalogueViewControllerMock!
     var routerMock: CatalogueRouterMock!
     var tableViewAdapterMock: CatalogueTableViewAdapterMock!
@@ -19,19 +19,7 @@ final class CataloguePresenterTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        interactorMock = CatalogueInteractorMock()
-        viewControllerMock = CatalogueViewControllerMock()
-        routerMock = CatalogueRouterMock()
-        tableViewAdapterMock = CatalogueTableViewAdapterMock()
-        collectionViewAdapterMock = ProductCollectonViewAdapterMock()
-        
-        sut = CataloguePresenter(
-            router: routerMock,
-            interactor: interactorMock,
-            tableViewAdapter: tableViewAdapterMock,
-            collectionViewAdapter: collectionViewAdapterMock
-        )
-        sut.view = viewControllerMock
+        setupMocks()
     }
     
     override func tearDown() {
@@ -42,79 +30,107 @@ final class CataloguePresenterTests: XCTestCase {
         tableViewAdapterMock = nil
         super.tearDown()
     }
+    
+    private func setupMocks(
+        interactorMock: CatalogueInteractorSpy = CatalogueInteractorSpy(),
+        viewControllerMock: CatalogueViewControllerMock = CatalogueViewControllerMock(),
+        routerMock: CatalogueRouterMock = CatalogueRouterMock(),
+        tableViewAdapterMock: CatalogueTableViewAdapterMock = CatalogueTableViewAdapterMock(),
+        collectionViewAdapterMock: ProductCollectonViewAdapterMock = ProductCollectonViewAdapterMock()
+    ) {
+        self.interactorMock = interactorMock
+        self.viewControllerMock = viewControllerMock
+        self.routerMock = routerMock
+        self.tableViewAdapterMock = tableViewAdapterMock
+        self.collectionViewAdapterMock = collectionViewAdapterMock
+        
+        sut = CataloguePresenter(
+            router: routerMock,
+            interactor: interactorMock,
+            tableViewAdapter: tableViewAdapterMock,
+            collectionViewAdapter: collectionViewAdapterMock
+        )
+        sut.view = viewControllerMock
+        self.interactorMock.output = sut
+    }
 }
 
 extension CataloguePresenterTests {
     
     // MARK: CatalogueViewOutput
     func test_Presenter_Did_Load_With_Success() {
+        // Given
+        setupMocks()
+        
+        // When
         sut.viewDidLoad()
-        XCTAssert(interactorMock.stubbedIsFetchCategories == true)
-        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == true)
+        
+        // Then
+        XCTAssert(interactorMock.isFetchCategories == true)
+        XCTAssert(viewControllerMock.isStartActivityIndicator == true)
     }
     
     func test_Presenter_Did_Load_With_Failure() {
+        // Given
+        setupMocks()
+        
+        // When
         sut.viewDidLoad()
-        XCTAssertFalse(interactorMock.stubbedIsFetchCategories == false)
-        XCTAssertFalse(viewControllerMock.stubbedIsStartActivityIndicator == false)
+        
+        // Then
+        XCTAssertFalse(interactorMock.isFetchCategories == false)
+        XCTAssertFalse(viewControllerMock.isStartActivityIndicator == false)
     }
     
     func test_Presenter_Did_Appear_With_Success() {
+        // Given
+        setupMocks()
+        
+        // When
         sut.viewDidAppear()
-        XCTAssert(interactorMock.stubbedIsObtainCartProducts == true)
+        
+        // Then
+        XCTAssert(interactorMock.isObtainCartProducts == true)
     }
     
     func test_Presenter_Did_Appear_With_Failure() {
+        // Given
+        setupMocks()
+        
+        // When
         sut.viewDidAppear()
-        XCTAssertFalse(interactorMock.stubbedIsObtainCartProducts == false)
+        
+        // Then
+        XCTAssertFalse(interactorMock.isObtainCartProducts == false)
     }
     
-//    func test_Presenter_Search_Bar_Did_Editing_With_Some_Query() {
-//        let query = "Apple"
-//        sut.searchBarTextDidEndEditing(with: query)
-//        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == true)
-//        XCTAssert(viewControllerMock.stubbedIsHideTableView == true)
-//        XCTAssert(interactorMock.stubbedIsFetchSearchedProducts == true)
-//    }
-    
-//    func test_Presenter_Search_Bar_Did_Editing_With_Empty_Query() {
-//        var query = ""
-//        sut.searchBarTextDidEndEditing(with: query)
-//        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == true)
-//        XCTAssert(viewControllerMock.stubbedIsHideTableView == true)
-//        XCTAssert(interactorMock.stubbedIsFetchSearchedProducts == false)
-//    }
-//    
-//    func test_Search_Bar_Cancel_Button_Clicked() {
-//        sut.searchBarCancelButtonClicked()
-//        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == true)
-//        XCTAssert(viewControllerMock.stubbedIsHideTableView == true)
-//        XCTAssert(interactorMock.stubbedIsFetchCategories == true)
-//    }
-//    
-//    // MARK: CatalogueInteractorOutput
-//    func test_Presenter_Did_Obtain_Categories() {
-//        sut.didObtainCategories(categories: <#T##Categories#>)
-//    }
-//    
-//    func test_Presenter_Update_Tab_Bar_Items_When_Products_Count_Is_Not_Empty() {
-//        sut.updateTabBarItemsWhenProductsCountIsNotEmpty(products: <#T##[ProductCDModel]#>)
-//    }
-//    
-//    func test_Presenter_did_Obtain_Products() {
-//        sut.didObtainProducts(products: <#T##[Products]#>)
-//    }
-//    
-    // MARK: CatalogueTableViewAdapterDelegate
-//    func test_Presenter_Catalogue_Table_View_Adapter() {
-//        sut.catalogueTableViewAdapter(
-//            <#T##adapter: CatalogueTableViewAdapter##CatalogueTableViewAdapter#>,
-//            didSelectComponentAt: <#T##IndexPath#>
-//        )
-//    }
-    
-//    // MARK: ProductCollectionViewAdapterDelegate
-//    func test_Presenter_Will_Display() {
-//        sut.willDisplay(at: <#T##Int#>)
-//    }
+    func test_Presenter_Search_Bar_Did_Editing_With_Some_Query_With_Success() {
+        // Given
+        setupMocks(interactorMock: CatalogueInteractorSpy(products: Products(
+            products: [Product(
+                id: 1,
+                title: "Apple",
+                productDescription: "",
+                price: 1,
+                discountPercentage: 1,
+                rating: 1,
+                stock: 1,
+                brand: "",
+                category: "",
+                thumbnail: "",
+                images: [""]
+            )],
+            total: 1, skip: 1, limit: 1)))
+        
+        let query = "Apple"
+        
+        // When
+        sut.searchBarTextDidEndEditing(with: query)
+
+        // Then
+        XCTAssert(
+            viewControllerMock.updateCollectionViewDataIsEmpty == false
+        )
+        XCTAssert(viewControllerMock.viewModels.allSatisfy { $0.title.contains(query) })
+    }
 }

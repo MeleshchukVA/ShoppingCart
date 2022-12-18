@@ -12,5 +12,5 @@ final class ProductCollectonViewAdapterMock: ProductCollectionViewAdapterProtoco
     
     var delegate: ShoppingCart.ProductCollectionViewAdapterDelegate?
     var viewModels: [ShoppingCart.ProductViewModel] = []
-    var boundsWidth: CGFloat = 0.0
+    var boundsWidth: CGFloat = 0
 }

@@ -10,18 +10,22 @@ import Foundation
 
 final class CatalogueViewControllerMock: CatalogueViewInput {
     
-    var stubbedIsStartActivityIndicator = false
-    var stubbedIsHideTableView = false
+    var isStartActivityIndicator = false
+    var isHideTableView = false
+    var productsViewModel = [ProductViewModel]()
+    var updateCollectionViewDataIsEmpty = false
+    var viewModels: [ProductViewModel] = []
 }
 
 extension CatalogueViewControllerMock {
     
     func updateCollectionViewData(adapter: ShoppingCart.ProductCollectionViewAdapterProtocol, isEmpty: Bool) {
-        return
+        updateCollectionViewDataIsEmpty = isEmpty
+        viewModels = adapter.viewModels
     }
     
     func hideTableView(isHidden: Bool) {
-        stubbedIsHideTableView = true
+        isHideTableView = true
     }
     
     func hideCollectionView() {
@@ -33,7 +37,7 @@ extension CatalogueViewControllerMock {
     }
     
     func startActivityIndicator() {
-        stubbedIsStartActivityIndicator = true
+        isStartActivityIndicator = true
     }
     
     func updateTabBarItems(badgeCount: Int) {

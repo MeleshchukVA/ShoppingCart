@@ -48,26 +48,13 @@ extension ProductPresenterTests {
     // MARK: ProductModuleInput
     func test_Presenter_View_Did_Load_With_Success() {
         sut.viewDidLoad()
-        XCTAssert(viewControllerMock.stubbedIsStartActivityIndicator == true)
-        XCTAssert(interactorMock.stubbedIsFetchProducts == true)
+        XCTAssert(viewControllerMock.isStartActivityIndicator == true)
+        XCTAssert(interactorMock.isFetchProducts == true)
     }
     
     func test_Presenter_View_Did_Load_With_Failure() {
         sut.viewDidLoad()
-        XCTAssertFalse(viewControllerMock.stubbedIsStartActivityIndicator == false)
-        XCTAssertFalse(interactorMock.stubbedIsFetchProducts == false)
+        XCTAssertFalse(viewControllerMock.isStartActivityIndicator == false)
+        XCTAssertFalse(interactorMock.isFetchProducts == false)
     }
-    
-//    // MARK: ProductInteractorOutput
-//    func test_Presenter_Did_Obtain_Products() {
-//        sut.didObtainProducts(products: <#T##[Products]#>)
-//    }
-//
-//    // MARK: ProductCollectionViewAdapterDelegate
-//    func test_Presenter_Product_Collection_View_Adapter() {
-//        sut.productCollectionViewAdapter(
-//            <#T##adapter: ProductCollectionViewAdapter##ProductCollectionViewAdapter#>,
-//            didSelectComponentAt: <#T##IndexPath#>
-//        )
-//    }
 }

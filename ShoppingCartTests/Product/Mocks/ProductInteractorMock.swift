@@ -10,13 +10,13 @@ import Foundation
 
 final class ProductInteractorMock {
     
-    var stubbedIsFetchProducts = false
+    var isFetchProducts = false
 }
 
 extension ProductInteractorMock: ProductInteractorInput {
     
     func fetchProducts(category: String) {
-        stubbedIsFetchProducts = true
+        isFetchProducts = true
     }
     
     func addToCart(products: [ShoppingCart.Product], completion: @escaping (ShoppingCart.PersistentState) -> Void) {
