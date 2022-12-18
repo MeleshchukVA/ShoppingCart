@@ -122,6 +122,10 @@
 		3F96689E290848B80034FEFE /* CatalogueContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F966898290848B80034FEFE /* CatalogueContainer.swift */; };
 		3F9668A12909878E0034FEFE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9668A02909878E0034FEFE /* API.swift */; };
 		3F9668A32909884F0034FEFE /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9668A22909884F0034FEFE /* URLFactory.swift */; };
+		3FEFF97E294EFDAD0050B284 /* ProfileInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF97D294EFDAD0050B284 /* ProfileInteractorMock.swift */; };
+		3FEFF980294EFDB90050B284 /* ProfileRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF97F294EFDB90050B284 /* ProfileRouterMock.swift */; };
+		3FEFF982294EFE740050B284 /* ProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF981294EFE740050B284 /* ProfilePresenterTests.swift */; };
+		3FEFF984294EFEC20050B284 /* ProfileViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF983294EFEC20050B284 /* ProfileViewControllerMock.swift */; };
 		9896D0838BABF26E6FBCAA83 /* Pods_ShoppingCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949AC60969A23CB238DEF102 /* Pods_ShoppingCart.framework */; };
 /* End PBXBuildFile section */
 
@@ -257,6 +261,10 @@
 		3F966898290848B80034FEFE /* CatalogueContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueContainer.swift; sourceTree = "<group>"; };
 		3F9668A02909878E0034FEFE /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3F9668A22909884F0034FEFE /* URLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
+		3FEFF97D294EFDAD0050B284 /* ProfileInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorMock.swift; sourceTree = "<group>"; };
+		3FEFF97F294EFDB90050B284 /* ProfileRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouterMock.swift; sourceTree = "<group>"; };
+		3FEFF981294EFE740050B284 /* ProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterTests.swift; sourceTree = "<group>"; };
+		3FEFF983294EFEC20050B284 /* ProfileViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerMock.swift; sourceTree = "<group>"; };
 		949AC60969A23CB238DEF102 /* Pods_ShoppingCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -369,6 +377,7 @@
 				3F12C4892941DC3D0039EF85 /* Cart */,
 				3F12C4732940EA100039EF85 /* Catalogue */,
 				3F12C4792940F00C0039EF85 /* Product */,
+				3FEFF97B294EFD590050B284 /* Profile */,
 				3F12C4752940EA520039EF85 /* ServicesMock.swift */,
 			);
 			path = ShoppingCartTests;
@@ -734,6 +743,25 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		3FEFF97B294EFD590050B284 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3FEFF97C294EFD910050B284 /* Mocks */,
+				3FEFF981294EFE740050B284 /* ProfilePresenterTests.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		3FEFF97C294EFD910050B284 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3FEFF97D294EFDAD0050B284 /* ProfileInteractorMock.swift */,
+				3FEFF97F294EFDB90050B284 /* ProfileRouterMock.swift */,
+				3FEFF983294EFEC20050B284 /* ProfileViewControllerMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		E56B749EA4FDB6ECEFEAC60F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,7 +819,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					3F12C45A29409D280039EF85 = {
 						CreatedOnToolsVersion = 14.1;
@@ -892,18 +920,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F12C4762940EA520039EF85 /* ServicesMock.swift in Sources */,
+				3FEFF982294EFE740050B284 /* ProfilePresenterTests.swift in Sources */,
 				3F12C4682940A1920039EF85 /* CatalogueInteractorSpy.swift in Sources */,
 				3F12C48E2941DE440039EF85 /* CartInteractorMock.swift in Sources */,
+				3FEFF984294EFEC20050B284 /* ProfileViewControllerMock.swift in Sources */,
 				3F12C47E2940F1900039EF85 /* ProductInteractorMock.swift in Sources */,
 				3F12C47C2940F0790039EF85 /* ProductViewControllerMock.swift in Sources */,
 				3F12C4982941F8C30039EF85 /* CartPresenterTests.swift in Sources */,
 				3F12C4822940F2FB0039EF85 /* ProductRouterMock.swift in Sources */,
 				3F12C46E2940E5AD0039EF85 /* CatalogueViewControllerMock.swift in Sources */,
+				3FEFF97E294EFDAD0050B284 /* ProfileInteractorMock.swift in Sources */,
 				3F12C4942941F7BA0039EF85 /* CartTableViewAdapterMock.swift in Sources */,
 				3F12C4922941F7850039EF85 /* CartRouterMock.swift in Sources */,
 				3F12C46A2940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift in Sources */,
 				3F12C4722940E9870039EF85 /* CataloguePresenterTests.swift in Sources */,
 				3F12C46629409FDD0039EF85 /* CatalogueRouterMock.swift in Sources */,
+				3FEFF980294EFDB90050B284 /* ProfileRouterMock.swift in Sources */,
 				3F12C4862940FDFD0039EF85 /* ProductCollectionViewAdapterMock.swift in Sources */,
 				3F12C4842940F3240039EF85 /* ProductPresenterTests.swift in Sources */,
 				3F12C48C2941DE0B0039EF85 /* CartViewControllerMock.swift in Sources */,
@@ -1040,6 +1072,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F3GPX8Z3U8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1062,6 +1095,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = F3GPX8Z3U8;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1128,7 +1162,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1182,7 +1216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
