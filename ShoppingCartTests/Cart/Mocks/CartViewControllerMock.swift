@@ -10,7 +10,7 @@ import Foundation
 
 final class CartViewControllerMock: CartViewInput {
     
-    var stubbedIsStartActivityIndicator = false
+    var isStartActivityIndicator = false
 }
 
 extension CartViewControllerMock {
@@ -20,7 +20,7 @@ extension CartViewControllerMock {
     }
     
     func startActivityIndicator() {
-        stubbedIsStartActivityIndicator = true
+        isStartActivityIndicator = true
     }
     
     func updateTabBarItems(badgeCount: Int) {

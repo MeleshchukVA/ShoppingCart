@@ -10,13 +10,13 @@ import Foundation
 
 final class CartRouterMock: CartRouterInput {
     
-    var stubbedIsShowCheckoutView = false
+    var isShowCheckoutView = false
 }
 
 extension CartRouterMock {
     
-    func showCheckoutView(products: [ShoppingCart.CartViewModel]) {
-        stubbedIsShowCheckoutView = true
+    func showCheckoutView(products: [ShoppingCart.CartViewModel], context: ShoppingCart.CheckoutContext) {
+        isShowCheckoutView = true
     }
     
     func showAlertController(viewModel: CartViewModel) {

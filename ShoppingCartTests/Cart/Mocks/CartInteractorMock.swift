@@ -10,13 +10,13 @@ import Foundation
 
 final class CartInteractorMock {
     
-    var stubbedIsObtainCartProducts = false
+    var isObtainCartProducts = false
 }
 
 extension CartInteractorMock: CartInteractorInput {
     
     func obtainCartProducts() {
-        stubbedIsObtainCartProducts = true
+        isObtainCartProducts = true
     }
     
     func deleteProduct(id: Int) {
