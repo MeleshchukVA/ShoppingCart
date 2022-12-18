@@ -42,19 +42,27 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: ProfileViewInput {
     
     func failToGetUser() {
-        profileView?.stopActivityIndicator()
+        DispatchQueue.main.async {
+            self.profileView?.stopActivityIndicator()
+        }
     }
 
     func failToGetImage() {
-        profileView?.setupAvatar(image: nil)
+        DispatchQueue.main.async {
+            self.profileView?.setupAvatar(image: nil)
+        }
     }
 
     func setupAvatar(image: UIImage) {
-        profileView?.setupAvatar(image: image)
+        DispatchQueue.main.async {
+            self.profileView?.setupAvatar(image: image)
+        }
     }
 
     func setupUser(user: User) {
-        profileView?.stopActivityIndicator()
-        profileView?.fillProfile(user)
+        DispatchQueue.main.async {
+            self.profileView?.stopActivityIndicator()
+            self.profileView?.fillProfile(user)
+        }
     }
 }
