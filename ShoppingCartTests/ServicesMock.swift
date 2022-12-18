@@ -5,10 +5,25 @@
 //  Created by Владимир Мелещук on 07.12.2022.
 //
 
-import Foundation
+import UIKit
 @testable import ShoppingCart
 
+final class ServicesMock: AppDependencyProtocol {
+    
+    var networkService: ShoppingCart.NetworkServiceProtocol
+    var persistentProvider: ShoppingCart.PersistentProviderProtocol
+    
+    init(
+        networkService: ShoppingCart.NetworkServiceProtocol,
+        persistentProvider: ShoppingCart.PersistentProviderProtocol
+    ) {
+        self.networkService = networkService
+        self.persistentProvider = persistentProvider
+    }
+}
+
 final class NetworkServiceMock: NetworkServiceProtocol {
+    var resultForGetUsers: Result<ShoppingCart.User, Error>?
     
     func fetchCategories(completion: @escaping (Result<ShoppingCart.Categories, Error>) -> Void) {
         return
@@ -31,7 +46,7 @@ final class NetworkServiceMock: NetworkServiceProtocol {
     }
     
     func getUser(completion: @escaping (Result<ShoppingCart.User, Error>) -> Void) {
-        return
+        completion(resultForGetUsers!)
     }
 }
 
@@ -59,5 +74,13 @@ final class PersistentProviderMock: PersistentProviderProtocol {
     
     func testPrint(ids: [Int]) {
         return
+    }
+}
+
+final class ImageLoaderMock: ImageLoaderProtocol {
+    var resultForGetImage: Result<UIImage, ShoppingCart.ImageLoaderError>?
+    
+    func loadImage(for stringUrl: String, completion: @escaping (Result<UIImage, ShoppingCart.ImageLoaderError>) -> Void) {
+        completion(resultForGetImage!)
     }
 }
