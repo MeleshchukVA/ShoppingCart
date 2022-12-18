@@ -14,6 +14,7 @@ excluded:
 - ShoppingCart/Products
 - ShoppingCart/Pods
 - ShoppingCart/Frameworks
+- ShoppingCartTests
 
 opt_in_rules:
 - operator_usage_whitespace
