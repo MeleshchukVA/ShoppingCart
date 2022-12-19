@@ -8,16 +8,17 @@
 import Foundation
 @testable import ShoppingCart
 
-final class CatalogueViewControllerMock: CatalogueViewInput {
+final class CatalogueViewControllerMock {
     
     var isStartActivityIndicator = false
     var isHideTableView = false
     var productsViewModel = [ProductViewModel]()
     var updateCollectionViewDataIsEmpty = false
     var viewModels: [ProductViewModel] = []
+    var isStopActivityIndicator = false
 }
 
-extension CatalogueViewControllerMock {
+extension CatalogueViewControllerMock: CatalogueViewInput {
     
     func updateCollectionViewData(adapter: ShoppingCart.ProductCollectionViewAdapterProtocol, isEmpty: Bool) {
         updateCollectionViewDataIsEmpty = isEmpty
@@ -33,7 +34,7 @@ extension CatalogueViewControllerMock {
     }
     
     func stopActivityIndicator() {
-        return
+        isStopActivityIndicator = true
     }
     
     func startActivityIndicator() {

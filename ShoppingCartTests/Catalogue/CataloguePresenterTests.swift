@@ -15,7 +15,8 @@ final class CataloguePresenterTests: XCTestCase {
     var viewControllerMock: CatalogueViewControllerMock!
     var routerMock: CatalogueRouterMock!
     var tableViewAdapterMock: CatalogueTableViewAdapterMock!
-    var collectionViewAdapterMock: ProductCollectonViewAdapterMock!
+    var collectionViewAdapterMock: ProductCollectionViewAdapterMock!
+    var networkServiceMock: NetworkServiceMock!
     
     override func setUp() {
         super.setUp()
@@ -28,6 +29,7 @@ final class CataloguePresenterTests: XCTestCase {
         viewControllerMock = nil
         routerMock = nil
         tableViewAdapterMock = nil
+        networkServiceMock = nil
         super.tearDown()
     }
     
@@ -36,7 +38,7 @@ final class CataloguePresenterTests: XCTestCase {
         viewControllerMock: CatalogueViewControllerMock = CatalogueViewControllerMock(),
         routerMock: CatalogueRouterMock = CatalogueRouterMock(),
         tableViewAdapterMock: CatalogueTableViewAdapterMock = CatalogueTableViewAdapterMock(),
-        collectionViewAdapterMock: ProductCollectonViewAdapterMock = ProductCollectonViewAdapterMock()
+        collectionViewAdapterMock: ProductCollectionViewAdapterMock = ProductCollectionViewAdapterMock()
     ) {
         self.interactorMock = interactorMock
         self.viewControllerMock = viewControllerMock
@@ -52,22 +54,35 @@ final class CataloguePresenterTests: XCTestCase {
         )
         sut.view = viewControllerMock
         self.interactorMock.output = sut
+        interactorMock.networkServiceMock = networkServiceMock
     }
 }
 
 extension CataloguePresenterTests {
     
-    // MARK: CatalogueViewOutput
     func test_Presenter_Did_Load_With_Success() {
         // Given
+        self.networkServiceMock = NetworkServiceMock()
+        let categories = Categories(["Laptops"])
+        let viewModels = categories.map {
+            CatalogueViewModel(id: UUID(), name: $0.capitalized.replacingOccurrences(of: "-", with: " "))
+        }.sorted { $0.name < $1.name }
+        
+        let categoriesString = "Laptops"
+            
         setupMocks()
+        
+        networkServiceMock.resultForFetchCategories = .success(categories)
         
         // When
         sut.viewDidLoad()
         
         // Then
-        XCTAssert(interactorMock.isFetchCategories == true)
         XCTAssert(viewControllerMock.isStartActivityIndicator == true)
+        XCTAssert(viewControllerMock.isHideTableView == true)
+        XCTAssert(tableViewAdapterMock.isRestoreTableView == true)
+        XCTAssert(viewControllerMock.isStopActivityIndicator == true)
+        XCTAssert(tableViewAdapterMock.viewModels?.allSatisfy { $0.name.contains(categoriesString) } == true )
     }
     
     func test_Presenter_Did_Load_With_Failure() {
@@ -78,30 +93,7 @@ extension CataloguePresenterTests {
         sut.viewDidLoad()
         
         // Then
-        XCTAssertFalse(interactorMock.isFetchCategories == false)
         XCTAssertFalse(viewControllerMock.isStartActivityIndicator == false)
-    }
-    
-    func test_Presenter_Did_Appear_With_Success() {
-        // Given
-        setupMocks()
-        
-        // When
-        sut.viewDidAppear()
-        
-        // Then
-        XCTAssert(interactorMock.isObtainCartProducts == true)
-    }
-    
-    func test_Presenter_Did_Appear_With_Failure() {
-        // Given
-        setupMocks()
-        
-        // When
-        sut.viewDidAppear()
-        
-        // Then
-        XCTAssertFalse(interactorMock.isObtainCartProducts == false)
     }
     
     func test_Presenter_Search_Bar_Did_Editing_With_Some_Query_With_Success() {
@@ -128,9 +120,7 @@ extension CataloguePresenterTests {
         sut.searchBarTextDidEndEditing(with: query)
 
         // Then
-        XCTAssert(
-            viewControllerMock.updateCollectionViewDataIsEmpty == false
-        )
+        XCTAssert(viewControllerMock.updateCollectionViewDataIsEmpty == false)
         XCTAssert(viewControllerMock.viewModels.allSatisfy { $0.title.contains(query) })
     }
 }

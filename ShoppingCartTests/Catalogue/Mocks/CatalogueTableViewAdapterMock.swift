@@ -9,7 +9,11 @@
 import UIKit
 @testable import ShoppingCart
 
-final class CatalogueTableViewAdapterMock: CatalogueTableViewAdapterProtocol {}
+final class CatalogueTableViewAdapterMock: CatalogueTableViewAdapterProtocol {
+    
+    var viewModels: [ShoppingCart.CatalogueViewModel]?
+    var isRestoreTableView = false
+}
 
 extension CatalogueTableViewAdapterMock {
     
@@ -18,7 +22,7 @@ extension CatalogueTableViewAdapterMock {
     }
     
     func update(viewModels: [ShoppingCart.CatalogueViewModel]) {
-        return
+        self.viewModels = viewModels
     }
     
     func setEmptyMessage(message: String) {
@@ -26,6 +30,6 @@ extension CatalogueTableViewAdapterMock {
     }
     
     func restore() {
-        return
+        isRestoreTableView = true
     }
 }

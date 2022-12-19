@@ -12,10 +12,9 @@ import Foundation
 final class CatalogueInteractorSpy: CatalogueInteractorInput {
     
     var output: CatalogueInteractorOutput?
-    var isFetchCategories = false
+    var networkServiceMock: NetworkServiceMock?
     var isObtainCartProducts = false
     var isFetchSearchedProducts = false
-    
     var products: Products
     
     init(products: Products = .init(products: [], total: 0, skip: 0, limit: 0)) {
@@ -26,7 +25,16 @@ final class CatalogueInteractorSpy: CatalogueInteractorInput {
 extension CatalogueInteractorSpy {
     
     func fetchCategories() {
-        isFetchCategories = true
+        networkServiceMock?.fetchCategories(completion: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let categories):
+                self.output?.didObtainCategories(categories: categories)
+                
+            case .failure:
+                break
+            }
+        })
     }
     
     func fetchSearchedProducts(by query: String, skip: Int) {
