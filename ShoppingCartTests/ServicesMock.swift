@@ -8,11 +8,15 @@
 import UIKit
 @testable import ShoppingCart
 
+// MARK: - ServicesMock
+
 final class ServicesMock: AppDependencyProtocol {
     
+    // MARK: Properties
     var networkService: ShoppingCart.NetworkServiceProtocol
     var persistentProvider: ShoppingCart.PersistentProviderProtocol
     
+    // MARK: Init
     init(
         networkService: ShoppingCart.NetworkServiceProtocol,
         persistentProvider: ShoppingCart.PersistentProviderProtocol
@@ -22,8 +26,17 @@ final class ServicesMock: AppDependencyProtocol {
     }
 }
 
-final class NetworkServiceMock: NetworkServiceProtocol {
+// MARK: - NetworkServiceMock class
+
+final class NetworkServiceMock {
+    
+    // MARK: Properties
     var resultForGetUsers: Result<ShoppingCart.User, Error>?
+}
+
+// MARK: - NetworkServiceMock + NetworkServiceProtocol
+
+extension NetworkServiceMock: NetworkServiceProtocol {
     
     func fetchCategories(completion: @escaping (Result<ShoppingCart.Categories, Error>) -> Void) {
         return
@@ -50,7 +63,13 @@ final class NetworkServiceMock: NetworkServiceProtocol {
     }
 }
 
-final class PersistentProviderMock: PersistentProviderProtocol {
+// MARK: - PersistentProviderMock class
+
+final class PersistentProviderMock {}
+
+// MARK: - PersistentProviderMock + PersistentProviderProtocol
+
+extension PersistentProviderMock: PersistentProviderProtocol {
     
     func update(
         models: [ShoppingCart.Product],
@@ -77,8 +96,15 @@ final class PersistentProviderMock: PersistentProviderProtocol {
     }
 }
 
-final class ImageLoaderMock: ImageLoaderProtocol {
+// MARK: - ImageLoaderMock class
+
+final class ImageLoaderMock {
+    
     var resultForGetImage: Result<UIImage, ShoppingCart.ImageLoaderError>?
+}
+
+// MARK: - ImageLoaderProtocol + ImageLoaderMock
+extension ImageLoaderMock: ImageLoaderProtocol {
     
     func loadImage(for stringUrl: String, completion: @escaping (Result<UIImage, ShoppingCart.ImageLoaderError>) -> Void) {
         completion(resultForGetImage!)
