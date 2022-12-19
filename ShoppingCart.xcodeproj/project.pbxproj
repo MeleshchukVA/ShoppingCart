@@ -121,6 +121,7 @@
 		3FEFF980294EFDB90050B284 /* ProfileRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF97F294EFDB90050B284 /* ProfileRouterMock.swift */; };
 		3FEFF982294EFE740050B284 /* ProfilePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF981294EFE740050B284 /* ProfilePresenterTests.swift */; };
 		3FEFF984294EFEC20050B284 /* ProfileViewControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF983294EFEC20050B284 /* ProfileViewControllerMock.swift */; };
+		3FEFF986295074F30050B284 /* ProductCollectionViewAdapterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFF985295074F30050B284 /* ProductCollectionViewAdapterMock.swift */; };
 		9896D0838BABF26E6FBCAA83 /* Pods_ShoppingCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949AC60969A23CB238DEF102 /* Pods_ShoppingCart.framework */; };
 /* End PBXBuildFile section */
 
@@ -255,6 +256,7 @@
 		3FEFF97F294EFDB90050B284 /* ProfileRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouterMock.swift; sourceTree = "<group>"; };
 		3FEFF981294EFE740050B284 /* ProfilePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenterTests.swift; sourceTree = "<group>"; };
 		3FEFF983294EFEC20050B284 /* ProfileViewControllerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerMock.swift; sourceTree = "<group>"; };
+		3FEFF985295074F30050B284 /* ProductCollectionViewAdapterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewAdapterMock.swift; sourceTree = "<group>"; };
 		949AC60969A23CB238DEF102 /* Pods_ShoppingCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -379,6 +381,7 @@
 				3F12C4672940A1920039EF85 /* CatalogueInteractorSpy.swift */,
 				3F12C46529409FDD0039EF85 /* CatalogueRouterMock.swift */,
 				3F12C4692940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift */,
+				3FEFF985295074F30050B284 /* ProductCollectionViewAdapterMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -892,6 +895,7 @@
 				3FEFF982294EFE740050B284 /* ProfilePresenterTests.swift in Sources */,
 				3F12C4682940A1920039EF85 /* CatalogueInteractorSpy.swift in Sources */,
 				3F12C48E2941DE440039EF85 /* CartInteractorMock.swift in Sources */,
+				3FEFF986295074F30050B284 /* ProductCollectionViewAdapterMock.swift in Sources */,
 				3FEFF984294EFEC20050B284 /* ProfileViewControllerMock.swift in Sources */,
 				3F12C4982941F8C30039EF85 /* CartPresenterTests.swift in Sources */,
 				3F12C46E2940E5AD0039EF85 /* CatalogueViewControllerMock.swift in Sources */,
