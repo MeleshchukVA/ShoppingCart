@@ -95,20 +95,18 @@ extension CataloguePresenter: CatalogueInteractorOutput {
             CatalogueViewModel(id: UUID(), name: $0.capitalized.replacingOccurrences(of: "-", with: " "))
         }.sorted { $0.name < $1.name }
         
-        DispatchQueue.main.async {
-            if !viewModels.isEmpty {
-                self.view?.hideTableView(isHidden: false)
-                self.categories = viewModels
-                self.tableViewAdapter.restore()
-                self.tableViewAdapter.update(viewModels: viewModels)
-                self.view?.stopActivityIndicator()
-            } else {
-                self.view?.hideTableView(isHidden: false)
-                self.tableViewAdapter.setEmptyMessage(
-                    message: "No categories found or connect to a network to download data"
-                )
-                self.view?.stopActivityIndicator()
-            }
+        if !viewModels.isEmpty {
+            self.view?.hideTableView(isHidden: false)
+            self.categories = viewModels
+            self.tableViewAdapter.restore()
+            self.tableViewAdapter.update(viewModels: viewModels)
+            self.view?.stopActivityIndicator()
+        } else {
+            self.view?.hideTableView(isHidden: false)
+            self.tableViewAdapter.setEmptyMessage(
+                message: "No categories found or connect to a network to download data"
+            )
+            self.view?.stopActivityIndicator()
         }
     }
     
@@ -121,11 +119,13 @@ extension CataloguePresenter: CatalogueInteractorOutput {
     func didObtainProducts(products: [Products]) {
         guard let product = products.first else { return }
         self.total = product.total
+        
         if self.products.isEmpty {
             self.products = product.products
         } else {
             self.products.append(contentsOf: product.products)
         }
+        
         let viewModels = self.products.map { product in
             ProductViewModel(
                 id: product.id,
@@ -153,10 +153,10 @@ extension CataloguePresenter: CatalogueInteractorOutput {
                             let productsInCart = self.interactor.obtainCartProductsCount()
                             self.view?.updateTabBarItems(badgeCount: productsInCart + 1)
                         }
-                    
+                        
                     case .remove:
                         break
-                    
+                        
                     case .update:
                         break
                     }

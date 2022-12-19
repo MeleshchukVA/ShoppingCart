@@ -22,8 +22,8 @@ extension CatalogueInteractor: CatalogueInteractorInput {
     func fetchCategories() {
         networkService.fetchCategories { [weak self] result in
             switch result {
-            case .success(let results):
-                self?.output?.didObtainCategories(categories: results)
+            case .success(let categories):
+                self?.output?.didObtainCategories(categories: categories)
             
             case .failure:
                 self?.output?.didObtainCategories(categories: [])

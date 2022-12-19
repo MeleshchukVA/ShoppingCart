@@ -81,7 +81,9 @@ extension CatalogueViewController: CatalogueViewInput {
     }
     
     func hideTableView(isHidden: Bool) {
-        catalogueView?.hideTableView(isHidden: isHidden)
+        DispatchQueue.main.async {
+            self.catalogueView?.hideTableView(isHidden: isHidden)
+        }
     }
     
     func hideCollectionView() {
@@ -93,7 +95,9 @@ extension CatalogueViewController: CatalogueViewInput {
     }
     
     func stopActivityIndicator() {
-        catalogueView?.stopActivityIndicator()
+        DispatchQueue.main.async {
+            self.catalogueView?.stopActivityIndicator()
+        }
     }
 }
 

@@ -46,15 +46,21 @@ extension CatalogueTableViewAdapter: CatalogueTableViewAdapterProtocol {
     
     func update(viewModels: [CatalogueViewModel]) {
         self.viewModels = viewModels
-        tableView?.reloadData()
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+        }
     }
     
     func setEmptyMessage(message: String) {
-        self.tableView?.setEmptyMessage(message: message)
+        DispatchQueue.main.async {
+            self.tableView?.setEmptyMessage(message: message)
+        }
     }
     
     func restore() {
-        self.tableView?.restore()
+        DispatchQueue.main.async {
+            self.tableView?.restore()
+        }
     }
 }
 
