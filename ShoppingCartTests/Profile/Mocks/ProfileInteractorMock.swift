@@ -17,7 +17,8 @@ final class ProfileInteractorMock {
 extension ProfileInteractorMock: ProfileInteractorInput {
     
     func getImage(url: String) {
-        imageLoaderMock?.loadImage(for: url, completion: { result in
+        imageLoaderMock?.loadImage(for: url, completion: { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let image):
                 self.output?.didGetImage(image: image)
@@ -28,7 +29,8 @@ extension ProfileInteractorMock: ProfileInteractorInput {
     }
     
     func getUser() {
-        networkServiceMock?.getUser(completion: { result in
+        networkServiceMock?.getUser(completion: { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let user):
                 self.output?.didGetUser(user: user)
