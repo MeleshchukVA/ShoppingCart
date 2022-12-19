@@ -14,7 +14,6 @@ final class ProfileViewControllerMock {
     var isFalseToGetImage = false
 }
 
-
 extension ProfileViewControllerMock: ProfileViewInput {
     
     func setupUser(user: ShoppingCart.User) {

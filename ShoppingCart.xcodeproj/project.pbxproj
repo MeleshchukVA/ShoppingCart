@@ -727,9 +727,9 @@
 		3FEFF97C294EFD910050B284 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				3FEFF983294EFEC20050B284 /* ProfileViewControllerMock.swift */,
 				3FEFF97D294EFDAD0050B284 /* ProfileInteractorMock.swift */,
 				3FEFF97F294EFDB90050B284 /* ProfileRouterMock.swift */,
-				3FEFF983294EFEC20050B284 /* ProfileViewControllerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
