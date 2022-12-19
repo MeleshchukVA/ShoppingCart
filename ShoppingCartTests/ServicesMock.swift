@@ -32,6 +32,7 @@ final class NetworkServiceMock {
     
     // MARK: Properties
     var resultForGetUsers: Result<ShoppingCart.User, Error>?
+    var resultForFetchCategories: Result<ShoppingCart.Categories, Error>?
 }
 
 // MARK: - NetworkServiceMock + NetworkServiceProtocol
@@ -39,7 +40,7 @@ final class NetworkServiceMock {
 extension NetworkServiceMock: NetworkServiceProtocol {
     
     func fetchCategories(completion: @escaping (Result<ShoppingCart.Categories, Error>) -> Void) {
-        return
+        completion(resultForFetchCategories!)
     }
     
     func fetchProducts(with name: String, completion: @escaping (Result<ShoppingCart.Products, Error>) -> Void) {
