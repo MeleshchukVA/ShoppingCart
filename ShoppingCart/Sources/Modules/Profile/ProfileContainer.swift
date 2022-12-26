@@ -41,11 +41,19 @@ final class ProfileContainer {
         )
         let presenter = ProfilePresenter(router: router, interactor: interactor)
         let viewController = ProfileViewController(output: presenter)
-
+        
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
 
         interactor.output = presenter
+        
+        router.viewControllerProvider = { [weak viewController] in
+            viewController
+        }
+        router.navigationControllerProvider = { [weak viewController] in
+            viewController?.navigationController
+        }
+        router.moduleDependencies = context.moduleDependencies
 
         return ProfileContainer(view: viewController, input: presenter, router: router)
     }
