@@ -38,10 +38,9 @@ final class CatalogueViewController: BaseViewController {
         super.viewDidLoad()
         UIApplication.shared.statusBarUIView?.backgroundColor = Colors.purple
         
-        output.viewDidLoad()
         setupSearchController()
     }
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         output.viewDidAppear()
@@ -53,6 +52,7 @@ final class CatalogueViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        output.viewDidLoad()
         
         if #available(iOS 12.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = false

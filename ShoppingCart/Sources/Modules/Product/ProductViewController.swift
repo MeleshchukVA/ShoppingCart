@@ -40,6 +40,9 @@ final class ProductViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         output.viewDidLoad()
     }
 }

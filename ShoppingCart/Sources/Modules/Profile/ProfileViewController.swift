@@ -18,6 +18,7 @@ final class ProfileViewController: UIViewController {
     // MARK: Init
     init(output: ProfileViewOutput) {
         self.output = output
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -30,10 +31,11 @@ final class ProfileViewController: UIViewController {
         let view = ProfileView(frame: UIScreen.main.bounds)
         self.view = view
     }
-
-    override func viewDidLoad() {
+    
+    // Чтобы шел запрос в сеть, когда не было интернета и потом он появился.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         output.viewDidLoad()
-        super.viewDidLoad()
     }
 }
 
