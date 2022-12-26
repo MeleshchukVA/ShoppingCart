@@ -35,26 +35,6 @@ final class CartPresenter {
     }
 }
 
-// MARK: - CartModuleInput
-
-extension CartPresenter: CartModuleInput {}
-
-// MARK: - CheckoutModuleOutput
-
-extension CartPresenter: CheckoutModuleOutput {
-    
-    func clearCart(ids: [Int]) {
-        ids.forEach { id in
-            interactor.deleteProduct(id: id)
-            updateCountOfProduct(id: id, count: -1)
-            
-            let count = interactor.obtainCartProductsCount()
-            view?.updateTabBarItems(badgeCount: count == 1 ? -1 : count - 1)
-        }
-        viewDidLoad()
-    }
-}
-
 // MARK: - CartViewOutput
 
 extension CartPresenter: CartViewOutput {
@@ -132,6 +112,26 @@ extension CartPresenter: CartInteractorOutput {
     // MARK: Private methods
     private func updateCountOfProduct(id: Int, count: Int) {
         self.interactor.updateCountOfProduct(id: id, count: count)
+    }
+}
+
+// MARK: - CartModuleInput
+
+extension CartPresenter: CartModuleInput {}
+
+// MARK: - CheckoutModuleOutput
+
+extension CartPresenter: CheckoutModuleOutput {
+    
+    func clearCart(ids: [Int]) {
+        ids.forEach { id in
+            interactor.deleteProduct(id: id)
+            updateCountOfProduct(id: id, count: -1)
+            
+            let count = interactor.obtainCartProductsCount()
+            view?.updateTabBarItems(badgeCount: count == 1 ? -1 : count - 1)
+        }
+        viewDidLoad()
     }
 }
 
