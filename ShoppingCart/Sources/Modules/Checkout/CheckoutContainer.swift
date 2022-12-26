@@ -44,8 +44,8 @@ final class CheckoutContainer {
             products: products,
             tableViewAdapter: tableViewAdapter
         )
-
         let viewController = CheckoutViewController(output: presenter)
+        
         presenter.view = viewController
         presenter.moduleOutput = context.moduleOutput
 
