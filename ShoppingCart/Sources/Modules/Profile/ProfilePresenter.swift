@@ -55,7 +55,7 @@ extension ProfilePresenter: ProfileInteractorOutput {
     }
     
     func failToGetUser() {
-        self.router.showError(text: "Fail to get user...")
+        self.router.showError(text: "Please try again \nor check Internet connection")
         self.view?.failToGetUser()
     }
 }

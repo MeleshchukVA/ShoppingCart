@@ -18,8 +18,17 @@ extension ProfileRouter: ProfileRouterInput {
     func showError(text: String) {
         let cancelAction = UIAlertAction(title: "OK", style: .cancel)
         cancelAction.setValue(Colors.purple2, forKey: Keys.titleTextColor)
-        let alertController = UIAlertController(title: "Fail", message: text, preferredStyle: .alert)
+        
+        let alertController = UIAlertController(
+            title: "Something went wrong",
+            message: text,
+            preferredStyle: .alert
+        )
+        
         alertController.addAction(cancelAction)
-        self.viewController?.present(alertController, animated: true)
+        
+        DispatchQueue.main.async {
+            self.viewController?.present(alertController, animated: true)
+        }
     }
 }
