@@ -91,10 +91,6 @@ extension PersistentProviderMock: PersistentProviderProtocol {
     func deleteProduct(id: Int) {
         return
     }
-    
-    func testPrint(ids: [Int]) {
-        return
-    }
 }
 
 // MARK: - ImageLoaderMock class
