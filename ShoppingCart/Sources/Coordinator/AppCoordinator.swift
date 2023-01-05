@@ -12,7 +12,7 @@ import UIKit
 final class AppCoordinator {
     
     // MARK: Properties
-    private let window: UIWindow
+    private weak var window: UIWindow?
     private lazy var tabBarController = UITabBarController()
     private lazy var navigationControllers = AppCoordinator.makeNavigationControllers()
     private let appDependency: AppDependency
@@ -59,7 +59,7 @@ private extension AppCoordinator {
                 }
             })
 
-        window.rootViewController = onboardingVC
+        window?.rootViewController = onboardingVC
     }
 
     func startMainFlow() {
@@ -71,7 +71,7 @@ private extension AppCoordinator {
         }
         tabBarController.setViewControllers(navigationControllers, animated: true)
         setupAppearanceTabBar(with: tabBarController)
-        window.rootViewController = tabBarController
+        window?.rootViewController = tabBarController
     }
 
     func userHasSeenOnboarding() {
