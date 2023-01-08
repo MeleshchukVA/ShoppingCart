@@ -16,6 +16,7 @@ final class CatalogueViewControllerMock {
     var updateCollectionViewDataIsEmpty = false
     var viewModels: [ProductViewModel] = []
     var isStopActivityIndicator = false
+    var badgeCount: Int?
 }
 
 extension CatalogueViewControllerMock: CatalogueViewInput {
@@ -42,6 +43,6 @@ extension CatalogueViewControllerMock: CatalogueViewInput {
     }
     
     func updateTabBarItems(badgeCount: Int) {
-        return
+        self.badgeCount = badgeCount
     }
 }

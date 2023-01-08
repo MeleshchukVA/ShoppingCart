@@ -45,16 +45,29 @@ final class CartPresenterTests: XCTestCase {
 
 extension CartPresenterTests {
     
-    // MARK: CartViewOutput
-    func test_Presenter_View_Did_Load_With_Success() {
+    func test_PresenterDidLoad_WithSuccess() {
+        // When
         sut.viewDidLoad()
+        
+        //Then
         XCTAssert(viewControllerMock.isStartActivityIndicator == true)
         XCTAssert(interactorMock.isObtainCartProducts == true)
     }
     
-    func test_Presenter_View_Did_Load_With_Failure() {
+    func test_PresenterDidLoad_WithFailure() {
+        // When
         sut.viewDidLoad()
+        
+        //Then
         XCTAssert(viewControllerMock.isStartActivityIndicator == false)
         XCTAssert(interactorMock.isObtainCartProducts == false)
+    }
+    
+    func test_CheckoutButtonTapped_WithFailure() {
+        // When
+        sut.checkoutButtonTapped()
+        
+        // Then
+        XCTAssert(routerMock.isShowCheckoutView == false)
     }
 }

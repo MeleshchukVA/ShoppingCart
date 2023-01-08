@@ -13,6 +13,7 @@ final class CatalogueInteractorSpy: CatalogueInteractorInput {
     
     var output: CatalogueInteractorOutput?
     var networkServiceMock: NetworkServiceMock?
+    var persistentProviderMock: PersistentProviderMock?
     var isObtainCartProducts = false
     var isFetchSearchedProducts = false
     var products: Products
@@ -32,7 +33,7 @@ extension CatalogueInteractorSpy {
                 self.output?.didObtainCategories(categories: categories)
                 
             case .failure:
-                break
+                self.output?.didObtainCategories(categories: [])
             }
         })
     }
@@ -48,19 +49,13 @@ extension CatalogueInteractorSpy {
         output?.didObtainProducts(products: [filterProduct])
     }
     
-    func obtainCartProducts() {
-        isObtainCartProducts = true
-    }
+    func obtainCartProducts() {}
     
     func obtainCartProductsCount() -> Int {
         return 0
     }
     
     func addToCart(products: [ShoppingCart.Product], completion: @escaping (ShoppingCart.PersistentState) -> Void) {
-        return
-    }
-    
-    func testPrintBaseInteractor(ids: [Int]) {
         return
     }
 }

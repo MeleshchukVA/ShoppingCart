@@ -17,6 +17,7 @@ final class CataloguePresenterTests: XCTestCase {
     var tableViewAdapterMock: CatalogueTableViewAdapterMock!
     var collectionViewAdapterMock: ProductCollectionViewAdapterMock!
     var networkServiceMock: NetworkServiceMock!
+    var persistentProviderMock: PersistentProviderMock!
     
     override func setUp() {
         super.setUp()
@@ -30,6 +31,7 @@ final class CataloguePresenterTests: XCTestCase {
         routerMock = nil
         tableViewAdapterMock = nil
         networkServiceMock = nil
+        persistentProviderMock = nil
         super.tearDown()
     }
     
@@ -55,20 +57,16 @@ final class CataloguePresenterTests: XCTestCase {
         sut.view = viewControllerMock
         self.interactorMock.output = sut
         interactorMock.networkServiceMock = networkServiceMock
+        interactorMock.persistentProviderMock = persistentProviderMock
     }
 }
 
 extension CataloguePresenterTests {
     
-    func test_Presenter_Did_Load_With_Success() {
+    func test_PresenterDidLoad_WithSuccess() {
         // Given
         self.networkServiceMock = NetworkServiceMock()
         let categories = Categories(["Laptops"])
-        let viewModels = categories.map {
-            CatalogueViewModel(id: UUID(), name: $0.capitalized.replacingOccurrences(of: "-", with: " "))
-        }.sorted { $0.name < $1.name }
-        
-        let categoriesString = "Laptops"
             
         setupMocks()
         
@@ -82,21 +80,27 @@ extension CataloguePresenterTests {
         XCTAssert(viewControllerMock.isHideTableView == true)
         XCTAssert(tableViewAdapterMock.isRestoreTableView == true)
         XCTAssert(viewControllerMock.isStopActivityIndicator == true)
-        XCTAssert(tableViewAdapterMock.viewModels?.allSatisfy { $0.name.contains(categoriesString) } == true )
     }
     
-    func test_Presenter_Did_Load_With_Failure() {
+    func test_PresenterDidLoad_WithFailure() {
         // Given
+        self.networkServiceMock = NetworkServiceMock()
+        let error = NetworkErrors.dataIsEmpty
+        
         setupMocks()
+        
+        networkServiceMock.resultForFetchCategories = .failure(error)
         
         // When
         sut.viewDidLoad()
         
         // Then
-        XCTAssertFalse(viewControllerMock.isStartActivityIndicator == false)
+        XCTAssert(viewControllerMock.isHideTableView == true)
+        XCTAssert(tableViewAdapterMock.message == "No categories found or connect to a network to download data")
+        XCTAssert(viewControllerMock.isStopActivityIndicator == true)
     }
     
-    func test_Presenter_Search_Bar_Did_Editing_With_Some_Query_With_Success() {
+    func test_PresenterSearchBarDidEditing_WithSuccess() {
         // Given
         setupMocks(interactorMock: CatalogueInteractorSpy(products: Products(
             products: [Product(

@@ -13,6 +13,7 @@ final class CatalogueTableViewAdapterMock: CatalogueTableViewAdapterProtocol {
     
     var viewModels: [ShoppingCart.CatalogueViewModel]?
     var isRestoreTableView = false
+    var message: String?
 }
 
 extension CatalogueTableViewAdapterMock {
@@ -26,7 +27,7 @@ extension CatalogueTableViewAdapterMock {
     }
     
     func setEmptyMessage(message: String) {
-        return
+        self.message = message
     }
     
     func restore() {

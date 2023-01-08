@@ -53,7 +53,7 @@ final class ProfilePresenterTests: XCTestCase {
 
 extension ProfilePresenterTests {
 
-    func test_Did_Load_With_Success() {
+    func test_PresenterDidLoad_WithSuccess() {
         // Given
         self.networkServiceMock = NetworkServiceMock()
         let user = User(id: 1, image: "", firstName: "", lastName: "", email: "", username: "", password: "")
@@ -69,7 +69,7 @@ extension ProfilePresenterTests {
         XCTAssert(viewControllerMock.user?.id == user.id)
     }
 
-    func test_Did_Load_With_Failure() {
+    func test_PresenterDidLoad_WithFailure() {
         // Given
         self.networkServiceMock = NetworkServiceMock()
         let error = NetworkErrors.dataIsEmpty
@@ -86,7 +86,7 @@ extension ProfilePresenterTests {
         XCTAssert(viewControllerMock.isFalseActivityIndicator == true)
     }
 
-    func test_Did_Load_Image_With_Success() {
+    func test_PresenterDidLoadImage_WithSuccess() {
         // Given
         self.imageLoaderMock = ImageLoaderMock()
         self.networkServiceMock = NetworkServiceMock()
@@ -106,7 +106,7 @@ extension ProfilePresenterTests {
         XCTAssert(viewControllerMock.user?.image == user.image)
     }
 
-    func test_Did_Load_Image_With_Failure() {
+    func test_PresenterDidLoadImage_WithFailure() {
         // Given
         self.imageLoaderMock = ImageLoaderMock()
         self.networkServiceMock = NetworkServiceMock()
