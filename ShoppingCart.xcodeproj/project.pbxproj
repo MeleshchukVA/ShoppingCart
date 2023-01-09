@@ -23,6 +23,9 @@
 		3F08A63A292D1A4C00F02EDF /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A639292D1A4C00F02EDF /* UIImageView + Extension.swift */; };
 		3F08A63C292D1A6F00F02EDF /* UICollectionView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A63B292D1A6F00F02EDF /* UICollectionView + Extension.swift */; };
 		3F08A63E292D1A8700F02EDF /* UIApplication + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F08A63D292D1A8700F02EDF /* UIApplication + Extension.swift */; };
+		3F0BACA7296AEC9000148B7E /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0BACA6296AEC9000148B7E /* NetworkServiceMock.swift */; };
+		3F0BACA9296AED2400148B7E /* PersistentProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0BACA8296AED2400148B7E /* PersistentProviderMock.swift */; };
+		3F0BACAB296AED5D00148B7E /* ImageLoaderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0BACAA296AED5D00148B7E /* ImageLoaderMock.swift */; };
 		3F0FE8762912C37C00286A40 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0FE8752912C37C00286A40 /* BaseRouter.swift */; };
 		3F12B00F292E565600338F1D /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B00E292E565600338F1D /* CartCell.swift */; };
 		3F12B011292E567700338F1D /* CartTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F12B010292E567700338F1D /* CartTableViewAdapter.swift */; };
@@ -154,6 +157,9 @@
 		3F08A639292D1A4C00F02EDF /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		3F08A63B292D1A6F00F02EDF /* UICollectionView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView + Extension.swift"; sourceTree = "<group>"; };
 		3F08A63D292D1A8700F02EDF /* UIApplication + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Extension.swift"; sourceTree = "<group>"; };
+		3F0BACA6296AEC9000148B7E /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		3F0BACA8296AED2400148B7E /* PersistentProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentProviderMock.swift; sourceTree = "<group>"; };
+		3F0BACAA296AED5D00148B7E /* ImageLoaderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderMock.swift; sourceTree = "<group>"; };
 		3F0FE8752912C37C00286A40 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		3F12B00E292E565600338F1D /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		3F12B010292E567700338F1D /* CartTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewAdapter.swift; sourceTree = "<group>"; };
@@ -300,6 +306,25 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		3F0BACA4296AEC2200148B7E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F0BACA5296AEC6E00148B7E /* Mocks */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3F0BACA5296AEC6E00148B7E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3F12C4752940EA520039EF85 /* ServicesMock.swift */,
+				3F0BACA6296AEC9000148B7E /* NetworkServiceMock.swift */,
+				3F0BACA8296AED2400148B7E /* PersistentProviderMock.swift */,
+				3F0BACAA296AED5D00148B7E /* ImageLoaderMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		3F12B00C292E55FD00338F1D /* Cart */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +394,7 @@
 				3F12C4892941DC3D0039EF85 /* Cart */,
 				3F12C4732940EA100039EF85 /* Catalogue */,
 				3FEFF97B294EFD590050B284 /* Profile */,
-				3F12C4752940EA520039EF85 /* ServicesMock.swift */,
+				3F0BACA4296AEC2200148B7E /* Services */,
 			);
 			path = ShoppingCartTests;
 			sourceTree = "<group>";
@@ -894,9 +919,11 @@
 				3F12C4762940EA520039EF85 /* ServicesMock.swift in Sources */,
 				3FEFF982294EFE740050B284 /* ProfilePresenterTests.swift in Sources */,
 				3F12C4682940A1920039EF85 /* CatalogueInteractorSpy.swift in Sources */,
+				3F0BACA7296AEC9000148B7E /* NetworkServiceMock.swift in Sources */,
 				3F12C48E2941DE440039EF85 /* CartInteractorMock.swift in Sources */,
 				3FEFF986295074F30050B284 /* ProductCollectionViewAdapterMock.swift in Sources */,
 				3FEFF984294EFEC20050B284 /* ProfileViewControllerMock.swift in Sources */,
+				3F0BACA9296AED2400148B7E /* PersistentProviderMock.swift in Sources */,
 				3F12C4982941F8C30039EF85 /* CartPresenterTests.swift in Sources */,
 				3F12C46E2940E5AD0039EF85 /* CatalogueViewControllerMock.swift in Sources */,
 				3FEFF97E294EFDAD0050B284 /* ProfileInteractorMock.swift in Sources */,
@@ -905,6 +932,7 @@
 				3F12C46A2940A25B0039EF85 /* CatalogueTableViewAdapterMock.swift in Sources */,
 				3F12C4722940E9870039EF85 /* CataloguePresenterTests.swift in Sources */,
 				3F12C46629409FDD0039EF85 /* CatalogueRouterMock.swift in Sources */,
+				3F0BACAB296AED5D00148B7E /* ImageLoaderMock.swift in Sources */,
 				3FEFF980294EFDB90050B284 /* ProfileRouterMock.swift in Sources */,
 				3F12C48C2941DE0B0039EF85 /* CartViewControllerMock.swift in Sources */,
 			);
