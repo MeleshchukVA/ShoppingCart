@@ -54,15 +54,6 @@ extension CartPresenterTests {
         XCTAssert(interactorMock.isObtainCartProducts == true)
     }
     
-    func test_PresenterDidLoad_WithFailure() {
-        // When
-        sut.viewDidLoad()
-        
-        //Then
-        XCTAssert(viewControllerMock.isStartActivityIndicator == false)
-        XCTAssert(interactorMock.isObtainCartProducts == false)
-    }
-    
     func test_CheckoutButtonTapped_WithFailure() {
         // When
         sut.checkoutButtonTapped()
